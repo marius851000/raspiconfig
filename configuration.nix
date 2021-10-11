@@ -24,11 +24,24 @@
   networking.hostName = "marius-rasberrypi";
   
   # Preserve space by sacrificing documentation and history
-  services.nixosManual.enable = false;
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 30d";
   nix.gc.dates = "03:00";
   boot.cleanTmpDir = true;
+
+  services = {
+    nixosManual.enable = false;
+    /*ipfs = {
+      enableGC = true;
+      enable = true;
+    };*/
+  };
+
+  system.activationScripts = {
+    add_site_to_ipfs = ''
+
+    '';
+  };
 
   networking.firewall.allowedTCPPorts = [ 21 80 ];
 }

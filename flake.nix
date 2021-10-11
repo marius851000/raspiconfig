@@ -11,7 +11,8 @@
             modules = [
                 ./hardware.nix
                 ./configuration.nix
-                (import ./nixosweekly.nix { inherit pmdsite; })
+                ./nixosweekly.nix
+#                (import ./nixosweekly.nix { inherit pmdsite; })
 #                ./autoupdate.nix
 #                ./ftp_test.nix
             ];
