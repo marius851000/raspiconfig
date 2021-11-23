@@ -11,7 +11,13 @@
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
       enableACME = true;
-      addSSL = true;
+      locations = {
+        "/archive" = {
+          extraConfig = ''
+            autoindex on;
+          '';
+        };
+      };
     };
 
     virtualHosts.awstats = {
@@ -104,6 +110,7 @@
     addr = "0.0.0.0";
     enable = true;
     port = 2345;
+    rootUrl = "https://%(domain)s:%(http_port)s/eespie";
   };
 
   services.awstats = {
@@ -121,5 +128,11 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 2345 90 ];
+  /*services.vsftpd = {
+    enable = true;
+    anonymousUser = true;
+    anonymousUserHome = "/site";
+  };*/
+
+  networking.firewall.allowedTCPPorts = [ 80 443 90 ];
 }
