@@ -37,11 +37,5 @@
     };*/
   };
 
-  system.activationScripts = {
-    add_site_to_ipfs = ''
-
-    '';
-  };
-
   networking.firewall.allowedTCPPorts = [ 21 80 ];
 }
