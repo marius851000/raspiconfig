@@ -1,43 +1,12 @@
 {
   "nodes": {
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1622445595,
-        "narHash": "sha256-m+JRe6Wc5OZ/mKw2bB3+Tl0ZbtyxxxfnAWln8Q5qs+Y=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "7d706970d94bc5559077eb1a6600afddcd25a7c8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "gitignore_src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1611672876,
-        "narHash": "sha256-qHu3uZ/o9jBHiA3MEKHJ06k7w4heOhA+4HCSIvflRxo=",
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "rev": "211907489e9f198594c0eb0ca9256a1949c9d412",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1632676165,
-        "narHash": "sha256-UI3FqSs5jthhqmoMBIUS4FRPyskuBEYjJXv1KJJ4vjw=",
+        "lastModified": 1634381814,
+        "narHash": "sha256-K68uqSUr2FGMOPE75gFA5YUufvxO+nTjS3tQ+u9LUBY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3d85bb08106a3d32350df2786fda62aa7fd49cd8",
+        "rev": "e8e8d95751d5b17134e6dfdf60b30dd8ef40d2f9",
         "type": "github"
       },
       "original": {
@@ -45,32 +14,9 @@
         "type": "indirect"
       }
     },
-    "pmdsite": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "gitignore_src": "gitignore_src",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1632682103,
-        "narHash": "sha256-sGX20V5OdjiX+kC5I2Wj/iE52EckekorFtrvprCWYAc=",
-        "owner": "marius851000",
-        "repo": "pmd_hack_weekly",
-        "rev": "9c6e22d60cc1e2c9fbf53db51ce4fe54dab52c46",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marius851000",
-        "repo": "pmd_hack_weekly",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "pmdsite": "pmdsite"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
