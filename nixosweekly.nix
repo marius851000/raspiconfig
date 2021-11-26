@@ -11,6 +11,12 @@
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
       enableACME = true;
+      forceSSL = true;
+      locations = {
+        "/eespie/" = {
+          proxyPass = "http://localhost:2345/";
+        };
+      };
       locations = {
         "/archive" = {
           extraConfig = ''
@@ -131,6 +137,17 @@
     enable = true;
     port = 2345;
     rootUrl = "https://%(domain)s:%(http_port)s/eespie";
+    provision = {
+      enable = true;
+      datasources = [
+        {
+          "name" = "prometheus-local";
+          "type" = "prometheus";
+          "access" = "proxy";
+          "url" = "http://localhost:9090";
+        }
+      ];
+    };
   };
 
   services.awstats = {
