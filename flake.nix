@@ -1,5 +1,5 @@
 {
-    inputs.nixpkgs.url = "nixpkgs";
+    inputs.nixpkgs.url = "nixpkgs/release-21.11";
 #    inputs.pmdsite = {
 #        url = "github:marius851000/pmd_hack_weekly";
 #        inputs.nixpkgs.follows = "nixpkgs";
