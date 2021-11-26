@@ -30,6 +30,26 @@
     };
 
     statusPage = true;
+
+    # based on https://www.supertechcrew.com/anonymizing-logs-nginx-apache/
+    # anonymyze IP address, by only keeping the first two byte of info (2^16 unique ID)
+    appendHttpConfig = ''
+      map $remote_addr $remote_addr_anon {
+        ~(?P<ip>\d+\.\d+)\.\d+\.    $ip.0.0;
+        ~(?P<ip>[^:]+:[^:]+):       $ip::;
+        # IP addresses to not anonymize (such as your server)
+        127.0.0.1                   $remote_addr;
+        ::1                         $remote_addr;
+        192.168.0.254               $remote_addr;
+        default                     0.0.0.0;
+      }
+
+        log_format  anon_ip   '$remote_addr_anon - $remote_user [$time_local] "$request" '
+                            '$status $body_bytes_sent "$http_referer" '
+                            '"$http_user_agent"';
+
+        access_log /var/log/nginx/access.log anon_ip;
+    '';
   };
 
   security.acme = {
