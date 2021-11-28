@@ -15,6 +15,9 @@
       locations = {
         "/eespie/" = {
           proxyPass = "http://localhost:2345/";
+          extraConfig = ''
+            access_log off;
+          '';
         };
       };
       locations = {
@@ -38,7 +41,7 @@
     statusPage = true;
 
     # based on https://www.supertechcrew.com/anonymizing-logs-nginx-apache/
-    # anonymyze IP address, by only keeping the first two byte of info (2^16 unique ID)
+    # anonymize IP address, by only keeping the first two byte of info (2^16 unique ID)
     appendHttpConfig = ''
       map $remote_addr $remote_addr_anon {
         ~(?P<ip>\d+\.\d+)\.\d+\.    $ip.0.0;
