@@ -1,3 +1,4 @@
+{ pmd_hack_archive_server, system }:
 { pkgs, lib, ... }:
 
 {
@@ -19,8 +20,12 @@
             access_log off;
           '';
         };
-      };
-      locations = {
+        "/hacks" = {
+          proxyPass = "http://localhost:12000";
+        };
+        "= /hacks" = {
+          return = "https://hacknews.pmdcollab.org/hacks/";
+        };
         "/archive" = {
           extraConfig = ''
             autoindex on;
@@ -64,6 +69,18 @@
   security.acme = {
     email = "mariusdavid@laposte.net";
     acceptTerms = true;
+  };
+
+  systemd.services.hackarchive = {
+    enable = true;
+    description = "Marius's hack archive front-end";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive localhost:12000 https://hacknews.pmdcollab.org/hacks hacks";
+      Restart = "on-failure";
+      RestartSec = 60;
+    };
   };
 
   services.prometheus = {
@@ -174,5 +191,30 @@
     anonymousUserHome = "/site";
   };*/
 
-  networking.firewall.allowedTCPPorts = [ 80 443 90 ];
+  /*services.loki = {
+    enable = true;
+    configuration = {
+      auth_enabled = false;
+      server = {
+        http_listen_port = 3100;
+        #grpc_listen_port = 9096;
+      };
+      ingester = {
+        lifecycler = {
+          address = "127.0.0.1";
+          ring = {
+            kvstore = {
+              store = "inmemory";
+            };
+            replication_factor = 1;
+          };
+          final_sleep = "0s";
+        };
+        chunk_idle_period = "5m";
+        chunk_retain_period = "30s";
+      }
+    }
+  };*/
+
+  networking.firewall.allowedTCPPorts = [ 80 443 90 3100 ];
 }

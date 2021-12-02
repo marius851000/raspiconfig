@@ -1,12 +1,30 @@
 {
   "nodes": {
+    "naersk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1637576998,
+        "narHash": "sha256-bGQ66hh4Dl78T9bd1pqdp6fprHMCkrkeKqED6sDUYqo=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "b043f2447a4a761529254f4983cacd94b034a122",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1637874155,
-        "narHash": "sha256-NhMCb97iPDrfwxK6HHw8NLHS9c/QR2997iXR97oCqw8=",
+        "lastModified": 1638106053,
+        "narHash": "sha256-Bnr4FNMN5WzyzrVvkcxghkPEwa2pvFR5FCdZp3HjhqU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a1ea9a03542ac3ae764cb4e671901e650226178c",
+        "rev": "4cf625d8385ae912546dad1f14f134ec0ebe8712",
         "type": "github"
       },
       "original": {
@@ -15,9 +33,61 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1637874235,
+        "narHash": "sha256-M6JwoPBCv6BOMMD0iiUYfMuoEQ0/QfbSpaH/0JKqHPI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b47648f6c820e9d814f4633d3acaea07019652df",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "pmd_hack_archive_server": {
+      "inputs": {
+        "naersk": "naersk",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1638123155,
+        "narHash": "sha256-AyFjWPsieLV4pUo0cZLKldhKiv7ae++TszfWpsbQOj4=",
+        "owner": "marius851000",
+        "repo": "hack_archive_server",
+        "rev": "7fc32aef074664c2731cbe77d274e0721f1ddfc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marius851000",
+        "repo": "hack_archive_server",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "pmd_hack_archive_server": "pmd_hack_archive_server"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1637014545,
+        "narHash": "sha256-26IZAc5yzlD9FlDT54io1oqG/bBoyka+FJk5guaX4x4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "bba5dcc8e0b20ab664967ad83d24d64cb64ec4f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     }
   },
