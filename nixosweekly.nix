@@ -1,5 +1,5 @@
 { pmd_hack_archive_server, system }:
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   services.nginx = {
@@ -31,6 +31,59 @@
             autoindex on;
           '';
         };
+
+
+        "/feeds/all.atom.xml" = {
+          return = "https://hacknews.pmdcollab.org/feed.php?type=atom&mode=list&ns=";
+        };
+
+        "/feeds/all.rss.xml" = {
+          return = "https://hacknews.pmdcollab.org/feed.php?mode=list&ns=";
+        };
+
+
+
+
+        "~ /(conf/|bin/|inc/|install.php)" = {
+          extraConfig = "deny all;";
+        };
+
+        "~ ^/data/" = {
+          root = "/site/data";
+          extraConfig = "internal;";
+        };
+
+        "~ ^/lib.*\.(js|css|gif|png|ico|jpg|jpeg)$" = {
+          extraConfig = "expires 365d;";
+        };
+
+        "/" = {
+          priority = 1;
+          index = "doku.php";
+          extraConfig = ''try_files $uri $uri/ @dokuwiki;'';
+        };
+
+        "@dokuwiki" = {
+          extraConfig = ''
+            # rewrites "doku.php/" out of the URLs if you set the userwrite setting to .htaccess in dokuwiki config page
+            rewrite ^/_media/(.*) /lib/exe/fetch.php?media=$1 last;
+            rewrite ^/_detail/(.*) /lib/exe/detail.php?media=$1 last;
+            rewrite ^/_export/([^/]+)/(.*) /doku.php?do=export_$1&id=$2 last;
+            rewrite ^/(.*) /doku.php?id=$1&$args last;
+          '';
+        };
+
+        "~ \\.php$" = {
+          extraConfig = ''
+
+            try_files $uri $uri/ /doku.php;
+            include ${pkgs.nginx}/conf/fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param REDIRECT_STATUS 200;
+            fastcgi_pass unix:${config.services.phpfpm.pools."dokuwiki".socket};
+          '';
+        };
+
       };
     };
 
@@ -71,6 +124,48 @@
     acceptTerms = true;
   };
 
+  services.phpfpm.pools.dokuwiki = {
+    user = "dokuwiki_pool";
+    settings = {
+      pm = "dynamic";
+      "listen.owner" = config.services.nginx.user;
+      "pm.max_children" = 5;
+      "pm.start_servers" = 2;
+      "pm.min_spare_servers" = 1;
+      "pm.max_spare_servers" = 3;
+      "pm.max_requests" = 500;
+    };
+  };
+
+  users.groups.dokuwiki_pool = {};
+  users.users.dokuwiki_pool = {
+    isSystemUser = true;
+    group = "dokuwiki_pool";
+  };
+
+
+
+  services.phpfpm.phpPackage = (
+    pkgs.php74.withExtensions (
+      { enabled, all }: with all; [
+        pdo
+        pdo_mysql
+        xdebug
+        dom
+        json
+        filter
+        iconv
+        openssl
+        mbstring
+        simplexml
+        curl
+        filter
+        session
+        tokenizer
+      ]
+    )
+  );
+
   systemd.services.hackarchive = {
     enable = true;
     description = "Marius's hack archive front-end";
@@ -86,6 +181,7 @@
   services.prometheus = {
     enable = true;
     listenAddress = "localhost";
+    retentionTime = "1y";
     exporters.nginx = {
       enable = true;
       listenAddress = "localhost";
@@ -95,7 +191,7 @@
     };
     exporters.blackbox = {
       enable = true;
-      configFile = builtins.toFile "blackbox.yml" (lib.generators.toYAML {} {
+      configFile = builtins.toFile "blackbox.yml" (lib.generators.toYAML { } {
         modules = {
           http_2xx = {
             prober = "http";
@@ -144,7 +240,7 @@
             target_label = "instance";
           }
           {
-            target_label = "__address__" ;
+            target_label = "__address__";
             replacement = "localhost:9115";
           }
         ];
@@ -189,32 +285,32 @@
     enable = true;
     anonymousUser = true;
     anonymousUserHome = "/site";
-  };*/
+    };*/
 
   /*services.loki = {
     enable = true;
     configuration = {
-      auth_enabled = false;
-      server = {
-        http_listen_port = 3100;
-        #grpc_listen_port = 9096;
-      };
-      ingester = {
-        lifecycler = {
-          address = "127.0.0.1";
-          ring = {
-            kvstore = {
-              store = "inmemory";
-            };
-            replication_factor = 1;
-          };
-          final_sleep = "0s";
-        };
-        chunk_idle_period = "5m";
-        chunk_retain_period = "30s";
-      }
+    auth_enabled = false;
+    server = {
+    http_listen_port = 3100;
+    #grpc_listen_port = 9096;
+    };
+    ingester = {
+    lifecycler = {
+    address = "127.0.0.1";
+    ring = {
+    kvstore = {
+    store = "inmemory";
+    };
+    replication_factor = 1;
+    };
+    final_sleep = "0s";
+    };
+    chunk_idle_period = "5m";
+    chunk_retain_period = "30s";
     }
-  };*/
+    }
+    };*/
 
   networking.firewall.allowedTCPPorts = [ 80 443 90 3100 ];
 }
