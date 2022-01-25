@@ -5,6 +5,8 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    daemonIOSchedClass = "idle";
+    #most of the CPU time during building is spend waiting for the microSD card, and this make the website ultra slow
   };
   
   environment.systemPackages = [ pkgs.fish pkgs.git ];
