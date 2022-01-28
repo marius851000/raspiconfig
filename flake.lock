@@ -1,32 +1,12 @@
 {
   "nodes": {
-    "naersk": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1639947939,
-        "narHash": "sha256-pGsM8haJadVP80GFq4xhnSpNitYNQpaXk4cnA796Cso=",
-        "owner": "nix-community",
-        "repo": "naersk",
-        "rev": "2fc8ce9d3c025d59fee349c1f80be9785049d653",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "naersk",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1643199069,
-        "narHash": "sha256-c+ZO7SSN4aYZaTT0JsO0YWEtO7r7VfP4/RtPMe1h8pE=",
+        "lastModified": 1643409748,
+        "narHash": "sha256-mtiXqbT8a9/CHZcBoYknDp6uacoCIrhMhrSpBoTqYsE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "65caf7cf6d705b61e053dc93e21249f8b7cf8dbf",
+        "rev": "2d3d6d2550fbefd3038dcace2858ec128b368580",
         "type": "github"
       },
       "original": {
@@ -37,20 +17,17 @@
     },
     "pmd_hack_archive_server": {
       "inputs": {
-        "naersk": [
-          "naersk"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ],
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1641232064,
-        "narHash": "sha256-WqsgP5D9nu8NlWfSmK/8XG2axLTX7Yvj4H491zUKcDk=",
+        "lastModified": 1643412023,
+        "narHash": "sha256-KIE1Uz4UALoLy3HOJAR44A30Bkq647E+jhHUbpHGR2c=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "8a7c6a4528ff9b0c4ac3a0c730610d2ec901842c",
+        "rev": "0a9a3695a43a6b40f22885e88b983c70d6bea65c",
         "type": "github"
       },
       "original": {
@@ -61,7 +38,6 @@
     },
     "root": {
       "inputs": {
-        "naersk": "naersk",
         "nixpkgs": "nixpkgs",
         "pmd_hack_archive_server": "pmd_hack_archive_server"
       }

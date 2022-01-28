@@ -1,14 +1,9 @@
 {
     inputs.nixpkgs.url = "nixpkgs/release-21.11";
-    inputs.naersk = {
-        url = "github:nix-community/naersk";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-    
+
     inputs.pmd_hack_archive_server = {
         url = "github:marius851000/hack_archive_server";
         inputs.nixpkgs.follows = "nixpkgs";
-        inputs.naersk.follows = "naersk";
     };
 
 #    inputs.pmdsite = {
@@ -16,7 +11,7 @@
 #        inputs.nixpkgs.follows = "nixpkgs";
 #    };
 
-    outputs = { self, nixpkgs, pmd_hack_archive_server, naersk }: {
+    outputs = { self, nixpkgs, pmd_hack_archive_server }: {
         nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
             system = "aarch64-linux";
             modules = [
