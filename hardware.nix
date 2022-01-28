@@ -6,7 +6,7 @@
   boot.consoleLogLevel = 7;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.kernelParams = [ "elevator=bfq" "gpu_mem=16M"];
+  boot.kernelParams = [ "elevator=bfq" "gpu_mem=16"];
 
   #    boot.kernelParams = ["cma=128M"];
   #    boot.loader.raspberryPi.enable = true;
