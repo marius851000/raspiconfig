@@ -6,20 +6,13 @@
     writeScript,
     bash,
     jq,
-    writeText,
-    config
+    writeText
 }:
 
 let
     python = python3;
 
     pythonPackages = python.pkgs;
-
-    completeConfig = {
-        path = storagePath;
-    };
-
-    configFile = writeText "config.json" (builtins.toJSON completeConfig);
 in
 stdenv.mkDerivation rec {
     pname = "SpriteBot";
@@ -54,8 +47,6 @@ stdenv.mkDerivation rec {
     in writeScript "prestart-spritebot" ''
         #!${bash}/bin/bash
         mkdir -p "${innerFolder}"
-        #${jq}/bin/jq -s '.[0] * .[1]' ${innerConfig} ${configFile} > ${innerConfig}.tmp
-        #mv ${innerConfig}.tmp ${innerConfig}
         #jq can't handle 64 bit unsigned integer right now
     '';
 

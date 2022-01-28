@@ -41,9 +41,6 @@
           return = "https://hacknews.pmdcollab.org/feed.php?mode=list&ns=";
         };
 
-
-
-
         "~ /(conf/|bin/|inc/|install.php)" = {
           extraConfig = "deny all;";
         };
