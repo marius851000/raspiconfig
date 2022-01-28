@@ -32,12 +32,11 @@
   nix.gc.dates = "03:00";
   boot.cleanTmpDir = true;
 
-  services = {
-    nixosManual.enable = false;
-    /*ipfs = {
-      enableGC = true;
-      enable = true;
-    };*/
+  documentation = {
+    nixos.enable = false;
+    man.enable = false;
+    doc.enable = false;
+    info.enable = false;
   };
 
   networking.firewall.allowedTCPPorts = [ 21 80 ];
