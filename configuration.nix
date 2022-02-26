@@ -5,12 +5,10 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    daemonIOSchedClass = "idle";
-    daemonCPUSchedPolicy = "idle";
     #most of the CPU time during building is spend waiting for the microSD card, and this make the website ultra slow
   };
   
-  environment.systemPackages = [ pkgs.fish pkgs.git ];
+  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone ];
   
   services = {
     timesyncd.enable = true;
@@ -19,16 +17,23 @@
       permitRootLogin = "yes";
     };
   };
+
+  zramSwap.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDuN+cUqYFhHULFrOK0oOxbd46ffjZGN5Nxh43LkgHgb3jEVPc/D1WaEVZj8emds3Vn3amnvLN+0AvHUszCzWKJEkwNwApBHxdupRSwVM6dFqXFkSpirPWkpdtwfx4IAaHyppmwJSYpqYRd3LHTc8NBvsFemO7x7rJHLRGi8sRsEZxqD5YoVBCGNBxIEg2BzxWcqmrveOK8YAIL2TuLkJWp0k6Q52BESvrd2IsqDDSsu/TdkOlSWQoIqTdupbm94EGMeRyFrpNuxbb0EVHd0f+/r3aXkCDDLr7CV5XO37lFgvEFCWYGhQnK8JjF/FZIABioBaStuc0rbGrxa5J/MUIR marius@marius-nixos" 
+  ];
   
   # !!! Adding a swap file is optional, but strongly recommended!
   swapDevices = [ { device = "/swapfile"; size = 512; } ];
   hardware.enableRedistributableFirmware = true;
   
-  networking.hostName = "marius-rasberrypi";
+  networking = {
+    domain = "hacknews.pmdcollab.org";
+  };
   
   # Preserve space by sacrificing documentation and history
   nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 30d";
+  nix.gc.options = "--delete-older-than 7d";
   nix.gc.dates = "03:00";
   boot.cleanTmpDir = true;
 
