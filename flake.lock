@@ -22,11 +22,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1643412023,
-        "narHash": "sha256-KIE1Uz4UALoLy3HOJAR44A30Bkq647E+jhHUbpHGR2c=",
+        "lastModified": 1645897319,
+        "narHash": "sha256-iyZIimkNWsFTF22LTz7tCleMCxiT/CWsdihuAvdqYgc=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "0a9a3695a43a6b40f22885e88b983c70d6bea65c",
+        "rev": "a5a6a36428c3d42ccba0a087c1a81b130e092f1d",
         "type": "github"
       },
       "original": {

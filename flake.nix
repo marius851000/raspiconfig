@@ -19,6 +19,7 @@
                 ./configuration.nix
                 ./notspritecollab.nix
                 (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
+                ./synapse.nix
 #                ./autoupdate.nix
 #                ./ftp_test.nix
             ];
@@ -29,7 +30,8 @@
             modules = [
                 ./hardware-vps.nix
                 ./configuration.nix
-                #(import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
+                (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
+                ./synapse.nix
             ];
         };
     };
