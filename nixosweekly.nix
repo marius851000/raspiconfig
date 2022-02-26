@@ -20,6 +20,12 @@
             access_log off;
           '';
         };
+        "/.git" = {
+          return = "404";
+        };
+        "/.gitignore" = {
+          return = "404";
+        };
         "/hacks" = {
           proxyPass = "http://localhost:12000";
         };
@@ -31,7 +37,6 @@
             autoindex on;
           '';
         };
-
 
         "/feeds/all.atom.xml" = {
           return = "https://hacknews.pmdcollab.org/feed.php?type=atom&mode=list&ns=";
@@ -52,6 +57,12 @@
 
         "~ ^/lib.*\.(js|css|gif|png|ico|jpg|jpeg)$" = {
           extraConfig = "expires 365d;";
+        };
+        
+        "/_matrix" = {
+          extraConfig = ''
+            return 410;
+          '';
         };
 
         "/" = {
@@ -80,7 +91,6 @@
             fastcgi_pass unix:${config.services.phpfpm.pools."dokuwiki".socket};
           '';
         };
-
       };
     };
 
@@ -117,7 +127,7 @@
   };
 
   security.acme = {
-    email = "mariusdavid@laposte.net";
+    defaults.email = "mariusdavid@laposte.net";
     acceptTerms = true;
   };
 
@@ -178,7 +188,7 @@
   services.prometheus = {
     enable = true;
     listenAddress = "localhost";
-    retentionTime = "1y";
+    retentionTime = "60d";
     exporters.nginx = {
       enable = true;
       listenAddress = "localhost";
@@ -239,6 +249,16 @@
           {
             target_label = "__address__";
             replacement = "localhost:9115";
+          }
+        ];
+      }
+      {
+        job_name = "synapse";
+        scrape_interval = "30s";
+        metrics_path = "/_synapse/metrics";
+        static_configs = [
+          {
+            targets = [ "[::1]:8008" ];
           }
         ];
       }
@@ -309,5 +329,5 @@
     }
     };*/
 
-  networking.firewall.allowedTCPPorts = [ 80 443 90 3100 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
