@@ -6,4 +6,22 @@
   fileSystems."/" = { device = "/dev/sda1"; fsType = "ext4"; };
 
   networking.hostName = "vps-b4203bd5";
+
+  networking.interfaces = {
+    ens3 = {
+      ipv6 = {
+        addresses = [
+          {
+            address = "2001:41d0:305:2100::9331";
+            prefixLength = 128;
+          }
+        ];
+      };
+    };
+  };
+
+  networking.defaultGateway6 = {
+    address = "2001:41d0:305:2100::1";
+    interface = "ens3";
+  };
 }
