@@ -1,8 +1,10 @@
+{ spritebot_src, ... }:
 { pkgs, ... }:
 
 let
     spritebot = pkgs.callPackage ./spritebot.nix {
         storagePath = "/notspritecollab";
+        src = spritebot_src;
     };
 in
 {

@@ -31,7 +31,7 @@
             modules = [
                 ./hardware-raspi.nix
                 ./configuration.nix
-                ./notspritecollab.nix
+                #./notspritecollab.nix
                 (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
                 ./synapse.nix
 #                ./autoupdate.nix
@@ -46,6 +46,7 @@
                 ./configuration.nix
                 (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
                 ./synapse.nix
+                (import ./notspritecollab.nix {inherit spritebot_src; })
                 nixos-simple-mailserver.nixosModules.mailserver
                 ./mailserver.nix
                 (import ./dns.nix {inherit dns; })

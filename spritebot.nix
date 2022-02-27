@@ -6,7 +6,8 @@
     writeScript,
     bash,
     jq,
-    writeText
+    writeText,
+    src
 }:
 
 let
@@ -18,12 +19,7 @@ stdenv.mkDerivation rec {
     pname = "SpriteBot";
     version = "latest";
 
-    src = fetchFromGitHub {
-        owner = "PMDCollab";
-        repo = "SpriteBot";
-        rev = "6c80b0c7a194050a8e893a9c41899acb198a83dc";
-        sha256 = "sha256-60GQCzo90jk/Pi7YH3mxhO0fuNHuvgNEPFxbvD9vbrU=";
-    };
+    inherit src;
 
     buildInputs = with pythonPackages; [
         discordpy
