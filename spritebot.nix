@@ -7,6 +7,7 @@
     bash,
     jq,
     writeText,
+    fetchpatch,
     src
 }:
 
@@ -21,6 +22,25 @@ stdenv.mkDerivation rec {
 
     inherit src;
 
+    patches = [
+        # make bounties optional
+        (fetchpatch {
+            url = "https://github.com/PMDCollab/SpriteBot/pull/8.patch";
+            sha256 = "sha256-n5Nx0Vwh/DjK1XkCEitvRdqJJqyKZHyft80RXrj/HrY=";
+        })
+        # fixed addportraitcredit
+        (fetchpatch {
+            url = "https://github.com/PMDCollab/SpriteBot/pull/9.patch";
+            sha256 = "sha256-tjpAdVTnY2CDR7mlZZRx7EnHnH1/TXsWOPmGQngl8tA=";
+        })
+        # permit to add new absent profile with less information
+        (fetchpatch {
+            url = "https://github.com/PMDCollab/SpriteBot/pull/10.patch";
+            sha256 = "sha256-7TknNj90UXg1Xg4f7rB4XQ71VxWcYevwIqoKUszC8wg=";
+        })
+        ./non-privileged-add-spritebot.patch
+    ];
+
     buildInputs = with pythonPackages; [
         discordpy
         python
@@ -32,7 +52,7 @@ stdenv.mkDerivation rec {
         pythonPackages.wrapPython
     ];
 
-    prePatch = ''
+    postPatch = ''
         substituteInPlace SpriteBot.py \
             --replace "os.path.dirname(os.path.abspath(__file__))" "\"${storagePath}.private\""
     '';
