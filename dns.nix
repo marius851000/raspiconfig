@@ -10,6 +10,9 @@
       "hacknews.pmdcollab.org" = {
         data = dns.lib.toString "hacknews.pmdcollab.org" (import ./hacknews.pmdcollab.org.nix { inherit dns; });
       };
+      "marius851000.fr.eu.org" = {
+        data = dns.lib.toString "marius851000.fr.eu.org" (import ./marius851000.fr.eu.org.nix { inherit dns; });
+      };
     };
   };
 
