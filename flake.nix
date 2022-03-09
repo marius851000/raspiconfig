@@ -34,6 +34,7 @@
                 #./notspritecollab.nix
                 (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
                 ./synapse.nix
+                ./backup.nix
 #                ./autoupdate.nix
 #                ./ftp_test.nix
             ];
@@ -46,6 +47,7 @@
                 ./configuration.nix
                 (import ./nixosweekly.nix {inherit pmd_hack_archive_server system; })
                 ./synapse.nix
+                ./backup.nix
                 (import ./notspritecollab.nix {inherit spritebot_src; })
                 nixos-simple-mailserver.nixosModules.mailserver
                 ./mailserver.nix
