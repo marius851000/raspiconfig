@@ -50,6 +50,7 @@
                 nixos-simple-mailserver.nixosModules.mailserver
                 ./mailserver.nix
                 (import ./dns.nix {inherit dns; })
+                ./snowflake.nix
             ];
         };
     };
