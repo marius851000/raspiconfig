@@ -82,24 +82,29 @@ in
 
   services.matrix-synapse = {
     enable = true;
-    server_name = domain;
-    enable_metrics = true;
-    allow_guest_access = true;
-    listeners = [
-      {
-        port = 8008;
-        bind_address = "::1";
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [
-          {
-            names = [ "client" "federation" "metrics" ];
-            compress = false;
-          }
-        ];
-      }
-    ];
+    settings = {
+      server_name = domain;
+      enable_metrics = true;
+      allow_guest_access = true;
+      listeners = [
+        {
+          port = 8008;
+          bind_addresses = [
+            "::1"
+            "127.0.0.1"
+          ];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [
+            {
+              names = [ "client" "federation" "metrics" ];
+              compress = false;
+            }
+          ];
+        }
+      ];
+    };
   };
 
   systemd.services.matrix-synapse = {
