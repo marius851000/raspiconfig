@@ -188,7 +188,7 @@
   services.prometheus = {
     enable = true;
     listenAddress = "localhost";
-    retentionTime = "60d";
+    retentionTime = "30d";
     exporters.nginx = {
       enable = true;
       listenAddress = "localhost";
@@ -206,7 +206,22 @@
         };
       });
     };
+    exporters.systemd = {
+      enable = true;
+      extraFlags = [
+        "--collector.enable-ip-accounting"
+      ];
+    };
     scrapeConfigs = [
+      {
+        job_name = "systemd";
+        scrape_interval = "20s";
+        static_configs = [
+          {
+            targets = [ "localhost:9558" ];
+          }
+        ];
+      }
       {
         job_name = "nginx";
         scrape_interval = "5s";
@@ -227,7 +242,7 @@
       }
       {
         job_name = "blackbox";
-        scrape_interval = "10s";
+        scrape_interval = "4s";
         metrics_path = "/probe";
         params = {
           module = [ "http_2xx" ];
