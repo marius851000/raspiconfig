@@ -52,6 +52,8 @@
                 nixos-simple-mailserver.nixosModules.mailserver
                 ./mailserver.nix
                 (import ./dns.nix {inherit dns; })
+                ./peertube.nix
+                #not important, but nice to have
                 ./syncthing_relay.nix
                 ./snowflake.nix
             ];

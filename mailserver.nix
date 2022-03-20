@@ -15,6 +15,9 @@
         #sendOnly = true;
         #sendOnlyRejectMessage = "This mail address is dedicated to sending update on the wiki. You can contact the administrator at mariusdavid@laposte.net (or other contact method displayed on-site).";
       };
+      "peertube@hacknews.pmdcollab.org" = {
+        hashedPasswordFile = "/secret-peertube-mail-password.txt";
+      };
     };
 
     certificateScheme = 3;

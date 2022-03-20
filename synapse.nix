@@ -10,7 +10,7 @@ in
     {
       virtualHosts."newsmatrix.pmdcollab.org" = {
         #root = "/site";
-        root = "/nix";
+        root = "/nix/store";
         enableACME = true;
         forceSSL = true;
 

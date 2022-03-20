@@ -1,10 +1,14 @@
 { dns }:
 
+let
+  ip4 = [ "51.38.185.177" ];
+  ip6 = [ "2001:41d0:0305:2100:0000:0000:0000:9331" ];
+in
 {
   SOA = {
     nameServer = "hacknews.pmdcollab.org.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10001;
+    serial = 10002;
   };
 
   NS = [ "hacknews.pmdcollab.org." ];
@@ -31,6 +35,11 @@
     }
   ];
 
-  A = [ "51.38.185.177" ];
-  AAAA = [ "2001:41d0:0305:2100:0000:0000:0000:9331" ];
+  A = ip4;
+  AAAA = ip6;
+
+  subdomains = {
+    peertube.A = ip4;
+    peertube.AAAA = ip6;
+  };
 }
