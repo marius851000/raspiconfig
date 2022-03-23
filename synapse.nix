@@ -86,6 +86,9 @@ in
       server_name = domain;
       enable_metrics = true;
       allow_guest_access = true;
+      app_service_config_files = [
+        "/var/lib/matrix-synapse/discord-registration.yaml"
+      ];
       listeners = [
         {
           port = 8008;
@@ -104,6 +107,19 @@ in
           ];
         }
       ];
+    };
+  };
+
+  services.matrix-appservice-discord = {
+    enable = true;
+    environmentFile = "/secret-matrix-appservice-discord.env";
+    settings = {
+      bridge = {
+        domain = "newsmatrix.pmdcollab.org";
+        homeserverUrl = "https://newsmatrix.pmdcollab.org";
+      };
+      logging.console = "silly";
+      channel.namePattern = ":name";
     };
   };
 
