@@ -94,6 +94,21 @@
     },
     "flake-utils_2": {
       "locked": {
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_3": {
+      "locked": {
         "lastModified": 1644229661,
         "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
@@ -105,6 +120,29 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "mach-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pypi-deps-db": [
+          "pypi-deps-db"
+        ]
+      },
+      "locked": {
+        "lastModified": 1647963193,
+        "narHash": "sha256-yk2yInXlUcLiWH0t6aXDfPBWok88T7/xJZIQAJUcddU=",
+        "owner": "DavHau",
+        "repo": "mach-nix",
+        "rev": "7b0e7f6f58f7332c1b8347e2673036eada1a6998",
+        "type": "github"
+      },
+      "original": {
+        "id": "mach-nix",
+        "type": "indirect"
       }
     },
     "nix-std": {
@@ -174,7 +212,7 @@
     "pmd_hack_archive_server": {
       "inputs": {
         "crane": "crane",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -193,12 +231,47 @@
         "type": "github"
       }
     },
+    "pypi-deps-db": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647937679,
+        "narHash": "sha256-iT58YMYuvqCeLVRt57NmZUnqRH7DhELg2T6J3sJD8Oc=",
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "rev": "15a3ed50e36d34e48536e2ac2fd0f2993968847f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "type": "github"
+      }
+    },
+    "python-github-archive_src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646206601,
+        "narHash": "sha256-toSBlg/8KiTjJ7Ky7DYDNGaI6gl1AfYA5smILK0XzsA=",
+        "owner": "josegonzalez",
+        "repo": "python-github-backup",
+        "rev": "63441ebfbc9f4e5f59922670a5167da4b880e00a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "josegonzalez",
+        "repo": "python-github-backup",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "dns": "dns",
+        "mach-nix": "mach-nix",
         "nixos-simple-mailserver": "nixos-simple-mailserver",
         "nixpkgs": "nixpkgs_2",
         "pmd_hack_archive_server": "pmd_hack_archive_server",
+        "pypi-deps-db": "pypi-deps-db",
+        "python-github-archive_src": "python-github-archive_src",
         "spritebot_src": "spritebot_src"
       }
     },
