@@ -2,7 +2,7 @@
   inputs.nixpkgs.url = "nixpkgs";
 
   inputs.pmd_hack_archive_server = {
-    url = "github:marius851000/hack_archive_server";
+    url = "github:marius851000/hack_archive_server/7501f03bda8ebe2b7000b6c7f3f9683003ba7bef";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -69,6 +69,7 @@
         ./mailserver.nix
         (import ./dns.nix { inherit dns; })
         ./peertube.nix
+        ./mariussite.nix
         #not important, but nice to have
         ./syncthing_relay.nix
         ./snowflake.nix

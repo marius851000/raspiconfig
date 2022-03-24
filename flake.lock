@@ -218,27 +218,28 @@
         ]
       },
       "locked": {
-        "lastModified": 1647600814,
-        "narHash": "sha256-V9xq0QVqnCQsx3vjyeLpTjTl538wsNAhKGhFQKoIucc=",
+        "lastModified": 1648034105,
+        "narHash": "sha256-F//PrfL0entEze+B/fiO87aQKOOO46Wlw6IjoRSb63A=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "9d577dc7f6829d33fa8c4cc0bbd5b42cf1746924",
+        "rev": "7501f03bda8ebe2b7000b6c7f3f9683003ba7bef",
         "type": "github"
       },
       "original": {
         "owner": "marius851000",
         "repo": "hack_archive_server",
+        "rev": "7501f03bda8ebe2b7000b6c7f3f9683003ba7bef",
         "type": "github"
       }
     },
     "pypi-deps-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1647937679,
-        "narHash": "sha256-iT58YMYuvqCeLVRt57NmZUnqRH7DhELg2T6J3sJD8Oc=",
+        "lastModified": 1648111593,
+        "narHash": "sha256-pmbWCHVGVff2cZB5iZIbVrtDYBvuNhH7LUpoYwYFN6w=",
         "owner": "DavHau",
         "repo": "pypi-deps-db",
-        "rev": "15a3ed50e36d34e48536e2ac2fd0f2993968847f",
+        "rev": "f1a2e122e1203a9756d423982cf3331f0154fcce",
         "type": "github"
       },
       "original": {

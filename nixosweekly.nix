@@ -2,6 +2,8 @@
 { pkgs, lib, config, ... }:
 
 {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" ];
+
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;
@@ -11,7 +13,8 @@
 
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
-      enableACME = true;
+      useACMEHost = "mariusdavid.fr";
+      enableACME = false;
       forceSSL = true;
       locations = {
         "/eespie/" = {
@@ -173,13 +176,19 @@
     )
   );
 
+  #TODO: would be a good idea to put that to a network only shared with hackarchive. I think systemd can do it.
+  services.couchdb = {
+    enable = true;
+    adminPass = "dontneedapasswordforlocalsystem";
+  };
+
   systemd.services.hackarchive = {
     enable = true;
     description = "Marius's hack archive front-end";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive localhost:12000 https://hacknews.pmdcollab.org/hacks hacks";
+      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive localhost:12000 https://hacknews.pmdcollab.org/hacks hacks";# http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem";
       Restart = "on-failure";
       RestartSec = 60;
     };

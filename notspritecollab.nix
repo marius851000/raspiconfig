@@ -38,7 +38,7 @@ in
             Group = group;
 
             BindPaths="${storagePath} ${storagePath}.private";
-            BindReadOnlyPaths="${sshKeyLocation} /etc"; #TODO: try to get tid of /etc
+            BindReadOnlyPaths="${sshKeyLocation} /etc"; #TODO: try to get rid of /etc
             
             SystemCallArchitectures = "native";
             SystemCallFilter = ["@system-service" "~@privileged" "~@resources"];
