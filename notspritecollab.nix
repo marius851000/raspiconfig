@@ -28,7 +28,7 @@ in
         };
         confinement.enable = true;
         confinement.fullUnit = true;
-        confinement.packages = [ pkgs.cacert ];
+        confinement.packages = [ pkgs.cacert pkgs.git pkgs.openssh ];
         serviceConfig = {
             Type = "simple";
             ExecStart = "${spritebot}/bin/spritebot";
