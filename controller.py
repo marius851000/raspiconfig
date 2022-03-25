@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 
+#TODO: make sure it work correctly, send SMTP message on failure
 TIMER_WAIT_TIME = 60 * 2
 TIME_BETWEEN_FULL_UPDATE = 15 * 60 # update interval
 TIME_BETWEEN_SITE_UPDATE = 15 * 60 # update site 4 time per hour (doesn't work)
