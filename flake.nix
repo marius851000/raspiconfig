@@ -2,7 +2,7 @@
   inputs.nixpkgs.url = "nixpkgs";
 
   inputs.pmd_hack_archive_server = {
-    url = "github:marius851000/hack_archive_server/7501f03bda8ebe2b7000b6c7f3f9683003ba7bef";
+    url = "github:marius851000/hack_archive_server";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
