@@ -43,6 +43,23 @@ in
             SystemCallArchitectures = "native";
             SystemCallFilter = ["@system-service" "~@privileged" "~@resources"];
 
+            RestrictRealtime = true;
+            RestrictSUIDSGID = true;
+            RemoveIPC = true;
+            ProtectProc = "invisibled";
+            NoNewPrivileges = true;
+            ProtectClock = true;
+            ProtectKernelTunables = true;
+            ProtectKernelModules = true;
+            ProtectKernelLogs = true;
+            ProtectControlGroups = true;
+            CapabilityBoundingSet = "";
+            PrivateDevices = true;
+            ProtectHostname = true;
+            ProcSubset = "pid";
+            RestrictNamespaces = true;
+
+
             #TODO: continue and learn more on this subject
         };
     };
