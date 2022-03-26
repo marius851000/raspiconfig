@@ -272,7 +272,8 @@
         "pmd_hack_archive_server": "pmd_hack_archive_server",
         "pypi-deps-db": "pypi-deps-db",
         "python-github-archive_src": "python-github-archive_src",
-        "spritebot_src": "spritebot_src"
+        "spritebot_src": "spritebot_src",
+        "wakapi_src": "wakapi_src"
       }
     },
     "spritebot_src": {
@@ -318,6 +319,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "wakapi_src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647790778,
+        "narHash": "sha256-EHQ4scDSTY3/JvKdL1FSsjuHwrYVB3+lw2SMEBqrrhA=",
+        "owner": "muety",
+        "repo": "wakapi",
+        "rev": "408d9086e725d7f55de43ead73a3e9066205b066",
+        "type": "github"
+      },
+      "original": {
+        "owner": "muety",
+        "repo": "wakapi",
         "type": "github"
       }
     }
