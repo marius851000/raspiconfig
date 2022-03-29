@@ -97,15 +97,6 @@
       };
     };
 
-    virtualHosts.awstats = {
-      listen = [
-        {
-          port = 90;
-          addr = "0.0.0.0";
-        }
-      ];
-    };
-
     statusPage = true;
 
     # based on https://www.supertechcrew.com/anonymizing-logs-nginx-apache/
@@ -320,6 +311,28 @@
         };
       };
     };
+  };
+
+  services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
+    enableACME = true;
+    forceSSL = true;
+
+    basicAuthFile = "/secret-nginx-auth";
+
+    locations = {
+      "/" = {
+        proxyPass = "http://127.0.0.1:90";
+      };
+    };
+  };
+  
+  services.nginx.virtualHosts.awstats = {
+    listen = [
+      {
+        port = 90;
+        addr = "127.0.0.1";
+      }
+    ];
   };
 
   /*services.vsftpd = {
