@@ -9,8 +9,9 @@
     settings.auto-optimise-store = true;
   };
   
-  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone ];
+  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut pkgs.nix-du ];
 
+  services.journald.extraConfig = "SystemMaxUse=300M";
   services = {
     timesyncd.enable = true;
     openssh = {
@@ -25,8 +26,8 @@
   ];
   
   # !!! Adding a swap file is optional, but strongly recommended!
-  swapDevices = [ { device = "/swapfile"; size = 512; } ];
-  hardware.enableRedistributableFirmware = true;
+  #swapDevices = [ { device = "/swapfile"; size = 512; } ];
+  hardware.enableRedistributableFirmware = false;
   
   networking = {
     domain = "hacknews.pmdcollab.org";
