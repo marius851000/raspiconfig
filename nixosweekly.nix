@@ -2,7 +2,7 @@
 { pkgs, lib, config, ... }:
 
 {
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" ];
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" "reddit1.mariusdavid.fr" "reddit2.mariusdavid.fr" ];
 
   services.nginx = {
     enable = true;

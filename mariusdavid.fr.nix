@@ -41,5 +41,24 @@ in
   subdomains = {
     wakapi.A = ip4;
     wakapi.AAAA = ip6;
+
+    awstats.A = ip4;
+    awstats.AAAA = ip6;
+
+    reddit1.A = ip4;
+    reddit1.AAAA = ip6;
+
+    reddit1.MX = [ {
+      exchange = "reddit1.mariusdavid.fr.";
+      preference = 10;
+    } ];
+
+    reddit2.A = ip4;
+    reddit2.AAAA = ip6;
+
+    reddit2.MX = [ {
+      exchange = "reddit2.mariusdavid.fr.";
+      preference = 10;
+    } ];
   };
 }
