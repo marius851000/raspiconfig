@@ -40,7 +40,7 @@
   #TODO: upstream -- and server
   #also, update will break the vendorSha256, but that's not too problematic
   inputs.wakapi_src = {
-    url = "github:muety/wakapi";
+    url = "github:muety/wakapi/2.3.1";
     flake = false;
   };
 
