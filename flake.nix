@@ -79,6 +79,7 @@
         ./peertube.nix
         ./mariussite.nix
         (import ./wakapi.nix { inherit wakapi_src; })
+        ./syncthing.nix
         #not important, but nice to have
         ./syncthing_relay.nix
         ./snowflake.nix
