@@ -6,6 +6,9 @@
     fqdn = "mariusdavid.fr";
     domains = [ "hacknews.pmdcollab.org" "mariusdavid.fr" "reddit1.mariusdavid.fr" "reddit2.mariusdavid.fr" ];
 
+    enablePop3 = true;
+    enablePop3Ssl = true;
+
     forwards = {
       "postmaster@hacknews.pmdcollab.org" = "mariusdavid@laposte.net";
       "reddit1@hacknews.pmdcollab.org" = "reddit@hacknews.pmdcollab.org";
@@ -91,27 +94,6 @@
       "user78@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
       "user79@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
 
-
-      "someuser1@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser2@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser3@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser4@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser5@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser6@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser7@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser8@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser9@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser10@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser11@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser12@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser13@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser14@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser15@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser16@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser17@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser18@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser19@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
-      "someuser20@hacknews.pmdcollab.org" = "someuser@hacknews.pmdcollab.org";
       #TODO: postmaster@mariusdavid.fr
       #TODO: not forward, but instead the other stuff
     };
@@ -131,9 +113,8 @@
         hashedPasswordFile = "/secret-reddit-account-email-pass.txt";
       };
 
-      #password: AGFJENUSFVDOEXI
-      "someuser@hacknews.pmdcollab.org" = {
-        hashedPassword = "/secret-reddit-account-email-pass.txt";
+      "jean@mariusdavid.fr" = {
+        hashedPassword = "/secret-jean-password.txt";
       };
     };
 
