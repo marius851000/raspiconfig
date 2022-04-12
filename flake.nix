@@ -44,12 +44,28 @@
     flake = false;
   };
 
+  inputs.mariussite = {
+    url = "github:marius851000/mysite";
+    flake = false;
+  };
   #    inputs.pmdsite = {
   #        url = "github:marius851000/pmd_hack_weekly";
   #        inputs.nixpkgs.follows = "nixpkgs";
   #    };
 
-  outputs = { self, nixpkgs, pmd_hack_archive_server, spritebot_src, nixos-simple-mailserver, dns, mach-nix, python-github-archive_src, pypi-deps-db, wakapi_src }: {
+  outputs = {
+    self,
+    nixpkgs,
+    pmd_hack_archive_server,
+    spritebot_src,
+    nixos-simple-mailserver,
+    dns,
+    mach-nix,
+    python-github-archive_src,
+    pypi-deps-db,
+    wakapi_src,
+    mariussite
+  }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
       modules = [
@@ -77,7 +93,7 @@
         ./mailserver.nix
         (import ./dns.nix { inherit dns; })
         ./peertube.nix
-        ./mariussite.nix
+        (import ./mariussite.nix { inherit mariussite; })
         (import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
         #not important, but nice to have
