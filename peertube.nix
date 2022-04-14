@@ -163,6 +163,8 @@
         };
       };
     };
+  
+  networking.firewall.allowedTCPPorts = [ 1935 ];
 
   environment.systemPackages = [ pkgs.peertube ];
 }
