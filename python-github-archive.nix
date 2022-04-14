@@ -6,6 +6,10 @@
 let
   python-github-archive = mach-nix.lib."${system}".buildPythonApplication {
     src = python-github-archive_src;
+    pname = "python-github-archive";
+    version = "git";
+    requirements = builtins.readFile "${python-github-archive_src}/requirements.txt";
+    ignoreDataOutdated = true;
   };
 
   tokenPath = "/secret-github-bot-token.txt";
