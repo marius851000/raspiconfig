@@ -114,6 +114,10 @@
         hashedPasswordFile = "/secret-reddit-account-email-pass.txt";
       };
 
+      "mastodon@mariusdavid.fr" = {
+        hashedPasswordFile = "/secret-mail-mastodon-hashed.txt";
+      };
+
       "jean@mariusdavid.fr" = {
         hashedPassword = "/secret-jean-password.txt";
       };

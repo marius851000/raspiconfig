@@ -213,17 +213,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1649737376,
-        "narHash": "sha256-SI8tWDt6XAdZIdKWVTpT5jw8OoEkjurX9nfhXtvNer4=",
+        "lastModified": 1649961138,
+        "narHash": "sha256-8ZCPrazs+qd2V8Elw84lIWuk0kKfVQ8Ei/19gahURhM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "909ab02b84a7fba22a82b43d76b658da80d170e7",
+        "rev": "d08394e7cd5c7431a1e8f53b7f581e74ee909548",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "pmd_hack_archive_server": {
@@ -235,11 +234,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1649503771,
-        "narHash": "sha256-OUHCiUzYzfofvweRQPZyDysMYklNeBtiArV7nipM4bk=",
+        "lastModified": 1650039285,
+        "narHash": "sha256-LIrqQWm02zTiWi4Er+I3Iv2zePyI4rAVydIB2Dx/L/E=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "7f619f83819ed253c25815344f8e0f85dd7a94c8",
+        "rev": "4c713cb017b3d5c10dca20d2ffd045d9c04a23eb",
         "type": "github"
       },
       "original": {
@@ -251,11 +250,11 @@
     "pypi-deps-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1649712274,
-        "narHash": "sha256-JopEhO6/gYqjhbLX9rc/oA5uIxpIeMsUErF4AJh2ddY=",
+        "lastModified": 1650053586,
+        "narHash": "sha256-mTfNQI7FqtA4WPx/6uCYWkwOnIwJ10I2g+hnmLyAVUc=",
         "owner": "DavHau",
         "repo": "pypi-deps-db",
-        "rev": "eae0eea2e70cb06623c4c0bd2cfe3107ba12a4c9",
+        "rev": "77e7d24a98d0f0a1cf5ce2529dbc5f84bcefbf5a",
         "type": "github"
       },
       "original": {
@@ -291,7 +290,6 @@
         "pypi-deps-db": "pypi-deps-db",
         "python-github-archive_src": "python-github-archive_src",
         "spritebot_src": "spritebot_src",
-        "waka-readme-stats_src": "waka-readme-stats_src",
         "wakapi_src": "wakapi_src"
       }
     },
@@ -338,22 +336,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "waka-readme-stats_src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1648932359,
-        "narHash": "sha256-uMAFHCQo2PY+4PjIz84udimPItNLRjQ4wr9LWQh/1TQ=",
-        "owner": "anmol098",
-        "repo": "waka-readme-stats",
-        "rev": "8d7822eae3cb13d7117bd516ad9cdb54b7a57eed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anmol098",
-        "repo": "waka-readme-stats",
         "type": "github"
       }
     },
