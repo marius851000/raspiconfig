@@ -10,7 +10,8 @@
     enablePop3Ssl = true;
 
     forwards = {
-      "postmaster@hacknews.pmdcollab.org" = "mariusdavid@laposte.net";
+      "postmaster@hacknews.pmdcollab.org" = "marius@mariusdavid.fr";
+      "postmaster@mariusdavid.fr" = "marius@mariusdavid.fr";
       "reddit1@hacknews.pmdcollab.org" = "reddit@hacknews.pmdcollab.org";
       "reddit2@hacknews.pmdcollab.org" = "reddit@hacknews.pmdcollab.org";
       "reddit3@hacknews.pmdcollab.org" = "reddit@hacknews.pmdcollab.org";
