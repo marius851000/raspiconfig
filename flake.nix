@@ -96,7 +96,7 @@
         (import ./mariussite.nix { inherit mariussite; })
         (import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
-        ./mastodon.nix
+        #./mastodon.nix
         #not important, but nice to have
         ./syncthing_relay.nix
         ./snowflake.nix
