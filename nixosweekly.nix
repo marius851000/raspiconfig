@@ -177,6 +177,9 @@
     enable = true;
     description = "Marius's hack archive front-end";
     wantedBy = [ "multi-user.target" ];
+    environment = {
+      RUST_LOG = "info";
+    };
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive localhost:12000 https://hacknews.pmdcollab.org/hacks hacks http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem";
