@@ -109,11 +109,11 @@
     },
     "flake-utils_3": {
       "locked": {
-        "lastModified": 1648297722,
-        "narHash": "sha256-W+qlPsiZd8F3XkzXOzAoR+mpFqzm3ekQkJNa+PIh1BQ=",
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "0f8662f1319ad6abf89b3380dd2722369fc51ade",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
         "type": "github"
       },
       "original": {
@@ -183,11 +183,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1646481600,
-        "narHash": "sha256-TBJu0BjWpp9737sqC5E4Iz48t3AatDUcBtXKuVJEQVg=",
+        "lastModified": 1650133068,
+        "narHash": "sha256-biHmW4DyRjydDUJ9bTqvUgVSSE/MzzAseQERT5yPjWI=",
         "ref": "master",
-        "rev": "75728d2686dec5ef2a73cdf80174311587413392",
-        "revCount": 527,
+        "rev": "4ce864f52ae7e1733582a32d66c1f94ee11a52c8",
+        "revCount": 528,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -213,11 +213,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1649961138,
-        "narHash": "sha256-8ZCPrazs+qd2V8Elw84lIWuk0kKfVQ8Ei/19gahURhM=",
+        "lastModified": 1650194139,
+        "narHash": "sha256-kurZsqeOw5fpqA/Ig+8tHvbjwzs5P9AE6WUKOX1m6qM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d08394e7cd5c7431a1e8f53b7f581e74ee909548",
+        "rev": "bd4dffcdb7c577d74745bd1eff6230172bd176d5",
         "type": "github"
       },
       "original": {
@@ -234,11 +234,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1650039285,
-        "narHash": "sha256-LIrqQWm02zTiWi4Er+I3Iv2zePyI4rAVydIB2Dx/L/E=",
+        "lastModified": 1650309498,
+        "narHash": "sha256-7ZcaX12MnRcYboD5eM2rOb9FO7RfbYOmF4HDFEYwYrM=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "4c713cb017b3d5c10dca20d2ffd045d9c04a23eb",
+        "rev": "69a3b1057ba6efdf37eb7f835dd0bf3e6d7587ba",
         "type": "github"
       },
       "original": {
@@ -250,11 +250,11 @@
     "pypi-deps-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1650053586,
-        "narHash": "sha256-mTfNQI7FqtA4WPx/6uCYWkwOnIwJ10I2g+hnmLyAVUc=",
+        "lastModified": 1650356898,
+        "narHash": "sha256-KTLqJ40kp8WPBEnW9ezG+n51N4rgmakdZ43skzpQ0L4=",
         "owner": "DavHau",
         "repo": "pypi-deps-db",
-        "rev": "77e7d24a98d0f0a1cf5ce2529dbc5f84bcefbf5a",
+        "rev": "4544d1c1f1127fb6e7465814b94ad6fe7c326bfc",
         "type": "github"
       },
       "original": {
