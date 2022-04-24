@@ -133,11 +133,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1648436428,
-        "narHash": "sha256-pDXf4Pgh1sGMSNpLjYnb2+WLqYYuRZxNs4OuOfNS8ik=",
+        "lastModified": 1650465032,
+        "narHash": "sha256-pVRl9CT1oGmkRk6AY5+HuxTqcus/N+xQ2ScsWVpK8Hc=",
         "owner": "DavHau",
         "repo": "mach-nix",
-        "rev": "86c3111786742fcc4dfdca2e124bcea10e05a4e6",
+        "rev": "4dde445784e47a083d41e4c80f36e8a916f44f1f",
         "type": "github"
       },
       "original": {
@@ -213,11 +213,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1650194139,
-        "narHash": "sha256-kurZsqeOw5fpqA/Ig+8tHvbjwzs5P9AE6WUKOX1m6qM=",
+        "lastModified": 1650527056,
+        "narHash": "sha256-dyBthjAs6JlNNDMi7SY+d2CirgBDqjG8SvZKeUvTLqM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bd4dffcdb7c577d74745bd1eff6230172bd176d5",
+        "rev": "b06d35b406c2396dd1611dc8601138fa3d06ee60",
         "type": "github"
       },
       "original": {
@@ -234,11 +234,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1650309498,
-        "narHash": "sha256-7ZcaX12MnRcYboD5eM2rOb9FO7RfbYOmF4HDFEYwYrM=",
+        "lastModified": 1650535224,
+        "narHash": "sha256-nt8hlzzn+DZMUiPLJQvKfBxfKWlPrE9i2vfNIWqAJEU=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "69a3b1057ba6efdf37eb7f835dd0bf3e6d7587ba",
+        "rev": "0f778c4638dcbec41dc578b8bb3408d9aa08bb61",
         "type": "github"
       },
       "original": {
@@ -247,14 +247,30 @@
         "type": "github"
       }
     },
+    "pmdcollab_wiki-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650561983,
+        "narHash": "sha256-rh/1A2ZGP7zYTlLgtlhyodDl7KOt/SDPXkGLPj2Lt7I=",
+        "owner": "keldaan-ag",
+        "repo": "PMD-collab-wiki",
+        "rev": "1d25b463fe3a91a43e679ecb845f3083343f6e1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "keldaan-ag",
+        "repo": "PMD-collab-wiki",
+        "type": "github"
+      }
+    },
     "pypi-deps-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1650356898,
-        "narHash": "sha256-KTLqJ40kp8WPBEnW9ezG+n51N4rgmakdZ43skzpQ0L4=",
+        "lastModified": 1650529625,
+        "narHash": "sha256-L64YipJ//q7MPNOGNTMQxWTvYiE9/1H17BwPygZNbsU=",
         "owner": "DavHau",
         "repo": "pypi-deps-db",
-        "rev": "4544d1c1f1127fb6e7465814b94ad6fe7c326bfc",
+        "rev": "1f77c3f38636981f986c220e41d74b05f631bebc",
         "type": "github"
       },
       "original": {
@@ -287,6 +303,7 @@
         "nixos-simple-mailserver": "nixos-simple-mailserver",
         "nixpkgs": "nixpkgs_2",
         "pmd_hack_archive_server": "pmd_hack_archive_server",
+        "pmdcollab_wiki-src": "pmdcollab_wiki-src",
         "pypi-deps-db": "pypi-deps-db",
         "python-github-archive_src": "python-github-archive_src",
         "spritebot_src": "spritebot_src",

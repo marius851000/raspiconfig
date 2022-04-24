@@ -36,6 +36,11 @@
     url = "github:josegonzalez/python-github-backup";
     flake = false;
   };
+
+  inputs.pmdcollab_wiki-src = {
+    url = "github:keldaan-ag/PMD-collab-wiki";
+    flake = false;
+  };
   
   #TODO: upstream -- and server
   #also, update will break the vendorSha256, but that's not too problematic
@@ -64,7 +69,8 @@
     python-github-archive_src,
     pypi-deps-db,
     wakapi_src,
-    mariussite
+    mariussite,
+    pmdcollab_wiki-src
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -85,7 +91,7 @@
       modules = [
         ./hardware-vps.nix
         ./configuration.nix
-        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system pmdcollab_wiki-src; })
         ./synapse.nix
         ./backup.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })

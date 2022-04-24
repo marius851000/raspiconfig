@@ -5,7 +5,6 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    #most of the CPU time during building is spend waiting for the microSD card, and this make the website ultra slow
     settings.auto-optimise-store = true;
   };
   

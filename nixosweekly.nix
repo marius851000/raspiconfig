@@ -1,4 +1,4 @@
-{ pmd_hack_archive_server, system }:
+{ pmd_hack_archive_server, system, pmdcollab_wiki-src }:
 { pkgs, lib, config, ... }:
 
 {
@@ -17,6 +17,15 @@
       enableACME = false;
       forceSSL = true;
       locations = {
+        "/notspritecollab/" = {
+          alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src; url = "https://hacknews.pmdcollab.org/notspritecollab"; })}/";
+          extraConfig = ''
+            autoindex on;
+          ''; #try_files $uri $uri/ /index.html =404;
+        };
+        "= /notspritecollab" = {
+          return = "https://hacknews.pmdcollab.org/notspritecollab/";
+        };
         "/eespie/" = {
           proxyPass = "http://localhost:2345/";
           extraConfig = ''
@@ -182,7 +191,7 @@
     };
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive localhost:12000 https://hacknews.pmdcollab.org/hacks hacks http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem";
+      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive ${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server.src}/locales localhost:12000 https://hacknews.pmdcollab.org/hacks hacks http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem";
       Restart = "on-failure";
       RestartSec = 60;
     };
