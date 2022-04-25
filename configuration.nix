@@ -8,7 +8,7 @@
     settings.auto-optimise-store = true;
   };
   
-  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut pkgs.nix-du ];
+  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut ];
 
   services.journald.extraConfig = "SystemMaxUse=300M";
   services = {
