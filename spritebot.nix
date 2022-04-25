@@ -28,11 +28,6 @@ stdenv.mkDerivation rec {
             url = "https://github.com/PMDCollab/SpriteBot/pull/10.patch";
             sha256 = "sha256-7TknNj90UXg1Xg4f7rB4XQ71VxWcYevwIqoKUszC8wg=";
         })
-        # fix a non-awaited message
-        (fetchpatch {
-            url = "https://github.com/PMDCollab/SpriteBot/pull/12.patch";
-            sha256 = "sha256-SmOSSfdopKAlSr60c4BEesA0Z3i1G7dFLObkE1zGIQw=";
-        })
         ./non-privileged-add-spritebot.patch
     ];
 
