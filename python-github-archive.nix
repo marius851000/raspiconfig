@@ -52,6 +52,7 @@ in
             #!${pkgs.bash}/bin/bash
             export GITHUB_TOKEN=$(${pkgs.coreutils}/bin/cat ${tokenPath})
             ${python-github-archive}/bin/github-backup SkyTemple --organization --output-directory ${backupDir} --token $GITHUB_TOKEN -i --repositories --fork
+            ${python-github-archive}/bin/github-backup irdkwia --output-directory ${backupDir} --token $GITHUB_TOKEN -i --repositories --fork
           '';
           User = user;
           Group = group;
