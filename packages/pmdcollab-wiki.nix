@@ -59,7 +59,13 @@ in
         --replace "https://discord.gg/skytemple" "https://discord.gg/VYNXFfHpuf"
 
       substituteInPlace src/components/search.tsx \
-        --replace "Mewtwo" "Duskako"
+        --replace "Mewtwo" "Duskako" \
+        --replace "a Pokemon" "an entry"
+      
+      substituteInPlace public/index.html \
+        --replace "PMD Collab Wiki" "NotSpriteCollab ressource viewer" \
+        --replace "Web site created using create-react-app" "Visualize entries in NotSpriteCollab"
+        
 
       cp ${customAbout} src/About.tsx
       
