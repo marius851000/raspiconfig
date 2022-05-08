@@ -61,11 +61,14 @@ in
       preference = 10;
     } ];
 
-    testmastodon.A = ip4;
+    /*testmastodon.A = ip4;
     testmastodon.AAAA = ip6;
 
     testmastodonwebdomain.A = ip4;
-    testmastodonwebdomain.AAAA = ip6;
+    testmastodonwebdomain.AAAA = ip6;*/
+
+    mastodon.A = ip4;
+    mastodon.AAAA = ip6;
 
     couchdb.A = ip4;
     couchdb.AAAA = ip6;

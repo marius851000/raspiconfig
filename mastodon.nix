@@ -1,60 +1,72 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-  /*services.mastodon = {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ config.services.mastodon.extraConfig.WEB_DOMAIN ];
+
+  services.mastodon = {
     enable = true;
-    webProcesses = 2;
-    localDomain = "testmastodon.mariusdavid.fr";
+    webProcesses = 1;
+    sidekiqThreads = 2;
+    localDomain = "mariusdavid.fr";
     smtp = {
       authenticate = true;
       user = "mastodon@mariusdavid.fr";
       host = "mariusdavid.fr";
       passwordFile = "/secret-mail-mastodon-clear.txt";
       createLocally = false;
-      fromAddress = "mariusdavid.fr";
+      fromAddress = "mastodon@mariusdavid.fr";
     };
+    package = pkgs.mastodon.overrideAttrs (old: {
+      patches = [
+        (pkgs.fetchpatch {
+          url = "https://github.com/mastodon/mastodon/pull/18004.patch";
+          sha256 = "sha256-v1wUazC7q8bpdDbcridfezk2fcndj00z+7IlOgeSPj4=";
+        })
+      ];
+    });
     configureNginx = false;
+    enableUnixSocket = true;
     extraConfig = {
-      WEB_DOMAIN = "testmastodonwebdomain.mariusdavid.fr";
+      WEB_DOMAIN = "mastodon.mariusdavid.fr";
+      SINGLE_USER_MODE = "true";
+      DEFAULT_LOCALE = "fr";
     };
-  };*/
+  };
+
+  users.groups.mastodon.members = [ "nginx" ];
 
   #TODO: upstream WEB_DOMAIN stuff to nixpkgs
 
-  /*services.nginx = {
+  services.nginx = {
     enable = true;
     recommendedProxySettings = true;
 
-    virtualHosts."${config.services.mastodon.localDomain}" = {
-      root = "/dev/null";
-      enableACME = true;
-      forceSSL = true;
-
+    virtualHosts."mariusdavid.fr" = {
       locations."/.well-known/webfinger" = {
-        return = "301 https://testmastodonwebdomain.mariusdavid.fr$request_uri";
+        return = "301 https://mastodon.mariusdavid.fr$request_uri";
       };
     };
 
     virtualHosts."${config.services.mastodon.extraConfig.WEB_DOMAIN}" = {
-        root = "${config.services.mastodon.package}/public/";
-        forceSSL = true; # mastodon only supports https
-        enableACME = true;
+      root = "${config.services.mastodon.package}/public/";
+      forceSSL = true; # mastodon only supports https
+      useACMEHost = "mariusdavid.fr";
 
-        locations."/system/".alias = "/var/lib/mastodon/public-system/";
+      locations."/system/".alias = "/var/lib/mastodon/public-system/";
 
-        locations."/" = {
-          tryFiles = "$uri @proxy";
-        };
-
-        locations."@proxy" = {
-          proxyPass = "http://unix:/run/mastodon-web/web.socket";
-          proxyWebsockets = true;
-        };
-
-        locations."/api/v1/streaming/" = {
-          proxyPass ="http://unix:/run/mastodon-streaming/streaming.socket";
-          proxyWebsockets = true;
-        };
+      locations."/" = {
+        tryFiles = "$uri @proxy";
       };
-  };*/
+
+      locations."@proxy" = {
+        proxyPass = "http://unix:/run/mastodon-web/web.socket";
+        proxyWebsockets = true;
+      };
+
+      locations."/api/v1/streaming/" = {
+        proxyPass ="http://unix:/run/mastodon-streaming/streaming.socket";
+        proxyWebsockets = true;
+      };
+    };
+  };
 }
