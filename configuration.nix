@@ -25,7 +25,7 @@
   ];
   
   # !!! Adding a swap file is optional, but strongly recommended!
-  #swapDevices = [ { device = "/swapfile"; size = 512; } ];
+  swapDevices = [ { device = "/swapfile"; size = 512; } ];
   hardware.enableRedistributableFirmware = false;
   
   networking = {
