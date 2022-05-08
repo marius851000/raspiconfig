@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   services.peertube = {
@@ -15,6 +15,7 @@
     enableWebHttps = true;
     listenHttp = 34095;
     listenWeb = 443;
+    #dataDirs = [ "/var/lib/peertube-mount" ];
     settings = {
       admin.email = "peertube@hacknews.pmdcollab.org";
       smtp = {
@@ -24,7 +25,14 @@
         from_address = "peertube@hacknews.pmdcollab.org";
       };
     };
+    package = pkgs.peertube.overrideAttrs (old: {
+      postPatch = (old.postPatch or "") + ''
+        substituteInPlace client/src/app/shared/shared-video-miniature/video-filters.model.ts \
+          --replace "'scope', 'federated'" "'scope', 'local'"
+        '';
+    });
   };
+
   services.nginx =
     let
       backend = "http://127.0.0.1:34095";
@@ -167,4 +175,34 @@
   networking.firewall.allowedTCPPorts = [ 1935 ];
 
   environment.systemPackages = [ pkgs.peertube ];
+
+  #mount the network file system
+  systemd.services.peertube-storj = {
+    description = "mount the rclone path for peertube";
+    wantedBy = [ "peertube.service" ];
+    environment = {
+      HOME = "/peertube-mount-home";
+    };
+    serviceConfig = {
+      Type = "simple";
+      User = "nginx";
+      Group = "nginx";
+      ExecStart = pkgs.writeScript "start_peertube_storj.sh" ''
+        #!${pkgs.stdenv.shell}
+        fusermount -u /var/lib/peertube-mount | true
+        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 200h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 10G --allow-other
+      '';
+      ExecStop = "fusermount -u /var/lib/peertube-mount";
+      Restart = "always";
+      RestartSec = "10s";
+      Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
+    };
+  };
+
+  programs.fuse.userAllowOther = true;
+
+  systemd.tmpfiles.rules = [
+    "d '/peertube-mount-home' 700 nginx nginx -"
+    "d '/var/lib/peertube-mount' 700 nginx nginx -"
+  ];
 }
