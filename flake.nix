@@ -1,6 +1,7 @@
 {
+  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/1e03b381e7af7e167cace24b0fc72754e794e40c";
+  #inputs.nixpkgs.url = "/home/marius/nixpkgs";
   inputs.nixpkgs.url = "nixpkgs";
-
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
     inputs.nixpkgs.follows = "nixpkgs";
