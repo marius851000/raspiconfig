@@ -25,12 +25,6 @@
         from_address = "peertube@hacknews.pmdcollab.org";
       };
     };
-    package = pkgs.peertube.overrideAttrs (old: {
-      postPatch = (old.postPatch or "") + ''
-        substituteInPlace client/src/app/shared/shared-video-miniature/video-filters.model.ts \
-          --replace "'scope', 'federated'" "'scope', 'local'"
-        '';
-    });
   };
 
   services.nginx =
@@ -171,6 +165,10 @@
         };
       };
     };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "nodejs-12.22.12"
+  ];
   
   networking.firewall.allowedTCPPorts = [ 1935 ];
 
@@ -190,7 +188,7 @@
       ExecStart = pkgs.writeScript "start_peertube_storj.sh" ''
         #!${pkgs.stdenv.shell}
         fusermount -u /var/lib/peertube-mount | true
-        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 200h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 10G --allow-other
+        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 10G --allow-other
       '';
       ExecStop = "fusermount -u /var/lib/peertube-mount";
       Restart = "always";
