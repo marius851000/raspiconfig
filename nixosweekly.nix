@@ -318,14 +318,14 @@
         logFile = "/var/log/nginx/access.log";
         webService = {
           urlPrefix = "";
-          hostname = "awstats";
+          hostname = "127.0.0.1:90";
           enable = true;
         };
       };
     };
   };
 
-  services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
+  /*services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
     enableACME = true;
     forceSSL = true;
 
@@ -338,14 +338,14 @@
     };
   };
   
-  services.nginx.virtualHosts.awstats = {
+  services.nginx.virtualHosts."127.0.0.1:90" = {
     listen = [
       {
         port = 90;
         addr = "127.0.0.1";
       }
     ];
-  };
+  };*/
 
   /*services.vsftpd = {
     enable = true;
