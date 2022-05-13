@@ -24,10 +24,10 @@ stdenv.mkDerivation rec {
 
     patches = [
         # permit to add new absent profile with less information
-        (fetchpatch {
+        /*(fetchpatch {
             url = "https://github.com/PMDCollab/SpriteBot/pull/10.patch";
             sha256 = "sha256-7TknNj90UXg1Xg4f7rB4XQ71VxWcYevwIqoKUszC8wg=";
-        })
+        })*/
         ./non-privileged-add-spritebot.patch
     ];
 
