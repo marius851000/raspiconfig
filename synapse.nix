@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  domain = "newsmatrix.pmdcollab.org";
+  domain = "mariusdavid.fr";
 in
 {
   services.postgresql.enable = true;
@@ -9,13 +9,23 @@ in
   services.nginx =
     {
       virtualHosts."newsmatrix.pmdcollab.org" = {
-        #root = "/site";
-        root = "/nix/store";
+        root = "/dev/null";
         enableACME = true;
         forceSSL = true;
 
         locations = {
-          
+          "*" = {
+            extraConfig = ''
+              return 410;
+            '';
+          };
+        };
+      };
+      virtualHosts."${domain}" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations = {
           "= /.well-known/matrix/server" = {
             extraConfig =
               let
@@ -46,18 +56,14 @@ in
           "/_matrix" = {
             proxyPass = "http://[::1]:8008"; # without a trailing /
           };
-        };
-      };
-      virtualHosts."hacknews.pmdcollab.org" = {
-        locations = {
           "/element/" = {
             alias = let
               element = pkgs.element-web.override {
               conf = {
                 default_server_config = {
                   "m.homeserver" = {
-                    "base_url" = "https://newsmatrix.pmdcollab.org";
-                    "server_name" = "newsmatrix.pmdcollab.org";
+                    "base_url" = "https://${domain}";
+                    "server_name" = "${domain}";
                   };
                 };
                 disable_guests = false;
@@ -73,7 +79,7 @@ in
             '';
           };
           "= /element" = {
-            return = "https://hacknews.pmdcollab.org/element/";
+            return = "https://mariusdavid.fr/element/";
           };
         };
       };
@@ -86,8 +92,10 @@ in
       server_name = domain;
       enable_metrics = true;
       allow_guest_access = true;
+      #enable_registration = true;
+      #enable_registration_without_verification = true;
       app_service_config_files = [
-        "/var/lib/matrix-synapse/discord-registration.yaml"
+        #"/var/lib/matrix-synapse/discord-registration.yaml"
       ];
       listeners = [
         {
@@ -110,7 +118,7 @@ in
     };
   };
 
-  services.matrix-appservice-discord = {
+  /*services.matrix-appservice-discord = {
     enable = true;
     environmentFile = "/secret-matrix-appservice-discord.env";
     settings = {
@@ -121,7 +129,7 @@ in
       logging.console = "silly";
       channel.namePattern = ":name";
     };
-  };
+  };*/
 
   systemd.services.matrix-synapse = {
     serviceConfig = {
