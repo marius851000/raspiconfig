@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10001;
+    serial = 10004;
   };
 
   NS = [ "mariusdavid.fr." "hacknews.pmdcollab.org." ];
@@ -70,7 +70,13 @@ in
     mastodon.A = ip4;
     mastodon.AAAA = ip6;
 
-    couchdb.A = ip4;
-    couchdb.AAAA = ip6;
+    /*couchdb.A = ip4;
+    couchdb.AAAA = ip6;*/
+
+    notspriteserver.A = ip4;
+    notspriteserver.AAAA = ip6;
+
+    notspritecollab.A = ip4;
+    notspritecollab.AAAA = ip6;
   };
 }

@@ -17,6 +17,9 @@
     listenWeb = 443;
     #dataDirs = [ "/var/lib/peertube-mount" ];
     settings = {
+      log = {
+        level = "debug";
+      };
       admin.email = "peertube@hacknews.pmdcollab.org";
       smtp = {
         tls = true;

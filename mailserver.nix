@@ -109,6 +109,7 @@
       };
       "marius@mariusdavid.fr" = {
         hashedPasswordFile = "/secret-marius-password.txt";
+        aliases = [ "@mariusdavid.fr" "@hacknews.pmdcollab.org" ];
       };
       "reddit@hacknews.pmdcollab.org" = {
         hashedPasswordFile = "/secret-reddit-account-email-pass.txt";
@@ -116,6 +117,9 @@
 
       "mastodon@mariusdavid.fr" = {
         hashedPasswordFile = "/secret-mail-mastodon-hashed.txt";
+      };
+      "grafana@mariusdavid.fr" = {
+        hashedPasswordFile = "/secret-mail-grafana-hashed.txt";
       };
 
       "jean@mariusdavid.fr" = {
@@ -128,6 +132,14 @@
 
     localDnsResolver = false;
   };
+
+  services.rspamd.extraConfig = ''
+    actions {
+      reject = null; # Disable rejects, default is 15
+      add_header = 6; # Add header when reaching this score
+      greylist = null; # Apply greylisting when reaching this score
+    }
+  '';
 
   security.acme.certs."mariusdavid.fr".postRun = ''
     systemctl reload postfix

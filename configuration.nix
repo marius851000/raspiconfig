@@ -12,7 +12,7 @@
 
   services.journald.extraConfig = "SystemMaxUse=300M";
   services = {
-    timesyncd.enable = true;
+    timesyncd.enable = lib.mkForce true;
     openssh = {
       enable = true;
       permitRootLogin = "yes";
@@ -44,6 +44,13 @@
     doc.enable = false;
     info.enable = false;
   };
+
+  security.acme = {
+    defaults.email = "mariusdavid@laposte.net";
+    acceptTerms = true;
+  };
+
+  system.stateVersion = "21.11";
 
   networking.firewall.allowedTCPPorts = [ 21 80 ];
 }

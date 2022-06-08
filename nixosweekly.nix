@@ -1,4 +1,4 @@
-{ pmd_hack_archive_server, system, pmdcollab_wiki-src }:
+{ pmd_hack_archive_server, system }:
 { pkgs, lib, config, ... }:
 
 {
@@ -17,15 +17,6 @@
       enableACME = false;
       forceSSL = true;
       locations = {
-        "/notspritecollab/" = {
-          alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src; url = "https://hacknews.pmdcollab.org/notspritecollab"; })}/";
-          extraConfig = ''
-            autoindex on;
-          ''; #try_files $uri $uri/ /index.html =404;
-        };
-        "= /notspritecollab" = {
-          return = "https://hacknews.pmdcollab.org/notspritecollab/";
-        };
         "/eespie/" = {
           proxyPass = "http://localhost:2345/";
           extraConfig = ''
@@ -109,11 +100,11 @@
     statusPage = true;
 
     # based on https://www.supertechcrew.com/anonymizing-logs-nginx-apache/
-    # anonymize IP address, by only keeping the first two byte of info (2^16 unique ID)
+    # anonymize IP address, by just keeping whether it is an ipv6 or ipv4 ip (updated from previously, where I kept the first 2 bytes)
     appendHttpConfig = ''
       map $remote_addr $remote_addr_anon {
-        ~(?P<ip>\d+\.\d+)\.\d+\.    $ip.0.0;
-        ~(?P<ip>[^:]+:[^:]+):       $ip::;
+        ~(?P<ip>\d+\.\d+)\.\d+\.    0.0.0.0;
+        ~(?P<ip>[^:]+:[^:]+):       ::;
         # IP addresses to not anonymize (such as your server)
         127.0.0.1                   $remote_addr;
         ::1                         $remote_addr;
@@ -127,11 +118,6 @@
 
         access_log /var/log/nginx/access.log anon_ip;
     '';
-  };
-
-  security.acme = {
-    defaults.email = "mariusdavid@laposte.net";
-    acceptTerms = true;
   };
 
   services.phpfpm.pools.dokuwiki = {
@@ -297,6 +283,13 @@
     enable = true;
     port = 2345;
     rootUrl = "https://%(domain)s:%(http_port)s/eespie";
+    smtp = rec {
+      user = "grafana@mariusdavid.fr";
+      fromAddress = user;
+      host = "mariusdavid.fr:587";
+      enable = true;
+      passwordFile = "/secret-mail-grafana.txt";
+    };
     provision = {
       enable = true;
       datasources = [
@@ -336,9 +329,9 @@
         proxyPass = "http://127.0.0.1:90";
       };
     };
-  };
+  };*/
   
-  services.nginx.virtualHosts."127.0.0.1:90" = {
+  /*services.nginx.virtualHosts."127.0.0.1:90" = {
     listen = [
       {
         port = 90;
