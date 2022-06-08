@@ -1,7 +1,7 @@
 {
   #inputs.nixpkgs.url = "github:NixOS/nixpkgs/1e03b381e7af7e167cace24b0fc72754e794e40c";
   #inputs.nixpkgs.url = "/home/marius/nixpkgs";
-  inputs.nixpkgs.url = "nixpkgs";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/e6123938cafa5f5a368090c68d9012adb980da5f";
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -39,17 +39,19 @@
   };
 
   inputs.pmdcollab_wiki-src = {
-    url = "github:keldaan-ag/PMD-collab-wiki";
+    url = "github:marius851000/PMD-collab-wiki/fix_carousel_width";
     flake = false;
   };
-  
+  inputs.spritecollab_srv-src = {
+    url = "github:PMDCollab/spritecollab-srv";
+    flake = false;
+  };
   #TODO: upstream -- and server
   #also, update will break the vendorSha256, but that's not too problematic
   inputs.wakapi_src = {
     url = "github:muety/wakapi/2.3.1";
     flake = false;
   };
-
   inputs.mariussite = {
     url = "github:marius851000/mysite";
     flake = false;
@@ -71,7 +73,8 @@
     pypi-deps-db,
     wakapi_src,
     mariussite,
-    pmdcollab_wiki-src
+    pmdcollab_wiki-src,
+    spritecollab_srv-src
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -92,7 +95,8 @@
       modules = [
         ./hardware-vps.nix
         ./configuration.nix
-        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system pmdcollab_wiki-src; })
+        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+        (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
         ./synapse.nix
         ./backup.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
@@ -104,6 +108,7 @@
         (import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
         ./mastodon.nix
+        ./rustdesk.nix
         #not important, but nice to have
         ./syncthing_relay.nix
         ./snowflake.nix

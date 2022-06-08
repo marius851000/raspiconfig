@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "hacknews.pmdcollab.org.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10002;
+    serial = 10003;
   };
 
   NS = [ "hacknews.pmdcollab.org." ];

@@ -1,4 +1,6 @@
-{ pkgs, node2nix, stdenv, pmdcollab_wiki-src, nodejs, nodePackages, url }:
+{ pkgs, node2nix, stdenv, pmdcollab_wiki-src, nodejs-18_x, nodePackages, url, graphql_endpoint }:
+
+#TODO: set up a proxy to those github URL for privacy reason (and use caching while we're at it)
 
 let
   ifd = stdenv.mkDerivation {
@@ -11,7 +13,7 @@ let
     installPhase = ''
       mkdir $out
       cd $out
-      node2nix -l $src/package-lock.json -i $src/package.json
+      node2nix -l $src/package-lock.json -i $src/package.json --development --nodejs-16
       #for some reason, I can't succed in changing the package.json before node2nix. Something related to purity.
       substituteInPlace node-packages.nix \
         --replace "https://keldaan-ag.github.io/PMD-collab-wiki/" "${url}"
@@ -40,32 +42,36 @@ in
 
     src = modules;
 
-    nativeBuildInputs = [ nodePackages.npm nodejs ];
+    nativeBuildInputs = [ nodePackages.npm nodejs-18_x ];
 
     buildPhase = ''
       cd lib/node_modules/app
-
+      find
       substituteInPlace package.json \
-        --replace "https://keldaan-ag.github.io/PMD-collab-wiki/" "${url}"
-      substituteInPlace tsconfig.json \
-        --replace "strict\": true" "strict\": false"
-      
+        --replace "https://sprites.pmdcollab.org/" "${url}"
+      #substituteInPlace tsconfig.json \
+      #  --replace "strict\": true" "strict\": false"
+
+      #TODO: (for both) make sure they read file from a page from one of my server rather than github (you know, privacy and co)
       substituteInPlace src/types/enum.ts \
-        --replace "PMDCollab/SpriteCollab" "marius851000/NotSpriteCollab"
-      substituteInPlace src/gen/download-tracker.js \
-        --replace "PMDCollab/SpriteCollab" "marius851000/NotSpriteCollab"
+        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master" "https://notspritecollab.mariusdavid.fr/spritecollab" \
+        --replace "Pokedex Number" "Index Number"
+      
+      substituteInPlace public/index.html \
+        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0006/Normal.png" "https://notspritecollab.mariusdavid.fr/spritecollab/portrait/0000/Normal.png"
 
       substituteInPlace src/components/discord-button.tsx \
         --replace "https://discord.gg/skytemple" "https://discord.gg/VYNXFfHpuf"
 
       substituteInPlace src/components/search.tsx \
-        --replace "Mewtwo" "Duskako" \
-        --replace "a Pokemon" "an entry"
+        --replace "Mewtwo... Audino... 151..." "Duskako... Chocobo... 10..." \
+        --replace "a pokemon" "an entry"
       
       substituteInPlace public/index.html \
-        --replace "PMD Collab Wiki" "NotSpriteCollab ressource viewer" \
-        --replace "Web site created using create-react-app" "Visualize entries in NotSpriteCollab"
-        
+        --replace "The PMD Sprite Repository archives the great art of many artist making portraits based on Pokémon Mystery Dungeon" "Visualize entries in NotSpriteCollab" \
+        --replace "PMD Sprite Repository" "NotSpriteCollab Repository"
+      substituteInPlace src/index.tsx \
+        --replace "https://spriteserver.pmdcollab.org/graphql" "${graphql_endpoint}"
 
       cp ${customAbout} src/About.tsx
       

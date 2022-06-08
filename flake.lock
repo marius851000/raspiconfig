@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651115727,
-        "narHash": "sha256-xcJjZFf03dK04H0NJc6beholg5O/Wo9pkK6O4OMaRsQ=",
+        "lastModified": 1651426575,
+        "narHash": "sha256-VC/eZhJjNDviiUnQaMHQcl9iqjEjnsHL434NYMTINBI=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "b63fe4fd6b8be7619fabbce3e34c806d08e55e89",
+        "rev": "f98c3c7ca739535d31468502d3a5ffa65143367c",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1650921294,
-        "narHash": "sha256-UCAtw0VoZQBQ4TTBLswR+mXINT7oC/LPesrMw/ULPDE=",
+        "lastModified": 1654084003,
+        "narHash": "sha256-j/XrVVistvM+Ua+0tNFvO5z83isL+LBgmBi9XppxuKA=",
         "owner": "DavHau",
         "repo": "mach-nix",
-        "rev": "26f06e415a74dc10727cf9c9a40c83b635238900",
+        "rev": "7e14360bde07dcae32e5e24f366c83272f52923f",
         "type": "github"
       },
       "original": {
@@ -198,11 +198,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1650133068,
-        "narHash": "sha256-biHmW4DyRjydDUJ9bTqvUgVSSE/MzzAseQERT5yPjWI=",
-        "ref": "master",
-        "rev": "4ce864f52ae7e1733582a32d66c1f94ee11a52c8",
-        "revCount": 528,
+        "lastModified": 1653423337,
+        "narHash": "sha256-TLNyDhwhQWimt5QWzFf/3B7lKk5isdICNRTwiCAhiB0=",
+        "ref": "refs/heads/master",
+        "rev": "15cf252a0dfffb2420a60fbd6be3467c11026142",
+        "revCount": 531,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -228,16 +228,18 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1651927509,
-        "narHash": "sha256-fGVGUdEsriuAL1vkUh29FlOQmEkPRnSfRGImWYaVjos=",
+        "lastModified": 1654128571,
+        "narHash": "sha256-BE/ozR3LqLP3Hw1ORbgG5P9km/5NzMkokRbrGOoNIyM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2fdb6f2e08e7989b03a2a1aa8538d99e3eeea881",
+        "rev": "e6123938cafa5f5a368090c68d9012adb980da5f",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e6123938cafa5f5a368090c68d9012adb980da5f",
+        "type": "github"
       }
     },
     "pmd_hack_archive_server": {
@@ -249,11 +251,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651914448,
-        "narHash": "sha256-t+h6l79v7Hw1gfp5bW+rovWC9qTHottSUeTYA93Xl5Y=",
+        "lastModified": 1654638257,
+        "narHash": "sha256-o1byiUWBHhcR8ePXcqEuuPl2FQSf5OYzbHLUsKCeKzk=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "67038c56cb5c6881b832d7ab34e5516aa29bc978",
+        "rev": "f517b2c9220a81d41b247f80620ecd2cfffcaaad",
         "type": "github"
       },
       "original": {
@@ -265,15 +267,16 @@
     "pmdcollab_wiki-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1650958137,
-        "narHash": "sha256-MtCAr184k77SyK6o17ilq08XqSCWckzT+rpRSQ4dp1o=",
-        "owner": "keldaan-ag",
+        "lastModified": 1654528693,
+        "narHash": "sha256-FLpOCBll/EUCfa3SSxIDzdlzI3qXMTUlgLrKSBxx/pQ=",
+        "owner": "marius851000",
         "repo": "PMD-collab-wiki",
-        "rev": "cf0a59d0f5eeed7226c962a91f88332c74be4151",
+        "rev": "fa3fb7da68bc494c20d439192e849f31b0d712ea",
         "type": "github"
       },
       "original": {
-        "owner": "keldaan-ag",
+        "owner": "marius851000",
+        "ref": "fix_carousel_width",
         "repo": "PMD-collab-wiki",
         "type": "github"
       }
@@ -281,11 +284,11 @@
     "pypi-deps-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1651997105,
-        "narHash": "sha256-+A8pT7gnAbT34+Rxi5o2mi0hzG3BtO8CTPC1r+YIlfo=",
+        "lastModified": 1654677412,
+        "narHash": "sha256-b8MZ5Qu4QSmr3k4/d4vJ9YXD/Po141TYNw2JxX2BBFA=",
         "owner": "DavHau",
         "repo": "pypi-deps-db",
-        "rev": "acfad5149161325de1a62a05b8c084400edd383e",
+        "rev": "96f4c340b49c56b2bf6b139474d2cf202accb2eb",
         "type": "github"
       },
       "original": {
@@ -322,22 +325,39 @@
         "pypi-deps-db": "pypi-deps-db",
         "python-github-archive_src": "python-github-archive_src",
         "spritebot_src": "spritebot_src",
+        "spritecollab_srv-src": "spritecollab_srv-src",
         "wakapi_src": "wakapi_src"
       }
     },
     "spritebot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1651955362,
-        "narHash": "sha256-YfmbIYvK3Mt1oVld6Rgkv2KeaGiYIsXdiEgZG0l6mQw=",
+        "lastModified": 1654280942,
+        "narHash": "sha256-D3sVPRi7E0w23Ta7lyO1C1IhwvD08eJ3tr8OY3EDqDc=",
         "owner": "PMDCollab",
         "repo": "SpriteBot",
-        "rev": "8c012931afeb65c5a304bee6bf5e1712bd7beb84",
+        "rev": "e36d2277db32c87f91ca7e563f1a49603af5187c",
         "type": "github"
       },
       "original": {
         "owner": "PMDCollab",
         "repo": "SpriteBot",
+        "type": "github"
+      }
+    },
+    "spritecollab_srv-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654627986,
+        "narHash": "sha256-F0jIIvavdHkZ174zAjicBlDWCJDRytZTNakAyKa6bRc=",
+        "owner": "PMDCollab",
+        "repo": "spritecollab-srv",
+        "rev": "a8e319305c058558412d6d9b66587cbcf7f0f8f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PMDCollab",
+        "repo": "spritecollab-srv",
         "type": "github"
       }
     },
