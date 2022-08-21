@@ -10,12 +10,14 @@
     recommendedTlsSettings = true;
     recommendedProxySettings = true;
     recommendedGzipSettings = true;
+    package = pkgs.nginxQuic;
 
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
       useACMEHost = "mariusdavid.fr";
       enableACME = false;
       forceSSL = true;
+      http3 = true;
       locations = {
         "/eespie/" = {
           proxyPass = "http://localhost:2345/";
