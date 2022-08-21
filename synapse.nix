@@ -21,6 +21,7 @@ in
           };
         };
       };
+
       virtualHosts."${domain}" = {
         enableACME = true;
         forceSSL = true;
@@ -92,10 +93,10 @@ in
       server_name = domain;
       enable_metrics = true;
       allow_guest_access = true;
-      #enable_registration = true;
-      #enable_registration_without_verification = true;
+      enable_registration = false;
+      enable_registration_without_verification = false;
       app_service_config_files = [
-        #"/var/lib/matrix-synapse/discord-registration.yaml"
+        "/var/lib/matrix-synapse/discord-registration.yaml"
       ];
       listeners = [
         {
@@ -118,18 +119,23 @@ in
     };
   };
 
-  /*services.matrix-appservice-discord = {
+  services.matrix-appservice-discord = {
     enable = true;
     environmentFile = "/secret-matrix-appservice-discord.env";
     settings = {
       bridge = {
-        domain = "newsmatrix.pmdcollab.org";
-        homeserverUrl = "https://newsmatrix.pmdcollab.org";
+        domain = "mariusdavid.fr";
+        homeserverUrl = "https://mariusdavid.fr";
+
+        determineCodeLanguage = true;
+        disableJoinLeaveNotifications = true;
+        disableInviteNotifications = true;
+        enableSelfServiceBridging = true;
       };
       logging.console = "silly";
-      channel.namePattern = ":name";
+      #channel.namePattern = ":name";
     };
-  };*/
+  };
 
   systemd.services.matrix-synapse = {
     serviceConfig = {
