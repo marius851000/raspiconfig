@@ -108,7 +108,7 @@
         (import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
         ./mastodon.nix
-        ./rustdesk.nix
+        #./rustdesk.nix
         #not important, but nice to have
         ./syncthing_relay.nix
         ./snowflake.nix
