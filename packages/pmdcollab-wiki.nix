@@ -54,11 +54,11 @@ in
 
       #TODO: (for both) make sure they read file from a page from one of my server rather than github (you know, privacy and co)
       substituteInPlace src/types/enum.ts \
-        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master" "https://notspritecollab.mariusdavid.fr/spritecollab" \
+        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master" "https://nsc.pmdcollab.org/spritecollab" \
         --replace "Pokedex Number" "Index Number"
       
       substituteInPlace public/index.html \
-        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0006/Normal.png" "https://notspritecollab.mariusdavid.fr/spritecollab/portrait/0000/Normal.png"
+        --replace "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0006/Normal.png" "https://nsc.pmdcollab.org/spritecollab/portrait/0000/Normal.png"
 
       substituteInPlace src/components/discord-button.tsx \
         --replace "https://discord.gg/skytemple" "https://discord.gg/VYNXFfHpuf"

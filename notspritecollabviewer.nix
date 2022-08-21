@@ -17,7 +17,7 @@ let
         --replace 3000 3001
     '';
 
-    cargoSha256 = "sha256-wquEVw2G/AOxE6JGPruSfQuJQAIP6fH8jyL5/T3w10Q=";
+    cargoSha256 = "sha256-4wUSLjSqA1suRW8qoeCvNLVBF2s84fxJxtPjf0GYWKM=";
   };
 in
 
@@ -30,9 +30,9 @@ in
     environment = {
       RUST_LOG = "spritecollab_srv=debug";
       RUST_BACKTRACE = "1";
-      SCSRV_ADDRESS = "https://notspriteserver.mariusdavid.fr";
+      SCSRV_ADDRESS = "https://nss.pmdcollab.org";
       SCSRV_GIT_REPO = "https://github.com/marius851000/NotSpriteCollab.git";
-      SCSRV_GIT_ASSETS_URL = "https://notspritecollab.mariusdavid.fr/spritecollab";
+      SCSRV_GIT_ASSETS_URL = "https://nsc.pmdcollab.org/spritecollab";
       SCSRV_WORKDIR = "/workdirnotspriteserver";
       SCSRV_REDIS_HOST = "127.0.0.1";
       SCSRV_REDIS_PORT = "6387";
@@ -63,7 +63,7 @@ in
   services.nginx = {
     enable = true;
 
-    virtualHosts."notspriteserver.mariusdavid.fr" = {
+    virtualHosts."nss.pmdcollab.org" = {
       root = "/dev/null";
       enableACME = true;
       forceSSL = true;
@@ -73,20 +73,32 @@ in
       };
     };
 
+    virtualHosts."notspriteserver.mariusdavid.fr" = {
+      root = "/dev/null";
+      enableACME = true;
+      extraConfig = "return 301 https://nss.pmdcollab.org$request_uri;";
+    };
+
     virtualHosts."notspritecollab.mariusdavid.fr" = {
+      root = "/dev/null";
+      enableACME = true;
+      extraConfig = "return 301 https://nsc.pmdcollab.org$request_uri;";
+    };
+
+    virtualHosts."nsc.pmdcollab.org" = {
       root = "/workdirnotspriteserver";
       enableACME = true;
       forceSSL = true;
 
       locations."/" = {
-        alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src; url = "https://notspritecollab.mariusdavid.fr"; graphql_endpoint = "https://notspriteserver.mariusdavid.fr/graphql"; })}/";
+        alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src; url = "https://nsc.pmdcollab.org"; graphql_endpoint = "https://nss.pmdcollab.org/graphql"; })}/";
         extraConfig = ''
           add_header 'Access-Control-Allow-Origin' '*'  always;
           add_header 'Access-Control-Max-Age' '3600'  always;
           add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
           add_header 'Access-Control-Allow-Headers' '*' always;
           autoindex on;
-        ''; #try_files $uri $uri/ /index.html =404;
+        '';
       };
 
       locations."/spritecollab" = {
