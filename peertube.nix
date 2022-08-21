@@ -11,6 +11,7 @@
       passwordFile = "/secret-peertube-mail-password-clear.txt";
     };
     user = "nginx"; #to share folder with nginx
+    group = "nginx";
     localDomain = "peertube.hacknews.pmdcollab.org";
     enableWebHttps = true;
     listenHttp = 34095;
@@ -198,6 +199,19 @@
       RestartSec = "10s";
       Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
     };
+  };
+
+  systemd.services.peertube.serviceConfig = {
+    RestrictAddressFamilies = lib.mkForce [];
+    ProtectSystem = lib.mkForce false;
+    ProtectHome = lib.mkForce false;
+    PrivateTmp = lib.mkForce false;
+    PrivateDevices = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
+    RestrictNamespaces = lib.mkForce false;
+    LockPersonality = lib.mkForce false;
+    RemoveIPC = lib.mkForce false;
+    PrivateMounts = lib.mkForce false;
   };
 
   programs.fuse.userAllowOther = true;
