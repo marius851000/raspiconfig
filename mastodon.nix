@@ -18,11 +18,6 @@
     };
     package = pkgs.mastodon.overrideAttrs (old: {
       patches = [
-        #and old bug blocking account migration
-        /*(pkgs.fetchpatch {
-          url = "https://github.com/mastodon/mastodon/pull/18004.patch";
-          sha256 = "sha256-v1wUazC7q8bpdDbcridfezk2fcndj00z+7IlOgeSPj4=";
-        })*/
       ];
     });
     configureNginx = false;
