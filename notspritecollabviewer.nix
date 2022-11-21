@@ -17,7 +17,7 @@ let
         --replace 3000 3001
     '';
 
-    cargoSha256 = "sha256-4wUSLjSqA1suRW8qoeCvNLVBF2s84fxJxtPjf0GYWKM=";
+    cargoSha256 = "sha256-qsP4ZUYwI+5p4e9Uk4z5Rlpq+C8aK5nSqD2J5jN2JNI=";
   };
 in
 
