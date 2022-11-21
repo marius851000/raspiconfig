@@ -22,7 +22,7 @@
     inputs.nixpkgs.follows = "nixpkgs"; # (optionally)
   };
 
-  inputs.pypi-deps-db = {
+  /*inputs.pypi-deps-db = {
     url = "github:DavHau/pypi-deps-db";
     flake = false;
   };
@@ -31,7 +31,7 @@
     url = "mach-nix";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.pypi-deps-db.follows = "pypi-deps-db";
-  };
+  };*/
 
   inputs.python-github-archive_src = {
     url = "github:josegonzalez/python-github-backup";
@@ -68,9 +68,7 @@
     spritebot_src,
     nixos-simple-mailserver,
     dns,
-    mach-nix,
     python-github-archive_src,
-    pypi-deps-db,
     wakapi_src,
     mariussite,
     pmdcollab_wiki-src,

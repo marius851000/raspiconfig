@@ -1,15 +1,12 @@
-{ mach-nix, python-github-archive_src, system }:
+{ python-github-archive_src }:
 
 { pkgs, ... }:
 
-#Okay, so it didn't have any depencies actually. Anyway, that's overkill, but who care (spoiler: probably the non-existing CI)
 let
-  python-github-archive = mach-nix.lib."${system}".buildPythonApplication {
+  python-github-archive = pkgs.python3Packages.buildPythonPackage {
     src = python-github-archive_src;
     pname = "python-github-archive";
-    version = "git";
-    requirements = builtins.readFile "${python-github-archive_src}/requirements.txt";
-    ignoreDataOutdated = true;
+    version = "git"; 
   };
 
   tokenPath = "/secret-github-bot-token.txt";
