@@ -1,7 +1,7 @@
 {
   #inputs.nixpkgs.url = "github:NixOS/nixpkgs/1e03b381e7af7e167cace24b0fc72754e794e40c";
   #inputs.nixpkgs.url = "/home/marius/nixpkgs";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/e6123938cafa5f5a368090c68d9012adb980da5f";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +60,10 @@
   #        url = "github:marius851000/pmd_hack_weekly";
   #        inputs.nixpkgs.follows = "nixpkgs";
   #    };
+  inputs.retoot-bot-src = {
+    url = "github:marius851000/mastodon-retoot-bot";
+    flake = false;
+  };
 
   outputs = {
     self,
@@ -72,7 +76,8 @@
     wakapi_src,
     mariussite,
     pmdcollab_wiki-src,
-    spritecollab_srv-src
+    spritecollab_srv-src,
+    retoot-bot-src
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -111,8 +116,9 @@
         ./syncthing_relay.nix
         ./snowflake.nix
         (import ./python-github-archive.nix {
-          inherit mach-nix python-github-archive_src system;
+          inherit python-github-archive_src;
         })
+        (import ./retoot-bot.nix { inherit retoot-bot-src; })
       ];
     };
   };
