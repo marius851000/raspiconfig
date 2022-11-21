@@ -36,6 +36,9 @@ stdenv.mkDerivation rec {
         python
         pillow
         GitPython
+        requests
+        requests-oauthlib
+        tweepy
     ];
 
     nativeBuildInputs = [
