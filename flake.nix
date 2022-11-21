@@ -49,7 +49,7 @@
   #TODO: upstream -- and server
   #also, update will break the vendorSha256, but that's not too problematic
   inputs.wakapi_src = {
-    url = "github:muety/wakapi/2.3.1";
+    url = "github:muety/wakapi"; #TODO: try to update, as it segfault for now
     flake = false;
   };
   inputs.mariussite = {

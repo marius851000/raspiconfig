@@ -3,5 +3,5 @@
 buildGoModule {
   name = "wakapi";
   src = wakapi_src;
-  vendorSha256 = "sha256-fKdI8cjZKi7WDWg2mgadSAx7O6hxUYST/3eHXuPkEyA=";
+  vendorSha256 = "sha256-h1IZKjSh4Zd/m/HdE4q/RWJKf4RTvROFCF+UqJPbn/w=";
 }
