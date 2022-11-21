@@ -19,7 +19,7 @@
     "crane": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_2",
         "nix-std": "nix-std",
         "nixpkgs": [
           "pmd_hack_archive_server",
@@ -94,11 +94,11 @@
     },
     "flake-utils_2": {
       "locked": {
-        "lastModified": 1642700792,
-        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
         "type": "github"
       },
       "original": {
@@ -120,44 +120,6 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
-      }
-    },
-    "flake-utils_4": {
-      "locked": {
-        "lastModified": 1649676176,
-        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "mach-nix": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pypi-deps-db": [
-          "pypi-deps-db"
-        ]
-      },
-      "locked": {
-        "lastModified": 1657089034,
-        "narHash": "sha256-qSjk1iOi14ijAOP6QuGfE3fvy08aVxsgus+ArwgiyuU=",
-        "owner": "DavHau",
-        "repo": "mach-nix",
-        "rev": "51caf584f26acdfaa51bbf7ee1ffa365aea7bc64",
-        "type": "github"
-      },
-      "original": {
-        "id": "mach-nix",
-        "type": "indirect"
       }
     },
     "mariussite": {
@@ -199,11 +161,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1655930346,
-        "narHash": "sha256-ht56HHOzEhjeIgAv5ZNFjSVX/in1YlUs0HG9c1EUXTM=",
+        "lastModified": 1658267644,
+        "narHash": "sha256-NJRe1rnlF112eZwxNASlRL8/ghwD8g+lpHIYRkWQxC8=",
         "ref": "refs/heads/master",
-        "rev": "f535d8123c4761b2ed8138f3d202ea710a334a1d",
-        "revCount": 532,
+        "rev": "004c229ca44c069d93c92abf67ff1619fb508c6a",
+        "revCount": 533,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -244,34 +206,33 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1654128571,
-        "narHash": "sha256-BE/ozR3LqLP3Hw1ORbgG5P9km/5NzMkokRbrGOoNIyM=",
+        "lastModified": 1668700923,
+        "narHash": "sha256-PUoKj575Br/IR9Fz8nZaKMsZgYLcURSnIrwfNgZzaks=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e6123938cafa5f5a368090c68d9012adb980da5f",
+        "rev": "4698895021ad9ac4deb5aad71ac7ea9f9d7ac96b",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e6123938cafa5f5a368090c68d9012adb980da5f",
         "type": "github"
       }
     },
     "pmd_hack_archive_server": {
       "inputs": {
         "crane": "crane",
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1655222309,
-        "narHash": "sha256-0G858NJXCTZahVCSimFAG8RtjSfmofyml0MuVguvd6E=",
+        "lastModified": 1667991636,
+        "narHash": "sha256-DqkqucoYvmyLAr5cIWTSQbhyvmmHn/dn37m/fhvuyHg=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "5075dfaf741156249139d3eefbbd6db5d3961142",
+        "rev": "532b29765a8ddff0b31ae83d18d26f67274efbde",
         "type": "github"
       },
       "original": {
@@ -297,22 +258,6 @@
         "type": "github"
       }
     },
-    "pypi-deps-db": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1657788845,
-        "narHash": "sha256-Sp1dsQrkJ2NARXNRtT7qks1dfsk43hhvp2x7QIea8vI=",
-        "owner": "DavHau",
-        "repo": "pypi-deps-db",
-        "rev": "6af7a3b9f4373753e6b19b5d4a2d540489ad99e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DavHau",
-        "repo": "pypi-deps-db",
-        "type": "github"
-      }
-    },
     "python-github-archive_src": {
       "flake": false,
       "locked": {
@@ -329,17 +274,32 @@
         "type": "github"
       }
     },
+    "retoot-bot-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668878787,
+        "narHash": "sha256-Y+m2uPaEyC7fhkp8w4eqmpexnd5BSLvtobGef8NMhO0=",
+        "owner": "marius851000",
+        "repo": "mastodon-retoot-bot",
+        "rev": "c6d2329787cee34a15568baffe5ed0064953c59e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marius851000",
+        "repo": "mastodon-retoot-bot",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "dns": "dns",
-        "mach-nix": "mach-nix",
         "mariussite": "mariussite",
         "nixos-simple-mailserver": "nixos-simple-mailserver",
         "nixpkgs": "nixpkgs_2",
         "pmd_hack_archive_server": "pmd_hack_archive_server",
         "pmdcollab_wiki-src": "pmdcollab_wiki-src",
-        "pypi-deps-db": "pypi-deps-db",
         "python-github-archive_src": "python-github-archive_src",
+        "retoot-bot-src": "retoot-bot-src",
         "spritebot_src": "spritebot_src",
         "spritecollab_srv-src": "spritecollab_srv-src",
         "wakapi_src": "wakapi_src"
@@ -348,11 +308,11 @@
     "spritebot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1655857204,
-        "narHash": "sha256-riUH0RRGguN0ewAaYPm57b/Rr9R5hSz0n70nLCGbhtk=",
+        "lastModified": 1665870545,
+        "narHash": "sha256-LNVJiAzeUJmM9NkZKMUiWFejda82oLJzdRHoa9OeMfQ=",
         "owner": "PMDCollab",
         "repo": "SpriteBot",
-        "rev": "62e4b9572afd1ea45f92d88867c0e830d02d729c",
+        "rev": "7eed23af284a46d61a60be499aaeb3691a85e3b7",
         "type": "github"
       },
       "original": {
@@ -364,11 +324,11 @@
     "spritecollab_srv-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1656497642,
-        "narHash": "sha256-Oz4t6Djvxu7W2LjdIc+3Xly3NqjPI2AKb3kOyr5Eh8Q=",
+        "lastModified": 1662829677,
+        "narHash": "sha256-984hbcmGhFKCZaVAvoU5K5YmgjHY+rN4s7lhPVtr+r8=",
         "owner": "PMDCollab",
         "repo": "spritecollab-srv",
-        "rev": "0cbb0f97d4c02386e5f7e3a281f4b0e1546c2c30",
+        "rev": "adeee31ee820c33de4901c714a99e59dce379c46",
         "type": "github"
       },
       "original": {
@@ -395,16 +355,15 @@
     "wakapi_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1647682232,
-        "narHash": "sha256-7IR0Bp4bxkzKkd2bUUwV8UN/URenA2QTdmU+X64I5A0=",
+        "lastModified": 1668670284,
+        "narHash": "sha256-5RynyPR2KVsezcMHPdXdCLHLmykboz0N0uIds6lFdBE=",
         "owner": "muety",
         "repo": "wakapi",
-        "rev": "bbc85de34bb3a4e577ea9a0e7c81d6d4ecca273e",
+        "rev": "b1a12a5759487cd7a5650ea7595cd82768f8604d",
         "type": "github"
       },
       "original": {
         "owner": "muety",
-        "ref": "2.3.1",
         "repo": "wakapi",
         "type": "github"
       }
