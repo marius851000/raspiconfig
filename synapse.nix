@@ -90,6 +90,9 @@ in
   services.matrix-synapse = {
     enable = true;
     settings = {
+      experimental_features = {
+        faster_joins = true;
+      };
       server_name = domain;
       enable_metrics = true;
       allow_guest_access = true;
