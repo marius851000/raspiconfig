@@ -144,13 +144,12 @@
 
 
   services.phpfpm.phpPackage = (
-    pkgs.php74.withExtensions (
+    pkgs.php80.withExtensions (
       { enabled, all }: with all; [
         pdo
         pdo_mysql
         xdebug
         dom
-        json
         filter
         iconv
         openssl
@@ -209,7 +208,7 @@
     exporters.systemd = {
       enable = true;
       extraFlags = [
-        "--collector.enable-ip-accounting"
+        "--systemd.collector.enable-ip-accounting"
       ];
     };
     scrapeConfigs = [
@@ -285,7 +284,7 @@
     enable = true;
     port = 2345;
     rootUrl = "https://%(domain)s:%(http_port)s/eespie";
-    smtp = rec {
+    settings.smtp = rec {
       user = "grafana@mariusdavid.fr";
       fromAddress = user;
       host = "mariusdavid.fr:587";
