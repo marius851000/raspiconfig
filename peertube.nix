@@ -172,6 +172,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "nodejs-12.22.12"
+    "erlang-22.3.4.24" # used in CouchDB
   ];
   
   networking.firewall.allowedTCPPorts = [ 1935 ];
