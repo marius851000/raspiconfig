@@ -1,5 +1,5 @@
-{ config, pkgs, lib, ... }: {
-  
+{ config, pkgs, lib, ... }: 
+{
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -8,7 +8,8 @@
     settings.auto-optimise-store = true;
   };
   
-  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut ];
+  #TODO: cron compression
+  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut pkgs.matrix-synapse-tools.rust-synapse-compress-state ];
 
   services.journald.extraConfig = "SystemMaxUse=300M";
   services = {

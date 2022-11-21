@@ -142,4 +142,16 @@ in
       TimeoutStartSec = 600;
     };
   };
+  systemd.services.compress_synapse = {
+    serviceConfig.Type = "oneshot";
+    serviceConfig.ExecStart = "${pkgs.matrix-synapse-tools.rust-synapse-compress-state}/bin/synapse_auto_compressor -p \"dbname=matrix-synapse host=/run/postgresql user=postgres\" -c 100 -n 1";
+  };
+  systemd.timers.compress_synapse = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "compress_synapse.service" ];
+    timerConfig = {
+      OnCalendar = "*-*-* *:*:30";
+      Unit = "compress_synapse.service";
+    };
+  };
 }
