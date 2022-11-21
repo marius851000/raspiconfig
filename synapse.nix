@@ -142,6 +142,20 @@ in
       TimeoutStartSec = 600;
     };
   };
+
+  systemd.services.clear_empty_directory = {
+    serviceConfig.Type = "oneshot";
+    serviceConfig.ExecStart = "${pkgs.findutils}/bin/find /var/lib/matrix-synapse/media/remote_content -type d -empty -delete";
+  };
+  systemd.timers.clear_empty_directory = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "clear_empty_directory.service" ];
+    timerConfig = {
+      OnCalendar = "*-*-* *:04:10";
+      Unit = "clear_empty_directory.service";
+    };
+  };
+
   systemd.services.compress_synapse = {
     serviceConfig.Type = "oneshot";
     serviceConfig.ExecStart = "${pkgs.matrix-synapse-tools.rust-synapse-compress-state}/bin/synapse_auto_compressor -p \"dbname=matrix-synapse host=/run/postgresql user=postgres\" -c 100 -n 1";
