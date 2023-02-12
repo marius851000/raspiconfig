@@ -99,6 +99,19 @@
       };
     };
 
+    /*virtualHosts."tmpboard.mariusdavid.fr" = {
+      root = "/dev/null";
+      useACMEHost = "mariusdavid.fr";
+      enableACME = false;
+      forceSSL = true;
+      http3 = true;
+      locations = {
+        "/" = {
+          proxyPass = "http://[200:deb5:f162:56a0:b1d0:fee:6a44:9980]:6006";
+        };
+      };
+    };*/
+
     statusPage = true;
 
     # based on https://www.supertechcrew.com/anonymizing-logs-nginx-apache/
@@ -248,7 +261,7 @@
         };
         static_configs = [
           {
-            targets = [ "https://hacknews.pmdcollab.org" ];
+            targets = [ "https://hacknews.pmdcollab.org" "https://translate.mariusdavid.fr" ];
           }
         ];
         relabel_configs = [
@@ -291,17 +304,14 @@
       enable = true;
       passwordFile = "/secret-mail-grafana.txt";
     };
-    provision = {
-      enable = true;
-      datasources = [
-        {
-          "name" = "prometheus-local";
-          "type" = "prometheus";
-          "access" = "proxy";
-          "url" = "http://localhost:9090";
-        }
-      ];
-    };
+    provision.datasources.settings.datasources = [
+      {
+        name = "prometheus-local";
+        type = "prometheus";
+        access = "proxy";
+        url = "http://localhost:9090";
+      }
+    ];
   };
 
   services.awstats = {
@@ -313,7 +323,7 @@
         webService = {
           urlPrefix = "";
           hostname = "127.0.0.1:90";
-          enable = true;
+          enable = false;
         };
       };
     };
