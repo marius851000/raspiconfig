@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10004;
+    serial = 10009;
   };
 
   NS = [ "mariusdavid.fr." "hacknews.pmdcollab.org." ];
@@ -78,5 +78,22 @@ in
 
     notspritecollab.A = ip4;
     notspritecollab.AAAA = ip6;
+
+    jupyter.A = ip4;
+    jupyter.AAAA = ip6;
+
+    kodi.A = ip4;
+    kodi.AAAA = ip6;
+
+    translate.A = ip4;
+    translate.AAAA = ip6;
+
+    roundcube.A = ip4;
+    roundcube.AAAA = ip6;
+
+    tufyggdrasil.AAAA = [ "b200:deb5:f162:56a0:b1d0:fee:6a44:9980" ];
+
+    tmpboard.A = ip4;
+    tmpboard.AAAA = ip6;
   };
 }
