@@ -65,6 +65,11 @@
     flake = false;
   };
 
+  inputs.weblate = {
+    url = "github:ngi-nix/weblate";
+    #url = "/home/marius/weblate";
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -96,6 +101,9 @@
     nixosConfigurations.marius-vps = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
+        {
+          nixpkgs.overlays = [ weblate.overlays.default ];
+        }
         ./hardware-vps.nix
         ./configuration.nix
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
@@ -119,6 +127,7 @@
           inherit python-github-archive_src;
         })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
+        ./weblate.nix
       ];
     };
   };
