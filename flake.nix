@@ -1,7 +1,7 @@
 {
-  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/1e03b381e7af7e167cace24b0fc72754e794e40c";
-  #inputs.nixpkgs.url = "/home/marius/nixpkgs";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/5195ca234686708d662bc7f3b26f83f7408788b5";
+  
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -19,19 +19,8 @@
 
   inputs.dns = {
     url = "github:kirelagin/dns.nix";
-    inputs.nixpkgs.follows = "nixpkgs"; # (optionally)
-  };
-
-  /*inputs.pypi-deps-db = {
-    url = "github:DavHau/pypi-deps-db";
-    flake = false;
-  };
-
-  inputs.mach-nix = {
-    url = "mach-nix";
     inputs.nixpkgs.follows = "nixpkgs";
-    inputs.pypi-deps-db.follows = "pypi-deps-db";
-  };*/
+  };
 
   inputs.python-github-archive_src = {
     url = "github:josegonzalez/python-github-backup";
@@ -46,23 +35,27 @@
     url = "github:PMDCollab/spritecollab-srv";
     flake = false;
   };
+
   #TODO: upstream -- and server
   #also, update will break the vendorSha256, but that's not too problematic
   inputs.wakapi_src = {
     url = "github:muety/wakapi"; #TODO: try to update, as it segfault for now
     flake = false;
   };
+
   inputs.mariussite = {
     url = "github:marius851000/mysite";
     flake = false;
   };
-  #    inputs.pmdsite = {
-  #        url = "github:marius851000/pmd_hack_weekly";
-  #        inputs.nixpkgs.follows = "nixpkgs";
-  #    };
+  
   inputs.retoot-bot-src = {
     url = "github:marius851000/mastodon-retoot-bot";
     flake = false;
+  };
+
+  inputs.kodionline = {
+    url = "github:marius851000/kodionline";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   inputs.weblate = {
@@ -82,7 +75,9 @@
     mariussite,
     pmdcollab_wiki-src,
     spritecollab_srv-src,
-    retoot-bot-src
+    retoot-bot-src,
+    kodionline,
+    weblate
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -116,7 +111,7 @@
         (import ./dns.nix { inherit dns; })
         ./peertube.nix
         (import ./mariussite.nix { inherit mariussite; })
-        (import ./wakapi.nix { inherit wakapi_src; })
+        #(import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
         ./mastodon.nix
         #./rustdesk.nix
@@ -129,6 +124,8 @@
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
         #(import ./kodionline.nix { inherit kodionline system; })
         #./jupyter.nix
+        ./yggdrasil.nix
+        weblate.nixosModules.weblate
         ./weblate.nix
       ];
     };
