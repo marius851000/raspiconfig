@@ -127,6 +127,8 @@
           inherit python-github-archive_src;
         })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
+        #(import ./kodionline.nix { inherit kodionline system; })
+        #./jupyter.nix
         ./weblate.nix
       ];
     };
