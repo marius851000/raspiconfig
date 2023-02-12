@@ -3,7 +3,7 @@
 { pkgs, config, ... }:
 
 let
-  server = pkgs.rustPlatform.buildRustPackage rec {
+  server = pkgs.rustPlatform.buildRustPackage {
     pname = "spritecollab_srv";
     version = "git";
 
@@ -17,7 +17,9 @@ let
         --replace 3000 3001
     '';
 
-    cargoSha256 = "sha256-qsP4ZUYwI+5p4e9Uk4z5Rlpq+C8aK5nSqD2J5jN2JNI=";
+    cargoLock = {
+      lockFile = builtins.toPath "${spritecollab_srv-src}/Cargo.lock";
+    };
   };
 in
 
