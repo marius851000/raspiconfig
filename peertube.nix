@@ -16,6 +16,7 @@
     enableWebHttps = true;
     listenHttp = 34095;
     listenWeb = 443;
+    secrets.secretsFile = "/secret-peertube.txt";
     #dataDirs = [ "/var/lib/peertube-mount" ];
     settings = {
       log = {
