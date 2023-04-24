@@ -28,6 +28,7 @@ stdenv.mkDerivation rec {
             url = "https://github.com/PMDCollab/SpriteBot/pull/10.patch";
             sha256 = "sha256-7TknNj90UXg1Xg4f7rB4XQ71VxWcYevwIqoKUszC8wg=";
         })*/
+        ./single_allow.diff
         ./non-privileged-add-spritebot.patch
     ];
 

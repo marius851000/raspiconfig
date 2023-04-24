@@ -491,11 +491,11 @@
     "spritebot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1673681773,
-        "narHash": "sha256-dqnffUVaZdtbezVOZO5/Zh52OtlPFXReVvk9BG8DwcM=",
+        "lastModified": 1682059386,
+        "narHash": "sha256-eSFuLhMN/6WtMJIXCo0BwLMWUBJI++FcN3ay+KuNhvc=",
         "owner": "PMDCollab",
         "repo": "SpriteBot",
-        "rev": "575fc48143d91ca81483248465d29ff2fb71a2ea",
+        "rev": "1c61663445ff3f9b0dd48703c0af579b57441f11",
         "type": "github"
       },
       "original": {
