@@ -12,7 +12,7 @@
     };
     user = "nginx"; #to share folder with nginx
     group = "nginx";
-    localDomain = "peertube.hacknews.pmdcollab.org";
+    localDomain = "vids.mariusdavid.fr";
     enableWebHttps = true;
     listenHttp = 34095;
     listenWeb = 443;
@@ -22,12 +22,31 @@
       log = {
         level = "debug";
       };
-      admin.email = "peertube@hacknews.pmdcollab.org";
+      admin.email = "peertube@mariusdavid.fr";
       smtp = {
         tls = true;
-        username = "peertube@hacknews.pmdcollab.org";
-        hostname = "hacknews.pmdcollab.org";
-        from_address = "peertube@hacknews.pmdcollab.org";
+        username = "peertube@mariusdavid.fr";
+        hostname = "mariusdavid.fr";
+        from_address = "peertube@mariusdavid.fr";
+      };
+      redundancy = {
+        
+        videos = {
+          check_interval = "1 hours";
+          strategies = [
+            {
+              size = "3GB";
+              min_lifetime = "48 hours";
+              strategy = "trending";
+            }
+            {
+              size = "100GB";
+              min_lifetime = "48 hours";
+              strategy = "recently-added";
+              min_views = 30;
+            }
+          ];
+        };
       };
     };
   };
@@ -37,7 +56,7 @@
       backend = "http://127.0.0.1:34095";
     in
     {
-      virtualHosts."peertube.hacknews.pmdcollab.org" = {
+      virtualHosts."vids.mariusdavid.fr" = {
         root = "/var/lib/peertube/storage";
         enableACME = true;
         forceSSL = true;
@@ -121,14 +140,14 @@
           #Skipped stuff for thumbnail and some optimisation
           "~ ^/static/(webseed|redundancy|streaming-playlists)/" = {
             extraConfig = ''
-              limit_rate_after            5M;
+              limit_rate_after            15M;
 
               # Clients usually have 4 simultaneous webseed connections, so the real limit is 3MB/s per client
-              set $peertube_limit_rate    800k;
+              set $peertube_limit_rate    5M;
 
               # Increase rate limit in HLS mode, because we don't have multiple simultaneous connections
               if ($request_uri ~ -fragmented.mp4$) {
-                set $peertube_limit_rate  5M;
+                set $peertube_limit_rate  15M;
               }
 
               # Use this line with nginx >= 1.17.0
@@ -178,7 +197,7 @@
   
   networking.firewall.allowedTCPPorts = [ 1935 ];
 
-  environment.systemPackages = [ pkgs.peertube ];
+  environment.systemPackages = [ pkgs.peertube pkgs.lsof ];
 
   #mount the network file system
   systemd.services.peertube-storj = {
@@ -194,7 +213,7 @@
       ExecStart = pkgs.writeScript "start_peertube_storj.sh" ''
         #!${pkgs.stdenv.shell}
         fusermount -u /var/lib/peertube-mount | true
-        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 10G --allow-other
+        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 2G --allow-other
       '';
       ExecStop = "fusermount -u /var/lib/peertube-mount";
       Restart = "always";

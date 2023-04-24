@@ -95,5 +95,8 @@ in
 
     tmpboard.A = ip4;
     tmpboard.AAAA = ip6;
+
+    vids.A = ip4;
+    vids.AAAA = ip6;
   };
 }
