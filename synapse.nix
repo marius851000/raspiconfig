@@ -101,6 +101,9 @@ in
       app_service_config_files = [
         "/var/lib/matrix-synapse/discord-registration.yaml"
       ];
+      media_retention = {
+        remote_media_lifetime = "5d";
+      };
       listeners = [
         {
           port = 8008;
