@@ -98,5 +98,17 @@ in
 
     vids.A = ip4;
     vids.AAAA = ip6;
+
+    net = {
+      subdomains = {
+        otulissa = {
+          A = ip4;
+          AAAA = ip6;
+          subdomains = {
+            ygg.AAAA = [ "200:e7e5:8090:9030:15d0:d8d4:8f8f:3ced" ];
+          };
+        };
+      };
+    };
   };
 }

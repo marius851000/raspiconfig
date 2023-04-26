@@ -93,7 +93,7 @@
       ];
     };
 
-    nixosConfigurations.marius-vps = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.otulissa = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         {

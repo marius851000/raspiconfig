@@ -5,7 +5,8 @@
   boot.initrd.kernelModules = [ "nvme" ];
   fileSystems."/" = { device = "/dev/sda1"; fsType = "ext4"; };
 
-  networking.hostName = "vps-b4203bd5";
+  #was: vps-b4203bd5
+  networking.hostName = "otulissa";
 
   networking.interfaces = {
     ens3 = {
