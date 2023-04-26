@@ -30,6 +30,7 @@ stdenv.mkDerivation rec {
         })*/
         ./single_allow.diff
         ./non-privileged-add-spritebot.patch
+        ./fix-crash-size-credits.diff
     ];
 
     buildInputs = with pythonPackages; [

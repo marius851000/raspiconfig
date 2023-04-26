@@ -1,0 +1,16 @@
+diff --git a/TrackerUtils.py b/TrackerUtils.py
+index b3aeb27..e30150f 100644
+--- a/TrackerUtils.py
++++ b/TrackerUtils.py
+@@ -58,8 +58,9 @@ def getCreditEntries(path):
+     credit_strings = []
+     for credit in credits:
+         credit_id = credit[1]
+-        if credit[2] == "OLD":
+-            continue
++        if len(credit) > 2:
++            if credit[2] == "OLD":
++                continue
+         if credit_id not in found_names:
+             credit_strings.append(credit_id)
+             found_names[credit_id] = True
