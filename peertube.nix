@@ -40,7 +40,7 @@
               strategy = "trending";
             }
             {
-              size = "100GB";
+              size = "10GB";
               min_lifetime = "48 hours";
               strategy = "recently-added";
               min_views = 30;
@@ -213,7 +213,7 @@
       ExecStart = pkgs.writeScript "start_peertube_storj.sh" ''
         #!${pkgs.stdenv.shell}
         fusermount -u /var/lib/peertube-mount | true
-        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 2G --allow-other
+        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 3G --allow-other
       '';
       ExecStop = "fusermount -u /var/lib/peertube-mount";
       Restart = "always";
