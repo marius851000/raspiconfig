@@ -93,6 +93,15 @@
       ];
     };
 
+    # A cheap baremetal server at OVH with lots of storage
+    nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        ./hardware-scrogne.nix
+        ./configuration.nix
+      ];
+    };
+
     nixosConfigurations.otulissa = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [

@@ -26,18 +26,13 @@
   ];
   
   # !!! Adding a swap file is optional, but strongly recommended!
-  swapDevices = [ { device = "/swapfile"; size = 512; } ];
   hardware.enableRedistributableFirmware = false;
-  
-  networking = {
-    domain = "hacknews.pmdcollab.org";
-  };
   
   # Preserve space by sacrificing documentation and history
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 7d";
   nix.gc.dates = "03:00";
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   documentation = {
     nixos.enable = false;
@@ -53,5 +48,5 @@
 
   system.stateVersion = "21.11";
 
-  networking.firewall.allowedTCPPorts = [ 21 80 ];
+  networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 }
