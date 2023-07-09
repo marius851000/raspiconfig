@@ -9,7 +9,7 @@
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    url = "github:PMDCollab/SpriteBot";
+    url = "github:PMDCollab/SpriteBot/c90213d3452f1c1022865e6ba058fe00149f67cc";
     flake = false;
   };
 
