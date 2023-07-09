@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "vids.mariusdavid.fr" ];
+
   services.peertube = {
     enable = true;
     database.createLocally = true;
@@ -58,7 +60,7 @@
     {
       virtualHosts."vids.mariusdavid.fr" = {
         root = "/var/lib/peertube/storage";
-        enableACME = true;
+        useACMEHost = "mariusdavid.fr";
         forceSSL = true;
 
         locations = {
@@ -192,7 +194,9 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "nodejs-12.22.12"
+    "nodejs-16.20.0" # used only to fetch pmdcollab’s deps
     "erlang-22.3.4.24" # used in CouchDB
+    "openssl-1.1.1u" # used by PHP, scary
   ];
   
   networking.firewall.allowedTCPPorts = [ 1935 ];
@@ -213,7 +217,7 @@
       ExecStart = pkgs.writeScript "start_peertube_storj.sh" ''
         #!${pkgs.stdenv.shell}
         fusermount -u /var/lib/peertube-mount | true
-        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 3G --allow-other
+        ${pkgs.rclone}/bin/rclone mount videostorage: /var/lib/peertube-mount -vv --vfs-cache-mode full --dir-cache-time 1h --vfs-cache-max-age 1000h --vfs-read-chunk-size 8M --vfs-read-chunk-size-limit 128M --vfs-cache-max-size 50G --allow-other
       '';
       ExecStop = "fusermount -u /var/lib/peertube-mount";
       Restart = "always";
