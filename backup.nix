@@ -12,7 +12,7 @@
                 rcloneConfigFile = "/secret-tardigrate-rclone-config.conf";
                 #TODO: actually use a proper secret management system (or at least put them all in a folder)
                 passwordFile = "/restic-password";
-                initialize = true;
+                #initialize = true;
                 extraBackupArgs = [
                     "--exclude=/nix"
                     "--exclude=/proc"

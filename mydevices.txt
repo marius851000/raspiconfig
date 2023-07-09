@@ -1,0 +1,5 @@
+Lutta: My main laptop
+Soren: My Pixel 3a phone
+Coryn: The old galaxy A5 (2017) running post market OS
+Otulissa: the OVH VPS
+Scrogne: OVH bare metal with 2TiB of storage

@@ -12,6 +12,6 @@
       createLocally = false;
       passwordFile = "/secret-mail-grafana.txt";
     };
-    extraConfig = "DEBUG = False";
+    extraConfig = "DEBUG = True";
   };
 }

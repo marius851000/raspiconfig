@@ -17,6 +17,19 @@
         devices = [ "mariuspc" ];
         ignorePerms = true;
       };
+      "dragons" = {
+        id = "dragons";
+        path = "/dragons";
+        devices = [ "mariuspc" ];
+        ignorePerms = true;
+      };
     };
   };
+
+  users.groups.dokuwiki_pool = {};
+  users.users.dokuwiki_pool = {
+    isSystemUser = true;
+    group = "dokuwiki_pool";
+  };
+
 }

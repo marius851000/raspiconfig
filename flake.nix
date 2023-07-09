@@ -1,6 +1,6 @@
 {
+  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/0c009e1824a56da4f0ac6284111cf786b4e8af96";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
-  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/5195ca234686708d662bc7f3b26f83f7408788b5";
   
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
@@ -59,8 +59,13 @@
   };
 
   inputs.weblate = {
-    url = "github:ngi-nix/weblate";
+    #url = "github:ngi-nix/weblate";
+    url = "github:marius851000/weblate/disable_debug";
     #url = "/home/marius/weblate";
+  };
+
+  inputs.hacky-account-manager = {
+    url = "github:marius851000/hacky-account-manager";
   };
 
   outputs = {
@@ -77,7 +82,8 @@
     spritecollab_srv-src,
     retoot-bot-src,
     kodionline,
-    weblate
+    weblate,
+    hacky-account-manager
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -99,6 +105,24 @@
       modules = [
         ./hardware-scrogne.nix
         ./configuration.nix
+        nixos-simple-mailserver.nixosModules.mailserver
+        ./mailserver.nix
+        ./backup.nix
+        ./syncthing.nix
+        (import ./dns.nix { inherit dns; })
+        (import ./mariussite.nix { inherit mariussite; })
+        ./synapse.nix
+        ./prometheus.nix
+        ./grafana.nix
+        (import ./notspritecollab.nix { inherit spritebot_src; })
+        (import ./retoot-bot.nix { inherit retoot-bot-src; })
+        ./peertube.nix
+        ./mastodon.nix
+        ./lemmy.nix
+        (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
+        ./nextcloud.nix
+        (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
+        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
       ];
     };
 
@@ -110,32 +134,31 @@
         }
         ./hardware-vps.nix
         ./configuration.nix
-        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
-        (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
-        ./synapse.nix
+        #(import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+        #(import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
         ./backup.nix
-        (import ./notspritecollab.nix { inherit spritebot_src; })
-        nixos-simple-mailserver.nixosModules.mailserver
-        ./mailserver.nix
-        (import ./dns.nix { inherit dns; })
-        ./peertube.nix
-        (import ./mariussite.nix { inherit mariussite; })
+        #(import ./notspritecollab.nix { inherit spritebot_src; })
+        #nixos-simple-mailserver.nixosModules.mailserver
+        #./mailserver.nix
+        #(import ./dns.nix { inherit dns; })
+        #./peertube.nix
         #(import ./wakapi.nix { inherit wakapi_src; })
         ./syncthing.nix
-        ./mastodon.nix
+        #./mastodon.nix
         #./rustdesk.nix
         #not important, but nice to have
         ./syncthing_relay.nix
-        ./snowflake.nix
-        (import ./python-github-archive.nix {
-          inherit python-github-archive_src;
-        })
-        (import ./retoot-bot.nix { inherit retoot-bot-src; })
+        #./snowflake.nix
+        #(import ./python-github-archive.nix {
+        #  inherit python-github-archive_src;
+        #})
+        #(import ./retoot-bot.nix { inherit retoot-bot-src; })
         #(import ./kodionline.nix { inherit kodionline system; })
         #./jupyter.nix
-        ./yggdrasil.nix
-        weblate.nixosModules.weblate
-        ./weblate.nix
+        #./yggdrasil.nix
+        #weblate.nixosModules.weblate
+        #./weblate.nix
+        ./boinc.nix
       ];
     };
   };

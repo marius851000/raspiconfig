@@ -2,29 +2,17 @@
 { pkgs, lib, config, ... }:
 
 {
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" "reddit1.mariusdavid.fr" "reddit2.mariusdavid.fr" ];
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" ];
 
   services.nginx = {
     enable = true;
-    recommendedOptimisation = true;
-    recommendedTlsSettings = true;
-    recommendedProxySettings = true;
-    recommendedGzipSettings = true;
-    package = pkgs.nginxQuic;
 
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
       useACMEHost = "mariusdavid.fr";
-      enableACME = false;
       forceSSL = true;
       http3 = true;
       locations = {
-        "/eespie/" = {
-          proxyPass = "http://localhost:2345/";
-          extraConfig = ''
-            access_log off;
-          '';
-        };
         "/.git" = {
           return = "404";
         };
@@ -101,7 +89,7 @@
 
     /*virtualHosts."tmpboard.mariusdavid.fr" = {
       root = "/dev/null";
-      useACMEHost = "mariusdavid.fr";
+      useACMEHost = "hacknews.pmdcollab.org";
       enableACME = false;
       forceSSL = true;
       http3 = true;
@@ -157,7 +145,7 @@
 
 
   services.phpfpm.phpPackage = (
-    pkgs.php80.withExtensions (
+    pkgs.php82.withExtensions (
       { enabled, all }: with all; [
         pdo
         pdo_mysql
@@ -197,124 +185,7 @@
     };
   };
 
-  services.prometheus = {
-    enable = true;
-    listenAddress = "localhost";
-    retentionTime = "30d";
-    exporters.nginx = {
-      enable = true;
-      listenAddress = "localhost";
-    };
-    exporters.node = {
-      enable = true;
-    };
-    exporters.blackbox = {
-      enable = true;
-      configFile = builtins.toFile "blackbox.yml" (lib.generators.toYAML { } {
-        modules = {
-          http_2xx = {
-            prober = "http";
-          };
-        };
-      });
-    };
-    exporters.systemd = {
-      enable = true;
-      extraFlags = [
-        "--systemd.collector.enable-ip-accounting"
-      ];
-    };
-    scrapeConfigs = [
-      {
-        job_name = "systemd";
-        scrape_interval = "20s";
-        static_configs = [
-          {
-            targets = [ "localhost:9558" ];
-          }
-        ];
-      }
-      {
-        job_name = "nginx";
-        scrape_interval = "5s";
-        static_configs = [
-          {
-            targets = [ "localhost:9113" ];
-          }
-        ];
-      }
-      {
-        job_name = "node";
-        scrape_interval = "15s";
-        static_configs = [
-          {
-            targets = [ "localhost:9100" ];
-          }
-        ];
-      }
-      {
-        job_name = "blackbox";
-        scrape_interval = "4s";
-        metrics_path = "/probe";
-        params = {
-          module = [ "http_2xx" ];
-        };
-        static_configs = [
-          {
-            targets = [ "https://hacknews.pmdcollab.org" "https://translate.mariusdavid.fr" ];
-          }
-        ];
-        relabel_configs = [
-          {
-            source_labels = [ "__address__" ];
-            target_label = "__param_target";
-          }
-          {
-            source_labels = [ "__param_target" ];
-            target_label = "instance";
-          }
-          {
-            target_label = "__address__";
-            replacement = "localhost:9115";
-          }
-        ];
-      }
-      {
-        job_name = "synapse";
-        scrape_interval = "30s";
-        metrics_path = "/_synapse/metrics";
-        static_configs = [
-          {
-            targets = [ "[::1]:8008" ];
-          }
-        ];
-      }
-    ];
-  };
-
-  services.grafana = {
-    addr = "0.0.0.0";
-    enable = true;
-    port = 2345;
-    rootUrl = "https://%(domain)s:%(http_port)s/eespie";
-    settings.smtp = rec {
-      user = "grafana@mariusdavid.fr";
-      fromAddress = user;
-      host = "mariusdavid.fr:587";
-      enable = true;
-      passwordFile = "/secret-mail-grafana.txt";
-    };
-    provision.datasources.settings.datasources = [
-      {
-        name = "prometheus-local";
-        type = "prometheus";
-        access = "proxy";
-        url = "http://localhost:9090";
-      }
-    ];
-  };
-
-  services.awstats = {
+  /*services.awstats = {
     enable = true;
     updateAt = "hourly";
     configs = {
@@ -327,7 +198,7 @@
         };
       };
     };
-  };
+  };*/
 
   /*services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
     enableACME = true;

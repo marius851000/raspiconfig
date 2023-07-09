@@ -1,0 +1,15 @@
+diff --git a/SpriteBot.py b/SpriteBot.py
+index e5a9ef7..3e79d10 100644
+--- a/SpriteBot.py
++++ b/SpriteBot.py
+@@ -1036,8 +1036,8 @@ class SpriteBot:
+             if len(decline) > 0:
+                 await self.submissionDeclined(msg, orig_sender, decline)
+                 return True
+-            elif auto or (asset_type == "sprite" and len(approve) >= 3 and not warn) \
+-                    or (asset_type == "portrait" and len(approve) >= 2 and not warn):
++            elif auto or (asset_type == "sprite" and len(approve) >= 1 and not warn) \
++                    or (asset_type == "portrait" and len(approve) >= 1 and not warn):
+                 await self.submissionApproved(msg, orig_sender, orig_author, approve)
+                 return False
+             else:

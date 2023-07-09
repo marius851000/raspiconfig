@@ -6,6 +6,7 @@ let
   mariussite_instanced = import "${mariussite}/site.nix" { inherit pkgs; };
 in
 {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "dragons.mariusdavid.fr" ];
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;
@@ -19,7 +20,13 @@ in
       forceSSL = true;
     };
 
-    virtualHosts."reddit1.mariusdavid.fr" = {
+    virtualHosts."dragons.mariusdavid.fr" = {
+      root = "/dragons/";
+      useACMEHost = "mariusdavid.fr";
+      forceSSL = true;
+    };
+
+    /*virtualHosts."reddit1.mariusdavid.fr" = {
       root = "/dev/null";
       enableACME = true;
       forceSSL = true;
@@ -29,6 +36,6 @@ in
       root = "/dev/null";
       enableACME = true;
       forceSSL = true;
-    };
+    };*/
   };
 }

@@ -3,12 +3,15 @@
 let
   ip4 = [ "51.38.185.177" ];
   ip6 = [ "2001:41d0:0305:2100:0000:0000:0000:9331" ];
+
+  ip4scrogne = [ "5.196.70.120" ];
+  ip6scrogne = [ "2001:41d0:e:378::1" ];
 in
 {
   SOA = {
     nameServer = "hacknews.pmdcollab.org.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10003;
+    serial = 10004;
   };
 
   NS = [ "hacknews.pmdcollab.org." ];
@@ -35,8 +38,8 @@ in
     }
   ];
 
-  A = ip4;
-  AAAA = ip6;
+  A = ip4scrogne;
+  AAAA = ip6scrogne;
 
   subdomains = {
     peertube.A = ip4;

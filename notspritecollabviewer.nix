@@ -24,6 +24,8 @@ let
 in
 
 {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "nsc.pmdcollab.org" "nss.pmdcollab.org" ];
+
   systemd.services.notspriteserver = {
     enable = true;
     description = "graphql for NotSpriteCollab";
@@ -67,7 +69,7 @@ in
 
     virtualHosts."nss.pmdcollab.org" = {
       root = "/dev/null";
-      enableACME = true;
+      useACMEHost = "mariusdavid.fr";
       forceSSL = true;
 
       locations."/" = {
@@ -75,21 +77,9 @@ in
       };
     };
 
-    virtualHosts."notspriteserver.mariusdavid.fr" = {
-      root = "/dev/null";
-      enableACME = true;
-      extraConfig = "return 301 https://nss.pmdcollab.org$request_uri;";
-    };
-
-    virtualHosts."notspritecollab.mariusdavid.fr" = {
-      root = "/dev/null";
-      enableACME = true;
-      extraConfig = "return 301 https://nsc.pmdcollab.org$request_uri;";
-    };
-
     virtualHosts."nsc.pmdcollab.org" = {
       root = "/workdirnotspriteserver";
-      enableACME = true;
+      useACMEHost = "mariusdavid.fr";
       forceSSL = true;
 
       locations."/" = {

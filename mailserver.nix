@@ -1,6 +1,8 @@
 { ... }:
 
 rec {
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ /*"roundcube.mariusdavid.fr"*/ ];
+  
   mailserver = {
     enable = true;
     fqdn = "mariusdavid.fr";
@@ -94,6 +96,8 @@ rec {
       "user77@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
       "user78@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
       "user79@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
+      #new
+      "user80@reddit2.mariusdavid.fr" = "reddit@hacknews.pmdcollab.org";
 
       #TODO: postmaster@mariusdavid.fr
       #TODO: not forward, but instead the other stuff
@@ -127,7 +131,7 @@ rec {
       };
     };
 
-    certificateScheme = 3;
+    certificateScheme = "acme-nginx";
     certificateDomains = [ ];
 
     localDnsResolver = false;

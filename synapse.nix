@@ -6,9 +6,11 @@ in
 {
   services.postgresql.enable = true;
 
+  security.acme.certs."mariusdavid.fr".extraDomainNames = [ ];
+
   services.nginx =
     {
-      virtualHosts."newsmatrix.pmdcollab.org" = {
+      /*virtualHosts."newsmatrix.pmdcollab.org" = {
         root = "/dev/null";
         enableACME = true;
         forceSSL = true;
@@ -20,7 +22,7 @@ in
             '';
           };
         };
-      };
+      };*/
 
       virtualHosts."${domain}" = {
         enableACME = true;
@@ -125,6 +127,8 @@ in
     };
   };
 
+  #systemd.services.matrix-synapse.serviceConfig.IOSchedulingClass = "idle";
+
   services.matrix-appservice-discord = {
     enable = true;
     environmentFile = "/secret-matrix-appservice-discord.env";
@@ -162,7 +166,7 @@ in
     };
   };
 
-  systemd.services.compress_synapse = {
+  /*systemd.services.compress_synapse = {
     serviceConfig.Type = "oneshot";
     serviceConfig.ExecStart = "${pkgs.matrix-synapse-tools.rust-synapse-compress-state}/bin/synapse_auto_compressor -p \"dbname=matrix-synapse host=/run/postgresql user=postgres\" -c 100 -n 1";
   };
@@ -173,5 +177,5 @@ in
       OnCalendar = "*-*-* *:*:30";
       Unit = "compress_synapse.service";
     };
-  };
+  };*/
 }
