@@ -34,16 +34,16 @@
       redundancy = {
         
         videos = {
-          check_interval = "1 hours";
+          check_interval = "6 hours";
           strategies = [
             {
               size = "3GB";
-              min_lifetime = "48 hours";
+              min_lifetime = "168 hours";
               strategy = "trending";
             }
             {
               size = "10GB";
-              min_lifetime = "48 hours";
+              min_lifetime = "168 hours";
               strategy = "recently-added";
               min_views = 30;
             }
