@@ -341,11 +341,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1688586836,
-        "narHash": "sha256-5uLYGa+8lysS1X5ehdU3ewmrMIG8p9+qS7yJ0LyhMHs=",
+        "lastModified": 1689610936,
+        "narHash": "sha256-g/+hhD6Kpz8EQvE93q3tpP58LBxNyR7f1UhREKZJvXM=",
         "ref": "refs/heads/master",
-        "rev": "d460e9ff62ea1238fb3348a87326b743ae177902",
-        "revCount": 559,
+        "rev": "a3b03d1b5af5112bc94b448879a2f401043b42ea",
+        "revCount": 569,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -416,11 +416,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1688883478,
-        "narHash": "sha256-o1igLPVbW7jgcjkCX+qeZb6m4amvejDiq0sqIlU0+Y8=",
+        "lastModified": 1689780485,
+        "narHash": "sha256-5ZYc8k9D/i7kZNb4M/akgD1uYVR3Id38tW5qefJ+mFA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dc99434f4f17f718ef70f6e5fbfa3145ccd285fe",
+        "rev": "814f067760d029f532f990974a6df240d4320105",
         "type": "github"
       },
       "original": {
@@ -640,11 +640,11 @@
     "wakapi_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1688842118,
-        "narHash": "sha256-KjtjLz2A8BOdeyJzfg39v1sLp9QBbvio3kuXsLAGr+8=",
+        "lastModified": 1689317423,
+        "narHash": "sha256-hUEhMo2MLHlXFV8rPFZmjuaYFEJluawRsx6zCeNI7ys=",
         "owner": "muety",
         "repo": "wakapi",
-        "rev": "78f327dbeb91381c2772c6f07e3751d6bc2a3146",
+        "rev": "bc2d05bd85df5595b0088ae4fd1ac3a043750654",
         "type": "github"
       },
       "original": {
