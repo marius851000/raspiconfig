@@ -117,6 +117,7 @@ rec {
       };
       "reddit@hacknews.pmdcollab.org" = {
         hashedPasswordFile = "/secret-reddit-account-email-pass.txt";
+        aliases = [ "@reddit1.mariusdavid.fr" "@reddit2.mariusdavid.fr" ];
       };
 
       "mastodon@mariusdavid.fr" = {
