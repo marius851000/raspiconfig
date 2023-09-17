@@ -104,6 +104,7 @@
         ./syncthing.nix
         (import ./dns.nix { inherit dns; })
         (import ./mariussite.nix { inherit mariussite; })
+        #./synapse.nix
         ./wakapi.nix
         ./prometheus.nix
         ./grafana.nix
