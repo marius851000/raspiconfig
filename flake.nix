@@ -36,13 +36,6 @@
     flake = false;
   };
 
-  #TODO: upstream -- and server
-  #also, update will break the vendorSha256, but that's not too problematic
-  inputs.wakapi_src = {
-    url = "github:muety/wakapi"; #TODO: try to update, as it segfault for now
-    flake = false;
-  };
-
   inputs.mariussite = {
     url = "github:marius851000/mysite";
     flake = false;
@@ -111,7 +104,7 @@
         ./syncthing.nix
         (import ./dns.nix { inherit dns; })
         (import ./mariussite.nix { inherit mariussite; })
-        ./synapse.nix
+        ./wakapi.nix
         ./prometheus.nix
         ./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })

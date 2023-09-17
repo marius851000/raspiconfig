@@ -1,74 +1,43 @@
-{ wakapi_src }:
 { pkgs, ... }:
 
 let
-  wakapi = pkgs.callPackage ./wakapi_package.nix { inherit wakapi_src; };
+  package = pkgs.wakapi; #pkgs.callPackage ./wakapi_package.nix { inherit wakapi_src; };
 
-  user = "wakapi";
-  group = "wakapi";
-
-  stateDir = "/var/lib/wakapi";
+  stateDir = "wakapi";
 in
 {
-  environment.systemPackages = [ wakapi ];
-
-  systemd.services.wakapi = {
-    enable = true;
-    description = "Wakapi activity tracker";
-    wantedBy = [ "multi-user.target" ];
-    
-    environment = {
-      SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-    };
-    confinement.enable = true;
-    confinement.fullUnit = true;
-    confinement.packages = [ pkgs.cacert ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${wakapi}/bin/wakapi";
-      Restart = "on-failure";
-      RestartSec = 65;
-
-      User = user;
-      Group = group;
-      WorkingDirectory = stateDir;
-
-      BindPaths = stateDir;
-      BindReadOnlyPaths = "/etc"; #TODO: try to get rid of /etc
-
-      SystemCallArchitectures = "native";
-      SystemCallFilter = [ "@system-service" "~@privileged" "~@resources" ];
-      RestrictRealtime = true;
-      RestrictSUIDSGID = true;
-      RemoveIPC = true;
-      ProtectProc = "invisibled";
-      NoNewPrivileges = true;
-      ProtectClock = true;
-      ProtectKernelTunables = true;
-      ProtectKernelModules = true;
-      ProtectKernelLogs = true;
-      ProtectControlGroups = true;
-      CapabilityBoundingSet = "";
-      PrivateDevices = true;
-      ProtectHostname = true;
-      ProcSubset = "pid";
-      RestrictNamespaces = true;
-
-      #TODO: continue and learn more on this subject
-    };
-  };
-
-  systemd.tmpfiles.rules = [
-      "d '${stateDir}' 700 ${user} ${group} -"
-  ];
-
-  users.users."${user}" = {
-    description = "NotSpriteBot user";
-    group = group;
+  users.users.wakapi = {
+    group = "wakapi";
     isSystemUser = true;
   };
+  users.groups.wakapi = {};
 
-  users.groups."${group}" = {};
+  # from https://github.com/NotAShelf/nyx/blob/77be2f440132a768a80227f18cf25dc6a33dd1bf/modules/extra/shared/nixos/wakapi/default.nix#L71
+
+  systemd.services.wakapi = {
+    after = ["network.target"];
+    #path = with pkgs; [openssl];
+    serviceConfig = {
+      User = "wakapi";
+      Group = "wakapi";
+      #EnvironmentFile = [configFile];
+      ExecStart = "${package}/bin/wakapi";
+      LimitNOFILE = "1048576";
+      PrivateTmp = "true";
+      PrivateDevices = "true";
+      ProtectHome = "true";
+      ProtectSystem = "strict";
+      AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+      StateDirectory = "${stateDir}";
+      WorkingDirectory = "/var/lib/${stateDir}";
+      StateDirectoryMode = "0700";
+      Restart = "always";
+    };
+    wantedBy = ["multi-user.target"];
+  };
+  systemd.tmpfiles.rules = [
+    "D /var/lib/${stateDir}/data 755 wakapi wakapi - -"
+  ];
 
   services.nginx = {
     enable = true;
@@ -90,5 +59,5 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 3000 ];
+  #networking.firewall.allowedTCPPorts = [ 3000 ];
 }
