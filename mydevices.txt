@@ -1,5 +1,10 @@
 Lutta: My main laptop
 Soren: My Pixel 3a phone
-Coryn: The old galaxy A5 (2017) running post market OS
-Otulissa: the OVH VPS
+Coryn: The old galaxy A5 (2017) running lineageOS
+Philip: The old and kinda broken Xiaomi Mi A1 with post market os
+// (decomissioned, replaced by Scrogne) Otulissa: the OVH VPS
 Scrogne: OVH bare metal with 2TiB of storage
+
+other:
+unnamed Phab 2 Pro (never connected to the network)
+SteamDeck
