@@ -52,13 +52,19 @@
   };
 
   inputs.weblate = {
-    #url = "github:ngi-nix/weblate";
-    url = "github:marius851000/weblate/disable_debug";
+    url = "github:ngi-nix/weblate";
+    inputs.poetry2nix.url = "github:erictapen/poetry2nix/rpds-py-0.10.3";
+    #url = "github:marius851000/weblate/disable_debug";
     #url = "/home/marius/weblate";
   };
 
   inputs.hacky-account-manager = {
     url = "github:marius851000/hacky-account-manager";
+  };
+
+  inputs.glitch-soc-package = {
+    url = "github:IbzanHyena/glitch-social-nix";
+    flake = false;
   };
 
   outputs = {
@@ -69,14 +75,14 @@
     nixos-simple-mailserver,
     dns,
     python-github-archive_src,
-    wakapi_src,
     mariussite,
     pmdcollab_wiki-src,
     spritecollab_srv-src,
     retoot-bot-src,
     kodionline,
     weblate,
-    hacky-account-manager
+    hacky-account-manager,
+    glitch-soc-package
   }: {
     nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
       system = "aarch64-linux";
@@ -96,6 +102,11 @@
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
+        {
+          nixpkgs.overlays = [ weblate.overlays.default ];
+        }
+        weblate.nixosModules.weblate
+        ./weblate.nix
         ./hardware-scrogne.nix
         ./configuration.nix
         nixos-simple-mailserver.nixosModules.mailserver
@@ -111,7 +122,7 @@
         (import ./notspritecollab.nix { inherit spritebot_src; })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
         ./peertube.nix
-        ./mastodon.nix
+        (import ./mastodon.nix { inherit glitch-soc-package; })
         ./lemmy.nix
         (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
         ./nextcloud.nix
