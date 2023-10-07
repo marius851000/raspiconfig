@@ -197,6 +197,7 @@
     "nodejs-16.20.0" # used only to fetch pmdcollab’s deps
     "erlang-22.3.4.24" # used in CouchDB
     "openssl-1.1.1u" # used by PHP, scary
+    "nodejs-16.20.2"
   ];
   
   networking.firewall.allowedTCPPorts = [ 1935 ];
