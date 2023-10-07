@@ -1,9 +1,6 @@
 { dns }:
 
 let
-  ip4 = [ "51.38.185.177" ];
-  ip6 = [ "2001:41d0:0305:2100:0000:0000:0000:9331" ];
-
   ip4scrogne = [ "5.196.70.120" ];
   ip6scrogne = [ "2001:41d0:e:378::1" ];
 in
@@ -11,7 +8,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10022;
+    serial = 10025;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -55,11 +52,11 @@ in
     cloud.A = ip4scrogne;
     cloud.AAAA = ip6scrogne;
 
-    wakapi.A = ip4;
-    wakapi.AAAA = ip6;
+    wakapi.A = ip4scrogne;
+    wakapi.AAAA = ip6scrogne;
 
-    awstats.A = ip4;
-    awstats.AAAA = ip6;
+    #awstats.A = ip4scrogne;
+    #awstats.AAAA = ip6scrogne;
 
     reddit1.A = ip4scrogne;
     reddit1.AAAA = ip6scrogne;
@@ -89,28 +86,28 @@ in
     /*couchdb.A = ip4;
     couchdb.AAAA = ip6;*/
 
-    notspriteserver.A = ip4;
-    notspriteserver.AAAA = ip6;
+    #notspriteserver.A = ip4;
+    #notspriteserver.AAAA = ip6;
 
-    notspritecollab.A = ip4;
-    notspritecollab.AAAA = ip6;
+    #notspritecollab.A = ip4;
+    #notspritecollab.AAAA = ip6;
 
-    jupyter.A = ip4;
-    jupyter.AAAA = ip6;
+    #jupyter.A = ip4;
+    #jupyter.AAAA = ip6;
 
-    kodi.A = ip4;
-    kodi.AAAA = ip6;
+    #kodi.A = ip4scrogne;
+    #kodi.AAAA = ip6scrogne;
 
-    translate.A = ip4;
-    translate.AAAA = ip6;
+    translate.A = ip4scrogne;
+    translate.AAAA = ip6scrogne;
 
     roundcube.A = ip4scrogne;
     roundcube.AAAA = ip6scrogne;
 
     tufyggdrasil.AAAA = [ "b200:deb5:f162:56a0:b1d0:fee:6a44:9980" ];
 
-    tmpboard.A = ip4;
-    tmpboard.AAAA = ip6;
+    #tmpboard.A = ip4;
+    #tmpboard.AAAA = ip6;
 
     vids.A = ip4scrogne;
     vids.AAAA = ip6scrogne;
@@ -124,7 +121,7 @@ in
     lemmy.A = ip4scrogne;
     lemmy.AAAA = ip6scrogne;
 
-    net = {
+    /*net = {
       subdomains = {
         otulissa = {
           A = ip4;
@@ -134,6 +131,6 @@ in
           };
         };
       };
-    };
+    };*/
   };
 }
