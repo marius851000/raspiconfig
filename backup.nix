@@ -24,6 +24,12 @@
                     "--exclude=/var/log"
                     "--exclude=/var/cache"
                     "--exclude=/swapfile"
+                    "--exclude=/peertube-mount-home"
+                    "--exclude=/old-root"
+                    "--exclude=/var/lib/mastodon/public-system/cache"
+                    "--exclude=/var/lib/peertube-mount/hacknews-peertube/streaming-playlists"
+                    "--exclude=/var/lib/peertube-mount/hacknews-peertube/redundancy"
+                    "-vvvv"
                 ];
                 paths = [
                     "/"
