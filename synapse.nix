@@ -95,6 +95,7 @@ in
       experimental_features = {
         faster_joins = true;
       };
+      presence.enabled = false;
       server_name = domain;
       enable_metrics = true;
       allow_guest_access = true;
@@ -104,7 +105,7 @@ in
         "/var/lib/matrix-synapse/discord-registration.yaml"
       ];
       media_retention = {
-        remote_media_lifetime = "5d";
+        remote_media_lifetime = "30d";
       };
       listeners = [
         {
