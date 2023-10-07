@@ -1,9 +1,12 @@
+{ glitch-soc-package }:
+
 { config, pkgs, ... }:
 
 {
   security.acme.certs."mariusdavid.fr".extraDomainNames = [ config.services.mastodon.extraConfig.WEB_DOMAIN ];
 
   services.mastodon = {
+    #package = pkgs.callPackage glitch-soc-package {};
     enable = true;
     webProcesses = 1;
     webThreads = 2;
@@ -17,10 +20,6 @@
       createLocally = false;
       fromAddress = "mastodon@mariusdavid.fr";
     };
-    package = pkgs.mastodon.overrideAttrs (old: {
-      patches = [
-      ];
-    });
     configureNginx = false;
     enableUnixSocket = true;
     extraConfig = {
