@@ -32,7 +32,7 @@
     flake = false;
   };
   inputs.spritecollab_srv-src = {
-    url = "github:PMDCollab/spritecollab-srv";
+    url = "github:PMDCollab/spritecollab-srv/adeee31ee820c33de4901c714a99e59dce379c46";
     flake = false;
   };
 
