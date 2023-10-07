@@ -30,7 +30,7 @@
   
   # Preserve space by sacrificing documentation and history
   nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 7d";
+  nix.gc.options = "--delete-older-than 30d";
   nix.gc.dates = "03:00";
   boot.tmp.cleanOnBoot = true;
 

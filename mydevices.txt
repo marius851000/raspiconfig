@@ -4,6 +4,8 @@ Coryn: The old galaxy A5 (2017) running lineageOS
 Philip: The old and kinda broken Xiaomi Mi A1 with post market os
 // (decomissioned, replaced by Scrogne) Otulissa: the OVH VPS
 Scrogne: OVH bare metal with 2TiB of storage
+Marella: the laptop with a broken screen and 8GiB of RAM
+Noctus: the other laptop with a broken screen and 4GiB of RAM
 
 other:
 unnamed Phab 2 Pro (never connected to the network)

@@ -107,7 +107,7 @@
         }
         weblate.nixosModules.weblate
         ./weblate.nix
-        ./hardware-scrogne.nix
+        ./hardware-configuration/scrogne.nix
         ./configuration.nix
         nixos-simple-mailserver.nixosModules.mailserver
         ./mailserver.nix
@@ -128,6 +128,14 @@
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+      ];
+    };
+
+    nixosConfigurations.marella = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        ./hardware-configuration/marella.nix
       ];
     };
 
