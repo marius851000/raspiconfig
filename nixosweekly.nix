@@ -253,5 +253,12 @@
     }
     };*/
 
+  services.syncthing.settings.folders.hacknews-site = {
+    id = "hacknews-sitefolder";
+    path = "/site";
+    devices = [ "mariuspc" ];
+    ignorePerms = true;
+  };
+
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

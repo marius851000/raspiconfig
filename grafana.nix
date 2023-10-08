@@ -15,10 +15,12 @@
   };
 
   services.grafana = {
-    addr = "0.0.0.0";
     enable = true;
-    port = 2345;
-    rootUrl = "https://%(domain)s:%(http_port)s/eespie";
+    settings.server = {
+      http_port = 2345;
+      http_addr = "0.0.0.0";
+      root_url = "https://%(domain)s:%(http_port)s/eespie";
+    };
     settings.smtp = rec {
       user = "grafana@mariusdavid.fr";
       fromAddress = user;

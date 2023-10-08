@@ -36,6 +36,8 @@
     flake = false;
   };
 
+  inputs.deploy-rs.url = "github:serokell/deploy-rs";
+
   inputs.mariussite = {
     url = "github:marius851000/mysite";
     flake = false;
@@ -82,31 +84,19 @@
     kodionline,
     weblate,
     hacky-account-manager,
-    glitch-soc-package
+    glitch-soc-package,
+    deploy-rs
   }: {
-    nixosConfigurations.marius-rasberrypi = nixpkgs.lib.nixosSystem rec {
-      system = "aarch64-linux";
-      modules = [
-        ./hardware-raspi.nix
-        ./configuration.nix
-        #./notspritecollab.nix
-        (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
-        ./synapse.nix
-        ./backup.nix
-        #                ./autoupdate.nix
-        #                ./ftp_test.nix
-      ];
-    };
-
     # A cheap baremetal server at OVH with lots of storage
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
-        {
+        /*{
           nixpkgs.overlays = [ weblate.overlays.default ];
-        }
-        weblate.nixosModules.weblate
-        ./weblate.nix
+        }*/
+        #weblate.nixosModules.weblate
+        #./weblate.nix
+        ./secret.nix
         ./hardware-configuration/scrogne.nix
         ./configuration.nix
         nixos-simple-mailserver.nixosModules.mailserver
@@ -126,53 +116,41 @@
         ./lemmy.nix
         (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
         ./nextcloud.nix
-        (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
+        #(import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
       ];
     };
 
-    nixosConfigurations.marella = nixpkgs.lib.nixosSystem rec {
+    deploy.nodes.scrogne = {
+      hostname = "mariusdavid.fr"; #TODO: use something like srv1.mariusdavid.fr
+      profiles.system = {
+        sshUser = "root";
+        user = "root";
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.scrogne;
+      };
+    };
+
+    # A laptop with broken screen, but a GT980, multi core, a broken screen, 8GiB of (LDDR3) RAM and 1TiB of HDD
+    nixosConfigurations.marella = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        ./secret.nix
         ./hardware-configuration/marella.nix
+        ./backup.nix
+        #./syncthing.nix //TODO
       ];
     };
 
-    nixosConfigurations.otulissa = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      modules = [
-        {
-          nixpkgs.overlays = [ weblate.overlays.default ];
-        }
-        ./hardware-vps.nix
-        ./configuration.nix
-        #(import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
-        #(import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
-        ./backup.nix
-        #(import ./notspritecollab.nix { inherit spritebot_src; })
-        #nixos-simple-mailserver.nixosModules.mailserver
-        #./mailserver.nix
-        #(import ./dns.nix { inherit dns; })
-        #./peertube.nix
-        #(import ./wakapi.nix { inherit wakapi_src; })
-        ./syncthing.nix
-        #./mastodon.nix
-        #./rustdesk.nix
-        #not important, but nice to have
-        ./syncthing_relay.nix
-        #./snowflake.nix
-        #(import ./python-github-archive.nix {
-        #  inherit python-github-archive_src;
-        #})
-        #(import ./retoot-bot.nix { inherit retoot-bot-src; })
-        #(import ./kodionline.nix { inherit kodionline system; })
-        #./jupyter.nix
-        #./yggdrasil.nix
-        #weblate.nixosModules.weblate
-        #./weblate.nix
-        ./boinc.nix
-      ];
+    deploy.nodes.marella = {
+      hostname = "192.168.0.126";
+      profiles.system = {
+        sshUser = "root";
+        user = "root";
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.marella;
+      };
     };
+
+    #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

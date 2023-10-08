@@ -38,4 +38,11 @@ in
       forceSSL = true;
     };*/
   };
+
+  services.syncthing.settings.folders.dragons = {
+    id = "dragons";
+    path = "/dragons";
+    devices = [ "mariuspc" ];
+    ignorePerms = true;
+  };
 }

@@ -35,7 +35,7 @@ export default function About(){
       );
 }'';
 
-  modules = builtins.trace "${(import (builtins.toPath "${ifd}/default.nix") { inherit pkgs; }).package}" (import (builtins.toPath "${ifd}/default.nix") { inherit pkgs; }).package;
+  modules = (import (builtins.toPath "${ifd}/default.nix") { inherit pkgs; }).package;
 in
   stdenv.mkDerivation {
     name = "pmdcollab-wiki";

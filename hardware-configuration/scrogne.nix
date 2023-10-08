@@ -7,7 +7,7 @@
   fileSystems."/" = { device = "/dev/sda3"; fsType = "btrfs"; };
   swapDevices = [ { device = "/swapfile"; size = 2048; } ];
   
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "scrogne";
   networking.domain = "";
@@ -42,4 +42,6 @@
     address = "2001:41d0:000e:03ff:00ff:00ff:00ff:00ff";
     interface = "eno0";
   };
+
+  system.stateVersion = "21.11";
 }
