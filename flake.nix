@@ -91,11 +91,6 @@
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
-        /*{
-          nixpkgs.overlays = [ weblate.overlays.default ];
-        }*/
-        #weblate.nixosModules.weblate
-        #./weblate.nix
         ./secret.nix
         ./hardware-configuration/scrogne.nix
         ./configuration.nix
@@ -122,7 +117,7 @@
     };
 
     deploy.nodes.scrogne = {
-      hostname = "mariusdavid.fr"; #TODO: use something like srv1.mariusdavid.fr
+      hostname = "scrogne.net.mariusdavid.fr";
       profiles.system = {
         sshUser = "root";
         user = "root";
@@ -138,12 +133,18 @@
         ./secret.nix
         ./hardware-configuration/marella.nix
         ./backup.nix
+
+        {
+          nixpkgs.overlays = [ weblate.overlays.default ];
+        }
+        weblate.nixosModules.weblate
+        ./weblate.nix
         #./syncthing.nix //TODO
       ];
     };
 
     deploy.nodes.marella = {
-      hostname = "192.168.0.126";
+      hostname = "192.168.0.210";
       profiles.system = {
         sshUser = "root";
         user = "root";

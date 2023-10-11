@@ -66,5 +66,16 @@
     acceptTerms = true;
   };
 
+  services.nginx = {
+    enable = true;
+
+    recommendedOptimisation = true;
+    recommendedTlsSettings = true;
+    recommendedProxySettings = true;
+    recommendedGzipSettings = true;
+  };
+
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
+
+  services.logind.lidSwitch = "ignore";
 }

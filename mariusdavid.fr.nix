@@ -3,12 +3,15 @@
 let
   ip4scrogne = [ "5.196.70.120" ];
   ip6scrogne = [ "2001:41d0:e:378::1" ];
+
+  ip4home = [ "82.66.95.86" ];
+  ip6marella = [ "fe80::f279:59ff:fe20:f831" ];
 in
 {
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10025;
+    serial = 10029;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -98,8 +101,8 @@ in
     #kodi.A = ip4scrogne;
     #kodi.AAAA = ip6scrogne;
 
-    translate.A = ip4scrogne;
-    translate.AAAA = ip6scrogne;
+    translate.A = ip4home;
+    translate.AAAA = ip6marella;
 
     roundcube.A = ip4scrogne;
     roundcube.AAAA = ip6scrogne;
@@ -121,6 +124,18 @@ in
     lemmy.A = ip4scrogne;
     lemmy.AAAA = ip6scrogne;
 
+    net = {
+      subdomains = {
+        scrogne = {
+          A = ip4scrogne;
+          AAAA = ip6scrogne;
+        };
+        marella = {
+          A = ip4home;
+          AAAA = ip6marella;
+        };
+      };
+    };
     /*net = {
       subdomains = {
         otulissa = {

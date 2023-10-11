@@ -17,6 +17,9 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  services.postgresql.enable = true;
+  services.postgresql.package = pkgs.postgresql_15;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4869c92d-63e2-4db9-a9f6-8abf8b00b893";
       fsType = "ext4";

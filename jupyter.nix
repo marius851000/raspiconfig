@@ -18,10 +18,6 @@
 
   services.nginx = {
     enable = true;
-    recommendedOptimisation = true;
-    recommendedTlsSettings = true;
-    recommendedProxySettings = true;
-    recommendedGzipSettings = true;
 
     virtualHosts."jupyter.mariusdavid.fr" = {
       enableACME = true;
