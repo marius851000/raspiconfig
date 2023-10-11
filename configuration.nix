@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }: 
 {
+
+  imports = [
+    ./modules/machine-site.nix
+  ];
+
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -74,6 +79,8 @@
     recommendedProxySettings = true;
     recommendedGzipSettings = true;
   };
+
+  marinfra.machine-site.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 
