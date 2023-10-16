@@ -6,7 +6,8 @@ let
   mariussite_instanced = import "${mariussite}/site.nix" { inherit pkgs; };
 in
 {
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "dragons.mariusdavid.fr" ];
+  marinfra.ssl.extraDomain = [ "dragons.mariusdavid.fr" ];
+
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;
@@ -16,14 +17,13 @@ in
 
     virtualHosts."mariusdavid.fr" = {
       root = mariussite_instanced;
+      #TODO: Do not use machine certificate due to the mailserver
       enableACME = true;
       forceSSL = true;
     };
 
     virtualHosts."dragons.mariusdavid.fr" = {
       root = "/dragons/";
-      useACMEHost = "mariusdavid.fr";
-      forceSSL = true;
     };
 
     /*virtualHosts."reddit1.mariusdavid.fr" = {

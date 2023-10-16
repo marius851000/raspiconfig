@@ -3,6 +3,7 @@
 
   imports = [
     ./modules/machine-site.nix
+    ./modules/ssl.nix
   ];
 
   nix = {
@@ -81,6 +82,7 @@
   };
 
   marinfra.machine-site.enable = true;
+  marinfra.ssl.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 
