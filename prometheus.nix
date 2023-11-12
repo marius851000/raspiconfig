@@ -87,9 +87,10 @@
         job_name = "synapse";
         scrape_interval = "30s";
         metrics_path = "/_synapse/metrics";
+        scheme = "https";
         static_configs = [
           {
-            targets = [ "[::1]:8008" ];
+            targets = [ "matrix.mariusdavid.fr" ];
           }
         ];
       }
