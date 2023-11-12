@@ -4,6 +4,7 @@
     services.restic = {
         backups = {
             toazure = {
+                initialize = true;
                 repository = "rclone:tardigrade:/hacknews-backup/"; #azurebloc::/backup
                 rcloneConfig = {
                     type = "tardigrade";
