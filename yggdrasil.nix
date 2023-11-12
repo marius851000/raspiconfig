@@ -11,6 +11,7 @@
         "tls://fr2.servers.devices.cwinfo.net:23108"
         "tls://supergay.network:443"
         "tls://158.101.229.219:17001"
+        "tls://mariusdavid.fr:6509"
       ];
       Listen = [
         "tls://0.0.0.0:6509"
