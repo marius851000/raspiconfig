@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10029;
+    serial = 10033;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -76,6 +76,15 @@ in
       exchange = "reddit2.mariusdavid.fr.";
       preference = 10;
     } ];
+
+    otp.A = ip4home;
+    otp.AAAA = ip6marella;
+
+    matrix.A = ip4home;
+    #matrix.AAAA = ip6marella;
+
+    nexusback.A = ip4home;
+    #TODO: ipv6
 
     /*testmastodon.A = ip4;
     testmastodon.AAAA = ip6;
