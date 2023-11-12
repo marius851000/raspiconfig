@@ -138,6 +138,7 @@
           nixpkgs.overlays = [ weblate.overlays.default ];
         }
         weblate.nixosModules.weblate
+        ./synapse.nix
         ./weblate.nix
 
         {

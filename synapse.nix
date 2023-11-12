@@ -4,9 +4,9 @@ let
   domain = "mariusdavid.fr";
 in
 {
-  services.postgresql.enable = true;
+  marinfra.ssl.extraDomain = [ "matrix.mariusdavid.fr" ];
 
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ ];
+  services.postgresql.enable = true;
 
   services.nginx =
     {
@@ -24,65 +24,13 @@ in
         };
       };*/
 
-      virtualHosts."${domain}" = {
-        enableACME = true;
-        forceSSL = true;
-
+      virtualHosts."matrix.mariusdavid.fr" = {
         locations = {
-          "= /.well-known/matrix/server" = {
-            extraConfig =
-              let
-                # use 443 instead of the default 8448 port to unite
-                # the client-server and server-server port for simplicity
-                server."m.server" = "${domain}:443";
-              in
-              ''
-                add_header Content-Type application/json;
-                return 200 '${builtins.toJSON server}';
-              ''; 
-          };
-          "= /.well-known/matrix/client" = {
-            extraConfig =
-              let
-                client = {
-                  "m.homeserver" = { "base_url" = "https://${domain}"; };
-                  "m.identity_server" = { "base_url" = "https://vector.im"; };
-                };
-                # ACAO required to allow element-web on any URL to request this json file
-              in
-              ''
-                add_header Content-Type application/json;
-                add_header Access-Control-Allow-Origin *;
-                return 200 '${builtins.toJSON client}';
-              '';
-          };
           "/_matrix" = {
-            proxyPass = "http://[::1]:8008"; # without a trailing /
+            proxyPass = "http://localhost:8008"; # without a trailing /
           };
-          "/element/" = {
-            alias = let
-              element = pkgs.element-web.override {
-              conf = {
-                default_server_config = {
-                  "m.homeserver" = {
-                    "base_url" = "https://${domain}";
-                    "server_name" = "${domain}";
-                  };
-                };
-                disable_guests = false;
-              };
-            };
-          in
-            "${element}/";
-            extraConfig = ''
-              add_header X-Frame-Options SAMEORIGIN;
-              add_header X-Content-Type-Options nosniff;
-              add_header X-XSS-Protection "1; mode=block";
-              add_header Content-Security-Policy "frame-ancestors 'none'";
-            '';
-          };
-          "= /element" = {
-            return = "https://mariusdavid.fr/element/";
+          "/_synapse/metrics" = {
+            proxyPass = "http://localhost:8008";
           };
         };
       };
@@ -96,7 +44,7 @@ in
         faster_joins = true;
       };
       presence.enabled = false;
-      server_name = domain;
+      server_name = "mariusdavid.fr";
       enable_metrics = true;
       allow_guest_access = true;
       enable_registration = false;
@@ -130,7 +78,7 @@ in
 
   #systemd.services.matrix-synapse.serviceConfig.IOSchedulingClass = "idle";
 
-  services.matrix-appservice-discord = {
+  /*services.matrix-appservice-discord = {
     enable = true;
     environmentFile = "/secret-matrix-appservice-discord.env";
     settings = {
@@ -146,7 +94,7 @@ in
       logging.console = "silly";
       #channel.namePattern = ":name";
     };
-  };
+  };*/
 
   systemd.services.matrix-synapse = {
     serviceConfig = {
