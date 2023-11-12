@@ -139,7 +139,10 @@
         }
         weblate.nixosModules.weblate
         ./weblate.nix
-        #./syncthing.nix //TODO
+
+        {
+          marinfra.otp.enable = true;
+        }
       ];
     };
 

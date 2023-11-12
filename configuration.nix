@@ -4,6 +4,7 @@
   imports = [
     ./modules/machine-site.nix
     ./modules/ssl.nix
+    ./modules/opentripplanner.nix
   ];
 
   nix = {
