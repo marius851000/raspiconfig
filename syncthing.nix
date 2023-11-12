@@ -12,6 +12,10 @@
     };
   };
 
+  systemd.tmpfiles.rules = [
+    "d '/var/lib/syncthing' 700 dokuwiki_pool dokuwiki_pool -"
+  ];
+
   users.groups.dokuwiki_pool = {};
   users.users.dokuwiki_pool = {
     isSystemUser = true;

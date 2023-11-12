@@ -103,9 +103,9 @@
         ./syncthing.nix
         (import ./dns.nix { inherit dns; })
         (import ./mariussite.nix { inherit mariussite; })
-        #./synapse.nix
         ./wakapi.nix
         ./prometheus.nix
+        #./yggdrasil.nix
         ./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
@@ -133,9 +133,11 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        #./yggdrasil.nix
         ./secret.nix
         ./hardware-configuration/marella.nix
         ./backup.nix
+        ./syncthing.nix
 
         {
           nixpkgs.overlays = [ weblate.overlays.default ];
@@ -146,6 +148,16 @@
 
         {
           marinfra.otp.enable = true;
+
+          services.syncthing.settings.folders.dragons = {
+            id = "dragons";
+            path = "/dragons";
+            devices = [ "mariuspc" ];
+            ignorePerms = true;
+          };
+          systemd.tmpfiles.rules = [
+            "d '/dragons' 700 dokuwiki_pool dokuwiki_pool -"
+          ];
         }
       ];
     };
