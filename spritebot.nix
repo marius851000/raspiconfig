@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
             sha256 = "sha256-7TknNj90UXg1Xg4f7rB4XQ71VxWcYevwIqoKUszC8wg=";
         })*/
 
-        ./single_allow_old.diff
+        ./single_allow.diff
         ./non-privileged-add-spritebot.patch
         #./fix-crash-size-credits.diff
     ];
