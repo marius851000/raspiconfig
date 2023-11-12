@@ -138,6 +138,7 @@
         ./hardware-configuration/marella.nix
         ./backup.nix
         ./syncthing.nix
+        ./nexusback.nix
 
         {
           nixpkgs.overlays = [ weblate.overlays.default ];
