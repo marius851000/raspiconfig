@@ -55,7 +55,7 @@ in
   users.groups."${group}" = {};
 
   systemd.tmpfiles.rules = [
-        "d '${folder}' 700 ${user} ${group} -"
-        "d '${folder}/signatures' 700 ${user} ${group} -"
-    ];
+    "d '${folder}' 700 ${user} ${group} -"
+    "d '${folder}/signatures' 700 ${user} ${group} -"
+  ];
 }
