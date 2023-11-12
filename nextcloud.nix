@@ -13,7 +13,7 @@
       adminpassFile = "/secret-nextcloud-admin.txt";
       overwriteProtocol = "https";
     };
-    enableBrokenCiphersForSSE = false;
+    #enableBrokenCiphersForSSE = false;
     extraOptions = {
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
