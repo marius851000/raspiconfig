@@ -1,6 +1,8 @@
 {
   #inputs.nixpkgs.url = "github:NixOS/nixpkgs/0c009e1824a56da4f0ac6284111cf786b4e8af96";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  inputs.nixpkgs.url = "github:marius851000/nixpkgs/temp";
+  # include https://github.com/NixOS/nixpkgs/pull/264204
+  # include https://github.com/NixOS/nixpkgs/pull/265618
   
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
@@ -9,7 +11,7 @@
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    url = "github:PMDCollab/SpriteBot/c90213d3452f1c1022865e6ba058fe00149f67cc";
+    url = "github:PMDCollab/SpriteBot";
     flake = false;
   };
 
@@ -32,7 +34,7 @@
     flake = false;
   };
   inputs.spritecollab_srv-src = {
-    url = "github:PMDCollab/spritecollab-srv/adeee31ee820c33de4901c714a99e59dce379c46";
+    url = "github:PMDCollab/spritecollab-srv";
     flake = false;
   };
 
@@ -54,8 +56,9 @@
   };
 
   inputs.weblate = {
-    url = "github:ngi-nix/weblate";
-    inputs.poetry2nix.url = "github:erictapen/poetry2nix/rpds-py-0.10.3";
+    url = "github:marius851000/weblate/minimal_fixes_for_update";
+    inputs.nixpkgs.follows = "nixpkgs";
+    #inputs.poetry2nix.url = "github:erictapen/poetry2nix/rpds-py-0.10.3";
     #url = "github:marius851000/weblate/disable_debug";
     #url = "/home/marius/weblate";
   };
