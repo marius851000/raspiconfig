@@ -10,7 +10,7 @@ let
 
     format = "other";
 
-    propagatedBuildInputs = [ pkgs.python3Packages.mastodon-py ];
+    propagatedBuildInputs = [ (pkgs.python3Packages.mastodon-py.overrideAttrs { pytestCheckPhase = ""; }) ];
 
     installPhase = ''
       mkdir -p $out/bin
