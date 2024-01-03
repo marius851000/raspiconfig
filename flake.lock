@@ -313,6 +313,7 @@
       "original": {
         "owner": "marius851000",
         "repo": "hacky-account-manager",
+        "rev": "c54dbf014ad09be3c3f82e1f1668a16e09c8596c",
         "type": "github"
       }
     },
@@ -358,11 +359,11 @@
     "mariussite": {
       "flake": false,
       "locked": {
-        "lastModified": 1694542201,
-        "narHash": "sha256-bC6HoyOPk/IrTAIqXrKElf2Co0bPMEGbwP18QP4UoKc=",
+        "lastModified": 1701776860,
+        "narHash": "sha256-IJOU78By3TgIvO2Kgvkvxy2oqZOZ+g6eC+R5QGjay90=",
         "owner": "marius851000",
         "repo": "mysite",
-        "rev": "4a5a3f91f72b3e484a5b387bc4a1d4b6521b2241",
+        "rev": "a41bd5204335caea6498367bbaaccd00e0b86d6f",
         "type": "github"
       },
       "original": {

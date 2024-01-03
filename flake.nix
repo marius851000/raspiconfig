@@ -64,7 +64,7 @@
   };
 
   inputs.hacky-account-manager = {
-    url = "github:marius851000/hacky-account-manager";
+    url = "github:marius851000/hacky-account-manager/c54dbf014ad09be3c3f82e1f1668a16e09c8596c";
   };
 
   inputs.glitch-soc-package = {
@@ -114,7 +114,7 @@
         ./lemmy.nix
         (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
         ./nextcloud.nix
-        #(import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
+        (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
       ];
     };
