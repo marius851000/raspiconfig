@@ -150,6 +150,11 @@
         {
           marinfra.otp.enable = true;
 
+          marinfra.paperless = {
+            enable = true;
+            domain = "paperless.mariusdavid.fr";
+          };
+
           services.syncthing.settings.folders.dragons = {
             id = "dragons";
             path = "/dragons";

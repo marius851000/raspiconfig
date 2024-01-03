@@ -78,7 +78,10 @@ in
     } ];
 
     otp.A = ip4home;
-    otp.AAAA = ip6marella;
+    #otp.AAAA = ip6marella;
+
+    paperless.A = ip4home;
+    paperless.AAAA = ip6marella;
 
     matrix.A = ip4home;
     #matrix.AAAA = ip6marella;
