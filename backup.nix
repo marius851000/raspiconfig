@@ -30,6 +30,10 @@
                     "--exclude=/var/lib/mastodon/public-system/cache"
                     "--exclude=/var/lib/peertube-mount/hacknews-peertube/streaming-playlists"
                     "--exclude=/var/lib/peertube-mount/hacknews-peertube/redundancy"
+                    "--exclude=/portbuild/mirror"
+                    "--exclude=/portbuild/cache"
+                    "--exclude=/portbuild/morrowind"
+                    "--exclude=/nexusback"
                     "-vvvv"
                 ];
                 paths = [
