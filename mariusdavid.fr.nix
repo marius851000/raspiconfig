@@ -86,7 +86,7 @@ in
     matrix.A = ip4home;
     #matrix.AAAA = ip6marella;
 
-    nexusback.A = ip4home;
+    archive.A = ip4home;
     #TODO: ipv6
 
     hydra.A = ip4home;

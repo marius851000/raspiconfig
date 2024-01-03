@@ -1,11 +1,12 @@
 { ... }:
 
 {
-  marinfra.ssl.extraDomain = [ "nexusback.mariusdavid.fr" ];
+  marinfra.ssl.extraDomain = [ "archive.mariusdavid.fr" ];
 
   services.nginx = {
-    virtualHosts."nexusback.mariusdavid.fr" = {
-      root = "/nexusback";
+    virtualHosts."archive.mariusdavid.fr" = {
+      root = "/archive";
+      extraConfig = "autoindex on;";
     };
   };
 
