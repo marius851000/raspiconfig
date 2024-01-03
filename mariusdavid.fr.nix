@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10033;
+    serial = 10036;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -88,6 +88,8 @@ in
 
     nexusback.A = ip4home;
     #TODO: ipv6
+
+    hydra.A = ip4home;
 
     /*testmastodon.A = ip4;
     testmastodon.AAAA = ip6;

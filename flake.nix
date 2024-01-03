@@ -139,6 +139,7 @@
         ./backup.nix
         ./syncthing.nix
         ./nexusback.nix
+        ./hydra.nix
 
         {
           nixpkgs.overlays = [ weblate.overlays.default ];
