@@ -11,6 +11,7 @@
     webProcesses = 1;
     webThreads = 2;
     sidekiqThreads = 1;
+    streamingProcesses = 4;
     localDomain = "mariusdavid.fr";
     smtp = {
       authenticate = true;

@@ -7,7 +7,7 @@
     enable = true;
     hostName = "cloud.mariusdavid.fr";
     database.createLocally = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud28;
     config = {
       dbtype = "pgsql";
       adminpassFile = "/secret-nextcloud-admin.txt";

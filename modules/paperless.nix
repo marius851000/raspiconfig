@@ -36,7 +36,7 @@ in {
       port = cfg.port;
       address = "localhost";
 
-      extraConfig = {
+      settings = {
         PAPERLESS_OCR_LANGUAGE = "fra+eng";
         PAPERLESS_OCR_USER_ARGS = "{\"continue_on_soft_render_error\": true}";
       };

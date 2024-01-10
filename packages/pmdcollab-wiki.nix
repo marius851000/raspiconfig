@@ -13,7 +13,7 @@ let
     installPhase = ''
       mkdir $out
       cd $out
-      node2nix -l $src/package-lock.json -i $src/package.json --development --nodejs-16
+      node2nix -l $src/package-lock.json -i $src/package.json --development --nodejs-18
       #for some reason, I can't succed in changing the package.json before node2nix. Something related to purity.
       substituteInPlace node-packages.nix \
         --replace "https://keldaan-ag.github.io/PMD-collab-wiki/" "${url}"

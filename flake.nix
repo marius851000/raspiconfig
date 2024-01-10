@@ -1,6 +1,6 @@
 {
   #inputs.nixpkgs.url = "github:NixOS/nixpkgs/0c009e1824a56da4f0ac6284111cf786b4e8af96";
-  inputs.nixpkgs.url = "github:marius851000/nixpkgs/temp";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   # include https://github.com/NixOS/nixpkgs/pull/264204
   # include https://github.com/NixOS/nixpkgs/pull/265618
   
@@ -11,7 +11,7 @@
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    url = "github:PMDCollab/SpriteBot";
+    url = "github:PMDCollab/SpriteBot/a81011d1cf421ed1d59936f8ae38e155384112e7";
     flake = false;
   };
 
@@ -56,7 +56,7 @@
   };
 
   inputs.weblate = {
-    url = "github:marius851000/weblate/minimal_fixes_for_update";
+    url = "github:ngi-nix/weblate/main";
     inputs.nixpkgs.follows = "nixpkgs";
     #inputs.poetry2nix.url = "github:erictapen/poetry2nix/rpds-py-0.10.3";
     #url = "github:marius851000/weblate/disable_debug";
@@ -140,12 +140,13 @@
         ./nexusback.nix
         ./hydra.nix
 
-        {
+        #Does not work with PSQL 15. Definitivelly need to attempt to upstream this.
+        /*{
           nixpkgs.overlays = [ weblate.overlays.default ];
-        }
-        weblate.nixosModules.weblate
+        }*/
+        #weblate.nixosModules.weblate
         ./synapse.nix
-        ./weblate.nix
+        #./weblate.nix
 
         {
           marinfra.otp.enable = true;
