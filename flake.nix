@@ -105,7 +105,6 @@
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
         ./prometheus.nix
-        #./yggdrasil.nix
         ./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
@@ -133,7 +132,6 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
-        #./yggdrasil.nix
         ./secret.nix
         ./hardware-configuration/marella.nix
         ./backup.nix
