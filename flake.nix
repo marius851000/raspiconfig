@@ -95,6 +95,7 @@
       system = "x86_64-linux";
       modules = [
         ./secret.nix
+        ./ip_redirect.nix
         ./hardware-configuration/scrogne.nix
         ./configuration.nix
         nixos-simple-mailserver.nixosModules.mailserver
@@ -168,7 +169,7 @@
     };
 
     deploy.nodes.marella = {
-      hostname = "192.168.0.210";
+      hostname = "192.168.1.22";
       profiles.system = {
         sshUser = "root";
         user = "root";

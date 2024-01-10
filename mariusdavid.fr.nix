@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10036;
+    serial = 10038;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -77,19 +77,19 @@ in
       preference = 10;
     } ];
 
-    otp.A = ip4home;
+    otp.A = ip4scrogne; # actually Marella
     #otp.AAAA = ip6marella;
 
-    paperless.A = ip4home;
-    paperless.AAAA = ip6marella;
+    paperless.A = ip4scrogne; # actually hosted on Marella
+    #paperless.AAAA = ip6marella;
 
-    matrix.A = ip4home;
+    matrix.A = ip4scrogne; # actually Marella
     #matrix.AAAA = ip6marella;
 
-    archive.A = ip4home;
+    archive.A = ip4scrogne; # actually Marella
     #TODO: ipv6
 
-    hydra.A = ip4home;
+    hydra.A = ip4scrogne; # actually Marella
 
     /*testmastodon.A = ip4;
     testmastodon.AAAA = ip6;
@@ -115,13 +115,11 @@ in
     #kodi.A = ip4scrogne;
     #kodi.AAAA = ip6scrogne;
 
-    translate.A = ip4home;
+    translate.A = ip4scrogne; # actually Marella
     translate.AAAA = ip6marella;
 
     roundcube.A = ip4scrogne;
     roundcube.AAAA = ip6scrogne;
-
-    tufyggdrasil.AAAA = [ "b200:deb5:f162:56a0:b1d0:fee:6a44:9980" ];
 
     #tmpboard.A = ip4;
     #tmpboard.AAAA = ip6;
@@ -145,7 +143,6 @@ in
           AAAA = ip6scrogne;
         };
         marella = {
-          A = ip4home;
           AAAA = ip6marella;
         };
       };
