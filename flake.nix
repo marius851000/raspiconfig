@@ -156,6 +156,23 @@
             domain = "paperless.mariusdavid.fr";
           };
 
+          marinfra.ceph.enable = true;
+          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.daemon_name = "marella";
+          marinfra.ceph.osd.storages = [ 1 2 ];
+          marinfra.ceph.mds.enable = true;
+
+          marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];
+
+          services.nginx = {
+            virtualHosts."ceph.mariusdavid.fr" = {
+              basicAuthFile = "/secret/nginx-pass-otp";
+              locations."/" = {
+                proxyPass = "http://localhost:8080/";
+              };
+            };
+          };
+          
           services.syncthing.settings.folders.dragons = {
             id = "dragons";
             path = "/dragons";
