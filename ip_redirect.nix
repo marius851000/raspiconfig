@@ -4,6 +4,7 @@
 let
   marella_yggdrasil_ip = "202:3679:f712:fd04:e3de:a123:caf4:580d";
   server_ip = "5.196.70.120";
+  server_ip_v6 = "2001:41d0:e:378::1";
 
   domains_to_proxy = [
     "paperless.mariusdavid.fr"
@@ -12,12 +13,17 @@ let
     "archive.mariusdavid.fr"
     "hydra.mariusdavid.fr"
     "translate.mariusdavid.fr"
+    "marella.net.mariusdavid.fr"
+    "ceph.mariusdavid.fr"
+    "torrent.mariusdavid.fr"
   ];
 in
 {
   marinfra.yggdrasil.enable = true;
 
   services.nginx = {
+    defaultSSLListenPort = 444;
+    
     # based upon https://stackoverflow.com/questions/34741571/nginx-tcp-forwarding-based-on-hostname
     streamConfig = ''
       map $ssl_preread_server_name $server_redirect {
@@ -26,7 +32,7 @@ in
       }
 
       upstream https_default_backend {
-        server 127.0.0.1:443;
+        server 127.0.0.1:444;
       }
 
       upstream https_marella_backend {
@@ -34,7 +40,7 @@ in
       }
 
       server {
-        listen ${server_ip}:443;
+        listen 443;
         proxy_pass $server_redirect;
         ssl_preread on;
       }
