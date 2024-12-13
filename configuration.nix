@@ -11,7 +11,7 @@
   ];
 
   nix = {
-    package = pkgs.nixUnstable;
+    #package = pkgs.nixLatest;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -36,7 +36,7 @@
   console.keyMap = "fr";
   
   #TODO: cron compression
-  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.rclone pkgs.diskonaut pkgs.matrix-synapse-tools.rust-synapse-compress-state ];
+  environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.lsof pkgs.bat pkgs.rclone pkgs.diskonaut pkgs.matrix-synapse-tools.rust-synapse-compress-state pkgs.nethogs pkgs.brasero pkgs.vlc pkgs.cdrkit pkgs.dvdbackup ];
 
   services.journald.extraConfig = "SystemMaxUse=300M";
   services = {
@@ -59,9 +59,14 @@
   hardware.enableRedistributableFirmware = false;
   
   # Preserve space by sacrificing documentation and history
-  nix.gc.automatic = true;
+  /*nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 30d";
-  nix.gc.dates = "03:00";
+  nix.gc.dates = "03:00";*/
+
+  # That takes a long time to transfer
+  nixpkgs.flake.setFlakeRegistry = false;
+  nixpkgs.flake.setNixPath = false;
+
   boot.tmp.cleanOnBoot = true;
 
   documentation = {
