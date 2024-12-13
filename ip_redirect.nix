@@ -23,6 +23,10 @@ in
 
   services.nginx = {
     defaultSSLListenPort = 444;
+
+    appendHttpConfig = ''
+      port_in_redirect off;
+    '';
     
     # based upon https://stackoverflow.com/questions/34741571/nginx-tcp-forwarding-based-on-hostname
     streamConfig = ''
@@ -40,7 +44,8 @@ in
       }
 
       server {
-        listen 443;
+        listen 0.0.0.0:443;
+        listen [::]:443;
         proxy_pass $server_redirect;
         ssl_preread on;
       }
