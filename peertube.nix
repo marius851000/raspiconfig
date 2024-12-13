@@ -31,7 +31,7 @@
         hostname = "mariusdavid.fr";
         from_address = "peertube@mariusdavid.fr";
       };
-      redundancy = {
+      /*redundancy = {
         
         videos = {
           check_interval = "6 hours";
@@ -49,7 +49,7 @@
             }
           ];
         };
-      };
+      };*/
     };
   };
 
