@@ -68,4 +68,6 @@
   services.nginx.virtualHosts."rss.mariusdavid.fr" = {
     basicAuthFile = "/secret-nginx-auth";
   };
+
+  marinfra.ssl.enable = true;
 }

@@ -199,6 +199,15 @@
       };
     };
 
+    nixosConfigurations.noctus = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        ./secret.nix
+        ./hardware-configuration/noctus.nix
+      ];
+    };
+
     #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

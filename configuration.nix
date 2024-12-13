@@ -91,7 +91,6 @@
   };
 
   marinfra.machine-site.enable = true;
-  marinfra.ssl.enable = true;
   marinfra.yggdrasil.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];

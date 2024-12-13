@@ -4,34 +4,31 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  networking.hostName = "marella";
-
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_acpi" "rtsx_usb_sdmmc" ];
+  boot.initrd.kernelModules = [ "btrfs" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  services.postgresql.enable = true;
-  services.postgresql.package = pkgs.postgresql_15;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4869c92d-63e2-4db9-a9f6-8abf8b00b893";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/4d77de0c-9fa2-4660-8988-6d60b169820c";
+      fsType = "btrfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/16E7-3FBD";
+    { device = "/dev/disk/by-uuid/A129-3D8F";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/fe11c905-7379-4f37-a9eb-e393bcd65f8f"; }
+    [ { device = "/dev/disk/by-uuid/f11c1132-7704-46ae-9ae4-df9ba7dd6439"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -39,12 +36,14 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s20u3.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp4s0f1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  system.stateVersion = "23.05";
-  marinfra.ssl.enable = true;
+  marinfra.yggdrasil.enable = true;
+  marinfra.ssl.enable = false;
+
+  system.stateVersion = "24.11";
 }
