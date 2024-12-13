@@ -102,6 +102,7 @@
         ./mailserver.nix
         ./backup.nix
         ./syncthing.nix
+        ./atlas.nix
         (import ./dns.nix { inherit dns; })
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
