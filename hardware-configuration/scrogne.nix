@@ -44,4 +44,28 @@
   };
 
   system.stateVersion = "21.11";
+
+
+  # TODO: move to it’s own module
+
+  marinfra.ssl.extraDomain = [ "rss.mariusdavid.fr" ];
+  
+  services.freshrss = {
+    baseUrl = "https://rss.mariusdavid.fr";
+    enable = true;
+    virtualHost = "rss.mariusdavid.fr";
+    pool = "freshrss";
+    defaultUser = "marius";
+    passwordFile = "/secret/rsspass.txt";
+  };
+
+  services.phpfpm.pools.freshrss.phpPackage = pkgs.php.buildEnv {
+    extensions = ({ enabled, all }: enabled ++ (with all; [
+        ctype
+    ]));
+  };
+
+  services.nginx.virtualHosts."rss.mariusdavid.fr" = {
+    basicAuthFile = "/secret-nginx-auth";
+  };
 }
