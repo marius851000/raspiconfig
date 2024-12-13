@@ -179,7 +179,9 @@
     };
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive ${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server.src}/locales localhost:12000 https://hacknews.pmdcollab.org/hacks hacks http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem";
+      DynamicUser="yes";
+      StateDirectory = "hackarchive";
+      ExecStart = "${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server}/bin/server /site/archive ${pmd_hack_archive_server.packages."${system}".pmd_hack_archive_server.src}/locales localhost:12000 https://hacknews.pmdcollab.org/hacks hacks http://127.0.0.1:5984 admin dontneedapasswordforlocalsystem /var/lib/hackarchive/secrets.json";
       Restart = "on-failure";
       RestartSec = 60;
     };
