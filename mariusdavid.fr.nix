@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10038;
+    serial = 10042;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -57,6 +57,9 @@ in
 
     wakapi.A = ip4scrogne;
     wakapi.AAAA = ip6scrogne;
+    
+    hydra-scrogne.A = ip4scrogne;
+    hydra-scrogne.AAAA = ip6scrogne;
 
     #awstats.A = ip4scrogne;
     #awstats.AAAA = ip6scrogne;
@@ -100,6 +103,9 @@ in
     mastodon.A = ip4scrogne;
     mastodon.AAAA = ip6scrogne;
 
+    atlas.A = ip4scrogne;
+    atlas.AAAA = ip6scrogne;
+
     /*couchdb.A = ip4;
     couchdb.AAAA = ip6;*/
 
@@ -136,14 +142,23 @@ in
     lemmy.A = ip4scrogne;
     lemmy.AAAA = ip6scrogne;
 
+    ceph.A = ip4scrogne;
+
+    torrent.A = ip4scrogne;
+
+    rss.A = ip4scrogne;
+    rss.AAAA = ip6scrogne;
+
     net = {
       subdomains = {
         scrogne = {
           A = ip4scrogne;
           AAAA = ip6scrogne;
         };
+        # Currently, marella isn’t publicly routable. I set up HTTP redirect, as it need a domain for SSL
         marella = {
-          AAAA = ip6marella;
+          A = ip4scrogne;
+          AAAA = ip6scrogne;
         };
       };
     };
