@@ -9,7 +9,6 @@
       #TODO: grant it its own user
       user = "grafana@mariusdavid.fr";
       host = "mariusdavid.fr";
-      createLocally = false;
       passwordFile = "/secret/mail-grafana-password.txt";
     };
     #extraConfig = "DEBUG = True";

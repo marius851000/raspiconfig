@@ -55,14 +55,6 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  inputs.weblate = {
-    url = "github:ngi-nix/weblate/main";
-    inputs.nixpkgs.follows = "nixpkgs";
-    #inputs.poetry2nix.url = "github:erictapen/poetry2nix/rpds-py-0.10.3";
-    #url = "github:marius851000/weblate/disable_debug";
-    #url = "/home/marius/weblate";
-  };
-
   inputs.hacky-account-manager = {
     url = "github:marius851000/hacky-account-manager/c54dbf014ad09be3c3f82e1f1668a16e09c8596c";
   };
@@ -85,7 +77,6 @@
     spritecollab_srv-src,
     retoot-bot-src,
     kodionline,
-    weblate,
     hacky-account-manager,
     glitch-soc-package,
     deploy-rs
