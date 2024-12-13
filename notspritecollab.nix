@@ -46,7 +46,7 @@ in
             RestrictRealtime = true;
             RestrictSUIDSGID = true;
             RemoveIPC = true;
-            ProtectProc = "invisibled";
+            #ProtectProc = "default";
             NoNewPrivileges = true;
             ProtectClock = true;
             ProtectKernelTunables = true;
@@ -56,7 +56,7 @@ in
             CapabilityBoundingSet = "";
             PrivateDevices = true;
             ProtectHostname = true;
-            ProcSubset = "pid";
+            #ProcSubset = "pid";
             RestrictNamespaces = true;
 
 
