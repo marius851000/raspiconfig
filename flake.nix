@@ -1,17 +1,20 @@
 {
-  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/0c009e1824a56da4f0ac6284111cf786b4e8af96";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  #inputs.nixpkgs.url = "github:marius851000/nixpkgs/fix_lemmy_ui";
+  /*inputs.nixpkgs = {
+    url = "/home/marius/nixpkgs";
+  };*/
   # include https://github.com/NixOS/nixpkgs/pull/264204
   # include https://github.com/NixOS/nixpkgs/pull/265618
   
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
-    inputs.nixpkgs.follows = "nixpkgs";
+    #inputs.nixpkgs.follows = "nixpkgs";
   };
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    url = "github:PMDCollab/SpriteBot/a81011d1cf421ed1d59936f8ae38e155384112e7";
+    url = "github:PMDCollab/SpriteBot";
     flake = false;
   };
 
@@ -41,7 +44,7 @@
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
 
   inputs.mariussite = {
-    url = "github:marius851000/mysite";
+    url = "github:marius851000/mysite/259a46ccb935c14f113c73f0e5b70883ce69feb7";
     flake = false;
   };
   
@@ -108,6 +111,7 @@
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+        (import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
       ];
     };
 
@@ -120,7 +124,7 @@
       };
     };
 
-    # A laptop with broken screen, but a GT980, multi core, a broken screen, 8GiB of (LDDR3) RAM and 1TiB of HDD
+    # A laptop with broken screen, a GT980, multi core, 8GiB of (LDDR3) RAM and 1TiB of HDD
     nixosConfigurations.marella = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -130,18 +134,15 @@
         ./backup.nix
         ./syncthing.nix
         ./nexusback.nix
-        ./hydra.nix
+        ./transmission.nix
+        (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
+        #TODO: fix compilation
 
-        #Does not work with PSQL 15. Definitivelly need to attempt to upstream this.
-        /*{
-          nixpkgs.overlays = [ weblate.overlays.default ];
-        }*/
-        #weblate.nixosModules.weblate
         ./synapse.nix
-        #./weblate.nix
+        ./weblate.nix
 
         {
-          marinfra.otp.enable = true;
+          #marinfra.otp.enable = true;
 
           marinfra.paperless = {
             enable = true;
@@ -174,6 +175,17 @@
           systemd.tmpfiles.rules = [
             "d '/dragons' 700 dokuwiki_pool dokuwiki_pool -"
           ];
+
+          /*services = {
+            xserver = {
+              enable = true;
+              layout = "fr";
+              xkbOptions = "eurosign:e";
+              libinput.enable = true;
+              displayManager.sddm.enable = true;
+              desktopManager.plasma5.enable = true;
+            };
+          };*/
         }
       ];
     };

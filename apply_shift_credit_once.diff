@@ -1,0 +1,62 @@
+diff --git a/TrackerUtils.py b/TrackerUtils.py
+index f97ed91..0304d2a 100644
+--- a/TrackerUtils.py
++++ b/TrackerUtils.py
+@@ -77,6 +77,7 @@ def getCreditEntries(path):
+     return credit_strings
+ 
+ def getFileCredits(path):
++    print("get credit ;" + str(path))
+     id_list = []
+     if os.path.exists(os.path.join(path, Constants.CREDIT_TXT)):
+         with open(os.path.join(path, Constants.CREDIT_TXT), 'r', encoding='utf-8') as txt:
+@@ -93,15 +94,33 @@ def appendCredits(path, id, diff):
+ 
+ def shiftCredits(fullPath):
+     id_list = []
++    need_save = False
+     with open(fullPath, 'r', encoding='utf-8') as txt:
+         for line in txt:
+-            id_list.append(line.strip().split('\t'))
+-    for idx in range(len(id_list)):
+-        if id_list[idx][1] == "CHUNSOFT":
+-            id_list[idx][3] = "Unspecified"
+-    with open(fullPath, 'w', encoding='utf-8') as txt:
+-        for entry in id_list:
+-            txt.write(entry[0] + "\t" + entry[1] + "\t" + entry[2] + "\t" + entry[3] + "\t" + entry[4] + "\n")
++            l = line.strip().split('\t')
++            print(l)
++            if len(l) == 3:
++                l.append("")
++                l.append("")
++                l[4] = l[2]
++                l[2] = "CUR"
++                l[3] = ""
++                need_save = True
++            if len(l) == 4:
++                l.append(l[3])
++                l[3] = ""
++                need_save = True
++            assert(len(l) == 5)
++            print(l)
++            id_list.append(l)
++
++    #for idx in range(len(id_list)):
++    #    if id_list[idx][1] == "CHUNSOFT":
++    #        id_list[idx][3] = "Unspecified"
++    if need_save:
++        with open(fullPath, 'w', encoding='utf-8') as txt:
++            for entry in id_list:
++                txt.write(entry[0] + "\t" + entry[1] + "\t" + entry[2] + "\t" + entry[3] + "\t" + entry[4] + "\n")
+ 
+ def deleteCredits(path, id):
+     id_list = []
+@@ -337,7 +356,7 @@ def fileSystemToJson(dict, species_path, prefix, tier):
+ 
+             fileSystemToJson(dict.subgroups[inFile], fullPath, prefix, tier + 1)
+         elif inFile == Constants.CREDIT_TXT:
+-            #shiftCredits(fullPath)
++            shiftCredits(fullPath)
+             credit_entries = getCreditEntries(species_path)
+             credit_data = dict.__dict__[prefix + "_credit"]
+             updateCreditFromEntries(credit_data, credit_entries)
