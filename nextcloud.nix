@@ -7,16 +7,16 @@
     enable = true;
     hostName = "cloud.mariusdavid.fr";
     database.createLocally = true;
-    package = pkgs.nextcloud28;
+    package = pkgs.nextcloud30;
     config = {
       dbtype = "pgsql";
       adminpassFile = "/secret-nextcloud-admin.txt";
-      overwriteProtocol = "https";
     };
     #enableBrokenCiphersForSSE = false;
-    extraOptions = {
+    settings = {
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
+      overwriteprotocol = "https";
     };
     enableImagemagick = true;
     configureRedis = true;
