@@ -53,6 +53,10 @@ in {
       "auth_allow_insecure_global_id_reclaim" = "false";
       mon_allow_pool_size_one = "true";
 
+      # reduce memory usage at the cost of caching
+      bluestore_cache_autotune = "false";
+      bluestore_cache_size = "200MiB";
+      osd_memory_target = "200MiB";
     };
 
     services.ceph.mon = lib.mkIf cfg.mon-mgr.enable {
