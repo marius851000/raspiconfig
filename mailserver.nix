@@ -164,4 +164,10 @@ rec {
       $config['smtp_pass'] = "%p";
     '';
   };
+
+  services.dovecot2.sieve = {
+    plugins = [ "sieve_imapsieve" "sieve_extprograms" ];
+    extensions = [ "fileinto" ];
+    globalExtensions = [ "+vnd.dovecot.pipe" "+vnd.dovecot.environment" ];
+  };
 }
