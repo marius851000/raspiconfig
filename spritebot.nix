@@ -30,6 +30,7 @@ stdenv.mkDerivation rec {
         })*/
 
         ./single_allow.diff
+        #./apply_shift_credit_once.diff
         ./non-privileged-add-spritebot.patch
         #./fix-crash-size-credits.diff
     ];
@@ -42,6 +43,8 @@ stdenv.mkDerivation rec {
         requests
         requests-oauthlib
         tweepy
+        mastodon-py
+        psutil
     ];
 
     nativeBuildInputs = [
@@ -64,9 +67,9 @@ stdenv.mkDerivation rec {
 
     installPhase = ''
         mkdir -p $out/bin
-        cp *.py $out
+        cp * $out -r
         chmod +x $out/SpriteBot.py
-        cp LICENSE $out
+        #cp LICENSE $out
         
         makeWrapper ${python}/bin/python3 $out/bin/spritebot \
             --set PYTHONPATH $PYTHONPATH \

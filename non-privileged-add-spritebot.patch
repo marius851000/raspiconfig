@@ -1,21 +1,20 @@
 diff --git a/SpriteBot.py b/SpriteBot.py
-index 9fdc770..2454276 100644
+index aa906a8..c4b0abb 100644
 --- a/SpriteBot.py
 +++ b/SpriteBot.py
-@@ -2201,6 +2201,7 @@ class SpriteBot:
-         prefix = self.config.servers[str(msg.guild.id)].prefix
-         if len(args) == 0:
-             return_msg = "**Commands**\n" \
-+                  f"`{prefix}add` - Adds a Pokemon or forme to the current list\n" \
-                   f"`{prefix}sprite` - Get the Pokemon's sprite sheet\n" \
-                   f"`{prefix}portrait` - Get the Pokemon's portrait sheet\n" \
-                   f"`{prefix}recolorsprite` - Get the Pokemon's sprite sheet in a form for easy recoloring\n" \
-@@ -2217,7 +2218,17 @@ class SpriteBot:
+@@ -2505,6 +2505,7 @@ class SpriteBot:
+                               f"`{prefix}portraitbounty` - Place a bounty on a portrait\n" \
+                               f"`{prefix}bounties` - View top bounties\n"
+             return_msg += f"`{prefix}register` - Register your profile\n" \
++                          f"`{prefix}add` - Adds a Pokemon or forme to the current list\n" \
+                           f"Type `{prefix}help` with the name of a command to learn more about it."
  
          else:
-             base_arg = args[0]
--            if base_arg == "listsprite":
-+            if base_arg == "add":
+@@ -2577,6 +2578,16 @@ class SpriteBot:
+                              "`Contact` - Your preferred contact info; can be email, url, etc.\n" \
+                              "**Examples**\n" \
+                              f"`{prefix}register Audino https://github.com/audinowho`"
++            elif base_arg == "add":
 +                return_msg = "**Command Help**\n" \
 +                             f"`{prefix}add <Pokemon Name> [Form Name]`\n" \
 +                             "Adds a Pokemon to the dex, or a form to the existing Pokemon.\n" \
@@ -25,11 +24,10 @@ index 9fdc770..2454276 100644
 +                             f"`{prefix}add Calyrex`\n" \
 +                             f"`{prefix}add Mr_Mime Galar`\n" \
 +                             f"`{prefix}add Missingno_ Kotora`"
-+            elif base_arg == "listsprite":
-                 return_msg = "**Command Help**\n" \
-                              f"`{prefix}listsprite <Pokemon Name>`\n" \
-                              "List all sprites related to a Pokemon.  This includes all forms, gender, and shiny variants.\n" \
-@@ -2391,7 +2402,6 @@ class SpriteBot:
+             else:
+                 return_msg = "Unknown Command."
+         await msg.channel.send(msg.author.mention + " {0}".format(return_msg))
+@@ -2586,7 +2597,6 @@ class SpriteBot:
          prefix = self.config.servers[str(msg.guild.id)].prefix
          if len(args) == 0:
              return_msg = "**Approver Commands**\n" \
@@ -37,7 +35,7 @@ index 9fdc770..2454276 100644
                    f"`{prefix}delete` - Deletes an empty Pokemon or forme\n" \
                    f"`{prefix}rename` - Renames a Pokemon or forme\n" \
                    f"`{prefix}addgender` - Adds the female sprite/portrait to the Pokemon\n" \
-@@ -2418,17 +2428,7 @@ class SpriteBot:
+@@ -2614,17 +2624,7 @@ class SpriteBot:
  
          else:
              base_arg = args[0]
@@ -56,9 +54,9 @@ index 9fdc770..2454276 100644
                  return_msg = "**Command Help**\n" \
                               f"`{prefix}delete <Pokemon Name> [Form Name]`\n" \
                               "Deletes a Pokemon or form of an existing Pokemon.  " \
-@@ -2826,7 +2826,7 @@ async def on_message(msg: discord.Message):
-             elif base_arg == "autocolor":
-                 await sprite_bot.tryAutoRecolor(msg, args[1:], "portrait")
+@@ -3022,7 +3022,7 @@ async def on_message(msg: discord.Message):
+             elif base_arg == "unregister":
+                 await sprite_bot.deleteProfile(msg, args[1:])
                  # authorized commands
 -            elif base_arg == "add" and authorized:
 +            elif base_arg == "add":
