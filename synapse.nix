@@ -10,6 +10,7 @@ in
 
   services.nginx =
     {
+      proxyTimeout = "300s";
       /*virtualHosts."newsmatrix.pmdcollab.org" = {
         root = "/dev/null";
         enableACME = true;
