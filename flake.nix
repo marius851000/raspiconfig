@@ -151,7 +151,7 @@
           marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
           marinfra.ceph.daemon_name = "marella";
-          marinfra.ceph.osd.storages = [ 1 2 ];
+          marinfra.ceph.osd.storages = [ 1 5 ];
           marinfra.ceph.mds.enable = true;
 
           marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];

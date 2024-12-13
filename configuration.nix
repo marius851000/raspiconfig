@@ -7,6 +7,7 @@
     ./modules/opentripplanner.nix
     ./modules/paperless.nix
     ./modules/yggdrasil.nix
+    ./modules/ceph.nix
   ];
 
   nix = {

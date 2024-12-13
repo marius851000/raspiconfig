@@ -52,6 +52,7 @@ in {
       "ms_bind_msgr2" = "true";
       "auth_allow_insecure_global_id_reclaim" = "false";
       mon_allow_pool_size_one = "true";
+
     };
 
     services.ceph.mon = lib.mkIf cfg.mon-mgr.enable {
