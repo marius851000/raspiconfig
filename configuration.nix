@@ -8,6 +8,7 @@
     ./modules/paperless.nix
     ./modules/yggdrasil.nix
     ./modules/ceph.nix
+    ./modules/kubernetes.nix
   ];
 
   nix = {

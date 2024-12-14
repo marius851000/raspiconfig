@@ -1,9 +1,9 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  #inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   #inputs.nixpkgs.url = "github:marius851000/nixpkgs/fix_lemmy_ui";
-  /*inputs.nixpkgs = {
+  inputs.nixpkgs = {
     url = "/home/marius/nixpkgs";
-  };*/
+  };
   # include https://github.com/NixOS/nixpkgs/pull/264204
   # include https://github.com/NixOS/nixpkgs/pull/265618
   
@@ -205,6 +205,10 @@
         ./configuration.nix
         ./secret.nix
         ./hardware-configuration/noctus.nix
+        {
+          marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.master.enable = true;
+        }
       ];
     };
 

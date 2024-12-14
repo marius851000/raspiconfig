@@ -45,5 +45,7 @@
   marinfra.yggdrasil.enable = true;
   marinfra.ssl.enable = false;
 
+  networking.hostName = "scrogne";
+
   system.stateVersion = "24.11";
 }
