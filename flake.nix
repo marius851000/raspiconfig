@@ -176,6 +176,8 @@
             "d '/dragons' 700 dokuwiki_pool dokuwiki_pool -"
           ];
 
+          marinfra.kubernetes.enable = true;
+
           /*services = {
             xserver = {
               enable = true;
@@ -199,6 +201,7 @@
       };
     };
 
+    # a second laptop with a broken screen and only 4GB of RAM
     nixosConfigurations.noctus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
