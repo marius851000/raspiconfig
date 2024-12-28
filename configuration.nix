@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: 
+{ pkgs, lib, ... }: 
 {
 
   imports = [
@@ -47,6 +47,7 @@
       settings = {
         PermitRootLogin = "without-password";
         PasswordAuthentication = false;
+        AllowUsers = [ "root" ];
       };
     };
   };
@@ -97,4 +98,8 @@
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 
   services.logind.lidSwitch = "ignore";
+
+  systemd.oomd.enableUserSlices = true;
+  systemd.oomd.enableRootSlice = true;
+  systemd.oomd.enableSystemSlice = true;
 }
