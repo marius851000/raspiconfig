@@ -209,6 +209,7 @@
         ./configuration.nix
         ./secret.nix
         ./hardware-configuration/noctus.nix
+        ./syncthing.nix
         {
           #marinfra.kubernetes.enable = true;
           #marinfra.kubernetes.master.enable = true;
