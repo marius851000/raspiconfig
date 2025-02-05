@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 rec {
   security.acme.certs."mariusdavid.fr".extraDomainNames = [ /*"roundcube.mariusdavid.fr"*/ ];
@@ -145,6 +145,14 @@ rec {
       greylist = null; # Apply greylisting when reaching this score
     }
   '';
+
+  nixpkgs.overlays = [
+    (self: super: {
+      rspamd = super.rspamd.override {
+        vectorscan = pkgs.hyperscan;
+      };
+    })
+  ];
 
   security.acme.certs."mariusdavid.fr".postRun = ''
     systemctl reload postfix
