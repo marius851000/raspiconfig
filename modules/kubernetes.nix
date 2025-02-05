@@ -28,6 +28,10 @@ in {
     networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 
     networking.firewall.extraCommands = lib.concatLines (builtins.map (ip6: ''
+      #TODO: put that ssh in it’s own file
+      ip6tables -s ${ip6} -A INPUT -p tcp --dport 22 -j ACCEPT # ssh
+      ip6tables -s ${ip6} -A INPUT -p udp --dport 22 -j ACCEPT # ssh
+    
       ip6tables -s ${ip6} -A INPUT -p tcp --dport 8888 -j ACCEPT # kubeapi
       ip6tables -s ${ip6} -A INPUT -p udp --dport 8888 -j ACCEPT # kubeapi
 
