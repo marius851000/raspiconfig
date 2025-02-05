@@ -187,7 +187,7 @@
     };
   };
 
-  /*services.awstats = {
+  services.awstats = {
     enable = true;
     updateAt = "hourly";
     configs = {
@@ -200,9 +200,9 @@
         };
       };
     };
-  };*/
+  };
 
-  /*services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
+  services.nginx.virtualHosts."awstats.mariusdavid.fr" = {
     enableACME = true;
     forceSSL = true;
 
@@ -213,16 +213,16 @@
         proxyPass = "http://127.0.0.1:90";
       };
     };
-  };*/
+  };
   
-  /*services.nginx.virtualHosts."127.0.0.1:90" = {
+  services.nginx.virtualHosts."127.0.0.1:90" = {
     listen = [
       {
         port = 90;
         addr = "127.0.0.1";
       }
     ];
-  };*/
+  };
 
   /*services.vsftpd = {
     enable = true;
