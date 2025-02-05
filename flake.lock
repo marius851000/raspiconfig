@@ -75,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726867691,
-        "narHash": "sha256-IK3r16N9pizf53AipOmrcrcyjVsPJwC4PI5hIqEyKwQ=",
+        "lastModified": 1737653493,
+        "narHash": "sha256-qTbv8Pm9WWF63M5Fj0Od9E54/lsbMSQUBHw/s30eFok=",
         "owner": "kirelagin",
         "repo": "dns.nix",
-        "rev": "a3196708a56dee76186a9415c187473b94e6cbae",
+        "rev": "96e548ae8bd44883afc5bddb9dacd0502542276d",
         "type": "github"
       },
       "original": {
@@ -287,17 +287,17 @@
     "mariussite": {
       "flake": false,
       "locked": {
-        "lastModified": 1724488596,
-        "narHash": "sha256-wzUfbpE6rw8+8cz+WwD0d9FKbUyqJSYgYqfZM2o45y8=",
+        "lastModified": 1738704095,
+        "narHash": "sha256-Og4xybZHTpdLuXKpyBc1qJzxsvTKo1pTbmrR9kRBasA=",
         "owner": "marius851000",
         "repo": "mysite",
-        "rev": "259a46ccb935c14f113c73f0e5b70883ce69feb7",
+        "rev": "8ff091f92e54d0c10b7952e7287f0224cdfda437",
         "type": "github"
       },
       "original": {
         "owner": "marius851000",
         "repo": "mysite",
-        "rev": "259a46ccb935c14f113c73f0e5b70883ce69feb7",
+        "rev": "8ff091f92e54d0c10b7952e7287f0224cdfda437",
         "type": "github"
       }
     },
@@ -306,14 +306,14 @@
         "blobs": "blobs",
         "flake-compat": "flake-compat_2",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-24_05": "nixpkgs-24_05"
+        "nixpkgs-24_11": "nixpkgs-24_11"
       },
       "locked": {
-        "lastModified": 1722877200,
-        "narHash": "sha256-qgKDNJXs+od+1UbRy62uk7dYal3h98I4WojfIqMoGcg=",
+        "lastModified": 1737736848,
+        "narHash": "sha256-VrUfCXBXYV+YmQ2OvVTeML9EnmaPRtH+POrNIcJp6yo=",
         "ref": "refs/heads/master",
-        "rev": "af7d3bf5daeba3fc28089b015c0dd43f06b176f2",
-        "revCount": 593,
+        "rev": "6b425d13f5a9d73cb63973d3609acacef4d1e261",
+        "revCount": 608,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -338,18 +338,18 @@
         "type": "github"
       }
     },
-    "nixpkgs-24_05": {
+    "nixpkgs-24_11": {
       "locked": {
-        "lastModified": 1717144377,
-        "narHash": "sha256-F/TKWETwB5RaR8owkPPi+SPJh83AQsm6KrQAlJ8v/uA=",
+        "lastModified": 1734083684,
+        "narHash": "sha256-5fNndbndxSx5d+C/D0p/VF32xDiJCJzyOqorOYW4JEo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "805a384895c696f802a9bf5bf4720f37385df547",
+        "rev": "314e12ba369ccdb9b352a4db26ff419f7c49fa84",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
-        "ref": "nixos-24.05",
+        "ref": "nixos-24.11",
         "type": "indirect"
       }
     },
@@ -370,11 +370,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1717602782,
-        "narHash": "sha256-pL9jeus5QpX5R+9rsp3hhZ+uplVHscNJh8n8VpqscM0=",
+        "lastModified": 1732014248,
+        "narHash": "sha256-y/MEyuJ5oBWrWAic/14LaIr/u5E0wRVzyYsouYY3W6w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e8057b67ebf307f01bdcc8fba94d94f75039d1f6",
+        "rev": "23e89b7da85c3640bbc2173fe04f4bd114342367",
         "type": "github"
       },
       "original": {
@@ -385,11 +385,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1733242033,
-        "narHash": "sha256-/ThyqTQ5qySaEVL/Xp2ytYDCdafcIQa1U6Z5j70CRkw=",
+        "lastModified": 1738485437,
+        "narHash": "sha256-T4VZ8vihAtwug1iBGbLiHzyv/DKAv1x0dDPWmiG8J9o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4c9ca53890654b5e2fbb22ab8feb1842d81e01c1",
+        "rev": "bf4d134f5c93d5b802fa51e3cb7ba240b8202050",
         "type": "github"
       },
       "original": {
@@ -450,11 +450,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1726977685,
-        "narHash": "sha256-TxoayOQrkTV03aRKPPQ7G2x90+1NZta6P9/+Gd/kInU=",
+        "lastModified": 1738393256,
+        "narHash": "sha256-RoRRuFXgykifdpcq3uBAARc54YTfzn0NiGcGkwcmcbc=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "6ca8030648ea031eda51180f00fcaace83bc7e4e",
+        "rev": "c92f5ef0f200cd6513e12c1a5e55c77a5394a577",
         "type": "github"
       },
       "original": {
@@ -517,15 +517,16 @@
     "spritebot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1732129005,
-        "narHash": "sha256-C0f3b6l2Bbqb3AsXPH7yEN3uQYRk73RZMhWpfRiIPb0=",
-        "owner": "PMDCollab",
+        "lastModified": 1737802928,
+        "narHash": "sha256-zSLrBglVg7mFa5jS/3aaonsO0EGm3j+/FeviHsDADDQ=",
+        "owner": "marius851000",
         "repo": "SpriteBot",
-        "rev": "18b29af743d6e7b427d2c3f88133601bb25645d9",
+        "rev": "cf1d61552736417f71d531e33e8ab68e82377c74",
         "type": "github"
       },
       "original": {
-        "owner": "PMDCollab",
+        "owner": "marius851000",
+        "ref": "deletion_fix",
         "repo": "SpriteBot",
         "type": "github"
       }
