@@ -14,7 +14,8 @@
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    url = "github:PMDCollab/SpriteBot";
+    #url = "github:PMDCollab/SpriteBot";
+    url = "github:marius851000/SpriteBot/deletion_fix";
     flake = false;
   };
 
