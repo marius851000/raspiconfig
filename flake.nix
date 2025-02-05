@@ -44,7 +44,7 @@
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
 
   inputs.mariussite = {
-    url = "github:marius851000/mysite/259a46ccb935c14f113c73f0e5b70883ce69feb7";
+    url = "github:marius851000/mysite/8ff091f92e54d0c10b7952e7287f0224cdfda437";
     flake = false;
   };
   
