@@ -100,8 +100,12 @@ in {
       extraNetworkConfig = {
         EnableIPv4 = false;
         EnableIPv6 = true;
-        IPv6Network = "fd98::/16";
-      };
+    # Rook
+
+    boot.kernelModules = [ "ceph" ];
+
+    systemd.services.containerd.serviceConfig = {
+      LimitNOFILE = lib.mkForce null;
     };
   };
 }
