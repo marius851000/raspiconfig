@@ -111,7 +111,7 @@
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
-        (import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
+        #(import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
       ];
     };
 
