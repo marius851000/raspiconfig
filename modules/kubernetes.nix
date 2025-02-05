@@ -47,6 +47,8 @@ in {
       kompose
       kubectl
       kubernetes
+      kubernetes-helm
+      helmfile
     ];
 
     services.kubernetes = {
