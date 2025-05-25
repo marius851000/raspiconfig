@@ -1,0 +1,46 @@
+diff --git a/src/components/bar.tsx b/src/components/bar.tsx
+index df6f8dc0e..9215f3ef2 100644
+--- a/src/components/bar.tsx
++++ b/src/components/bar.tsx
+@@ -24,7 +24,7 @@ export function Bar() {
+             <HomeIcon />
+             {!isMobile && (
+               <Typography variant="h6" ml={0.5}>
+-                SpriteCollab
++                NotSpriteCollab
+               </Typography>
+             )}
+           </IconButton>
+@@ -43,32 +43,6 @@ export function Bar() {
+           )}
+         </IconButton>
+ 
+-        <IconButton
+-          size="large"
+-          color="inherit"
+-          href="https://bsky.app/profile/spritebot.pmd.social"
+-        >
+-          <img src="/bluesky.png" alt="Bluesky Logo" width="24"/>
+-          {!isMobile && (
+-            <Typography variant="h6" ml={0.5}>
+-              Bluesky
+-            </Typography>
+-          )}
+-        </IconButton>
+-
+-        <IconButton
+-          size="large"
+-          color="inherit"
+-          href="https://guild.pmdcollab.org/@spritebot"
+-        >
+-          <img src="/mastodon.png" alt="Mastodon Logo" width="24"/>
+-          {!isMobile && (
+-            <Typography variant="h6" ml={0.5}>
+-              Mastodon
+-            </Typography>
+-          )}
+-        </IconButton>
+-
+         <IconButton
+           size="large"
+           color="inherit"

@@ -6,7 +6,7 @@
   };*/
   # include https://github.com/NixOS/nixpkgs/pull/264204
   # include https://github.com/NixOS/nixpkgs/pull/265618
-  
+
   inputs.pmd_hack_archive_server = {
     url = "github:marius851000/hack_archive_server";
     #inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +34,8 @@
   };
 
   inputs.pmdcollab_wiki-src = {
-    url = "github:marius851000/PMD-collab-wiki/fix_carousel_width";
+    url = "github:marius851000/PMD-collab-wiki/fix-integrity";
+    #url = "github:PMDCollab/PMD-collab-wiki";
     flake = false;
   };
   inputs.spritecollab_srv-src = {
@@ -48,7 +49,7 @@
     url = "github:marius851000/mysite/8ff091f92e54d0c10b7952e7287f0224cdfda437";
     flake = false;
   };
-  
+
   inputs.retoot-bot-src = {
     url = "github:marius851000/mastodon-retoot-bot";
     flake = false;
@@ -68,6 +69,11 @@
     flake = false;
   };
 
+  inputs.napalm = {
+    url = "github:nix-community/napalm";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -83,7 +89,8 @@
     kodionline,
     hacky-account-manager,
     glitch-soc-package,
-    deploy-rs
+    deploy-rs,
+    napalm
   }: {
     # A cheap baremetal server at OVH with lots of storage
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
@@ -108,7 +115,7 @@
         ./peertube.nix
         (import ./mastodon.nix { inherit glitch-soc-package; })
         ./lemmy.nix
-        (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src; })
+        (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src napalm; })
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
@@ -166,7 +173,7 @@
               };
             };
           };
-          
+
           services.syncthing.settings.folders.dragons = {
             id = "dragons";
             path = "/dragons";

@@ -1,4 +1,4 @@
-{ spritecollab_srv-src, pmdcollab_wiki-src }:
+{ spritecollab_srv-src, pmdcollab_wiki-src, napalm }:
 
 { pkgs, config, ... }:
 
@@ -83,7 +83,7 @@ in
       forceSSL = true;
 
       locations."/" = {
-        alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src; url = "https://nsc.pmdcollab.org"; graphql_endpoint = "https://nss.pmdcollab.org/graphql"; })}/";
+        alias = "${(pkgs.callPackage ./packages/pmdcollab-wiki.nix { inherit pmdcollab_wiki-src napalm; url = "https://nsc.pmdcollab.org"; graphql_endpoint = "https://nss.pmdcollab.org/graphql"; })}/";
         extraConfig = ''
           add_header 'Access-Control-Allow-Origin' '*'  always;
           add_header 'Access-Control-Max-Age' '3600'  always;
