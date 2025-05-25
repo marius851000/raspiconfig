@@ -23,8 +23,18 @@ in {
           "tls://0.0.0.0:6509"
           "tls://[::]:6509"
         ];
+        MulticastInterfaces = [
+          {
+            Regex = "enp1s0";
+            Beacon = true;
+            Listen = true;
+            Port = 9001;
+            Priority = 100;
+          }
+        ];
       };
       persistentKeys = true;
+      openMulticastPort = true;
     };
     networking.firewall.allowedTCPPorts = [ 6509 ];
     networking.firewall.allowedUDPPorts = [ 6509 ];
