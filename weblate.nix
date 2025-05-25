@@ -12,6 +12,14 @@
       passwordFile = "/secret/mail-grafana-password.txt";
     };
     #extraConfig = "DEBUG = True";
+    extraConfig = ''
+      del VCS_BACKENDS
+      DEBUG = True
+    '';
+  };
+
+  systemd.services.weblate.environment = {
+    GUNICORN_CMD_ARGS = "--timeout=1200";
   };
 
   systemd.tmpfiles.rules = [
