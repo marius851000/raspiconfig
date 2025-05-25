@@ -103,6 +103,12 @@ in
     };
   };
 
+  systemd.services.postgresql = {
+    serviceConfig = {
+      TimeoutStartSec = 600;
+    };
+  };
+
   systemd.services.clear_empty_directory = {
     serviceConfig.Type = "oneshot";
     serviceConfig.ExecStart = "${pkgs.findutils}/bin/find /var/lib/matrix-synapse/media/remote_content -type d -empty -delete";
