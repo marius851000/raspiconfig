@@ -51,7 +51,7 @@
         "~ ^/lib.*\.(js|css|gif|png|ico|jpg|jpeg)$" = {
           extraConfig = "expires 365d;";
         };
-        
+
         "/_matrix" = {
           extraConfig = ''
             return 410;
@@ -207,21 +207,6 @@
     forceSSL = true;
 
     basicAuthFile = "/secret-nginx-auth";
-
-    locations = {
-      "/" = {
-        proxyPass = "http://127.0.0.1:90";
-      };
-    };
-  };
-  
-  services.nginx.virtualHosts."127.0.0.1:90" = {
-    listen = [
-      {
-        port = 90;
-        addr = "127.0.0.1";
-      }
-    ];
   };
 
   /*services.vsftpd = {

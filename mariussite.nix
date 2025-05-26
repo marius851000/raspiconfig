@@ -6,8 +6,6 @@ let
   mariussite_instanced = import "${mariussite}/site.nix" { inherit pkgs; };
 in
 {
-  marinfra.ssl.extraDomain = [ "dragons.mariusdavid.fr" ];
-
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;
@@ -32,7 +30,7 @@ in
             ''
               add_header Content-Type application/json;
               return 200 '${builtins.toJSON server}';
-            ''; 
+            '';
         };
         "= /.well-known/matrix/client" = {
           extraConfig =
@@ -77,16 +75,12 @@ in
       };
     };
 
-    virtualHosts."dragons.mariusdavid.fr" = {
-      root = "/dragons/";
-    };
-
     /*virtualHosts."reddit1.mariusdavid.fr" = {
       root = "/dev/null";
       enableACME = true;
       forceSSL = true;
     };
-    
+
     virtualHosts."reddit2.mariusdavid.fr" = {
       root = "/dev/null";
       enableACME = true;

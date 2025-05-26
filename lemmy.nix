@@ -27,7 +27,7 @@
     useACMEHost = "mariusdavid.fr";
     forceSSL = true;
   };
-  
+
   #systemd.services.lemmy.environment.LEMMY_DATABASE_URL = pkgs.lib.mkForce "postgres:///lemmy?host=/run/postgresql&user=lemmy";
 
   services.pict-rs.port = 5934;

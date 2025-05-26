@@ -47,6 +47,22 @@
         "type": "github"
       }
     },
+    "depiction_map_src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748199864,
+        "narHash": "sha256-4YwXyu5nnzKVorFWSQKpWEySniWWR9JDd5gIkgrE5E0=",
+        "owner": "marius851000",
+        "repo": "depiction-map",
+        "rev": "154e801a80dc6a24f8806093c0a155a2756bf485",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marius851000",
+        "repo": "depiction-map",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -520,6 +536,7 @@
     },
     "root": {
       "inputs": {
+        "depiction_map_src": "depiction_map_src",
         "deploy-rs": "deploy-rs",
         "dns": "dns",
         "glitch-soc-package": "glitch-soc-package",

@@ -74,6 +74,11 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.depiction_map_src = {
+    url = "github:marius851000/depiction-map";
+    flake = false;
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -90,7 +95,8 @@
     hacky-account-manager,
     glitch-soc-package,
     deploy-rs,
-    napalm
+    napalm,
+    depiction_map_src
   }: {
     # A cheap baremetal server at OVH with lots of storage
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
@@ -119,6 +125,7 @@
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
+        (import ./dragon.nix { inherit depiction_map_src; })
         #(import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
       ];
     };
