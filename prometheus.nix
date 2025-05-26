@@ -31,7 +31,7 @@
     scrapeConfigs = [
       {
         job_name = "systemd";
-        scrape_interval = "20s";
+        scrape_interval = "30s";
         static_configs = [
           {
             targets = [ "localhost:9558" ];
@@ -40,7 +40,7 @@
       }
       {
         job_name = "nginx";
-        scrape_interval = "5s";
+        scrape_interval = "10s";
         static_configs = [
           {
             targets = [ "localhost:9113" ];
@@ -49,7 +49,7 @@
       }
       {
         job_name = "node";
-        scrape_interval = "15s";
+        scrape_interval = "30s";
         static_configs = [
           {
             targets = [ "localhost:9100" ];
@@ -58,7 +58,7 @@
       }
       {
         job_name = "blackbox";
-        scrape_interval = "4s";
+        scrape_interval = "30s";
         metrics_path = "/probe";
         params = {
           module = [ "http_2xx" ];
