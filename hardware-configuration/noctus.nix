@@ -43,7 +43,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   marinfra.yggdrasil.enable = true;
-  marinfra.ssl.enable = false;
+  marinfra.ssl.enable = true;
 
   networking.hostName = "noctus";
 
