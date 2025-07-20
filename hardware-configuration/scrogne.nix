@@ -4,19 +4,22 @@
   boot.loader.grub.device = "/dev/sda";
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi" ];
   boot.initrd.kernelModules = [ "nvme" ];
-  fileSystems."/" = { device = "/dev/sda3"; fsType = "btrfs"; };
-  swapDevices = [ { device = "/swapfile"; size = 2048; } ];
-  
+  fileSystems."/" = {
+    device = "/dev/sda3";
+    fsType = "btrfs";
+    options = ["compress=zstd:3" "autodefrag"];
+  };
+  swapDevices = [ {
+    device = "/swapfile";
+    size = 2048;
+  } ];
+
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "scrogne";
   networking.domain = "";
-  services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    ''ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDuN+cUqYFhHULFrOK0oOxbd46ffjZGN5Nxh43LkgHgb3jEVPc/D1WaEVZj8emds3Vn3amnvLN+0AvHUszCzWKJEkwNwApBHxdupRSwVM6dFqXFkSpirPWkpdtwfx4IAaHyppmwJSYpqYRd3LHTc8NBvsFemO7x7rJHLRGi8sRsEZxqD5YoVBCGNBxIEg2BzxWcqmrveOK8YAIL2TuLkJWp0k6Q52BESvrd2IsqDDSsu/TdkOlSWQoIqTdupbm94EGMeRyFrpNuxbb0EVHd0f+/r3aXkCDDLr7CV5XO37lFgvEFCWYGhQnK8JjF/FZIABioBaStuc0rbGrxa5J/MUIR marius@lutta'' 
-  ];
 
-  
+
   nixpkgs.config.permittedInsecurePackages = [
     "nodejs-16.20.2"
   ];
@@ -48,8 +51,8 @@
 
   # TODO: move to it’s own module
 
-  marinfra.ssl.extraDomain = [ "rss.mariusdavid.fr" ];
-  
+  /*marinfra.ssl.extraDomain = [ "rss.mariusdavid.fr" ];
+
   services.freshrss = {
     baseUrl = "https://rss.mariusdavid.fr";
     enable = true;
@@ -59,15 +62,17 @@
     passwordFile = "/secret/rsspass.txt";
   };
 
+
+    services.nginx.virtualHosts."rss.mariusdavid.fr" = {
+    basicAuthFile = "/secret-nginx-auth";
+    };
+
+
   services.phpfpm.pools.freshrss.phpPackage = pkgs.php.buildEnv {
     extensions = ({ enabled, all }: enabled ++ (with all; [
         ctype
     ]));
-  };
-
-  services.nginx.virtualHosts."rss.mariusdavid.fr" = {
-    basicAuthFile = "/secret-nginx-auth";
-  };
+    };*/
 
   marinfra.ssl.enable = true;
 }
