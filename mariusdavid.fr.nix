@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10042;
+    serial = 10045;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -105,6 +105,9 @@ in
 
     atlas.A = ip4scrogne;
     atlas.AAAA = ip6scrogne;
+
+    atlas2025.A = ip4scrogne;
+    atlas2025.AAAA = ip6scrogne;
 
     /*couchdb.A = ip4;
     couchdb.AAAA = ip6;*/
