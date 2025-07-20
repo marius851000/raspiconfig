@@ -142,6 +142,25 @@
     group = "dokuwiki_pool";
   };
 
+  systemd.timers."clear_dokuwiki_cache" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+    };
+  };
+
+  systemd.services."clear_dokuwiki_cache" = {
+    script = ''
+      set -eu
+      ${pkgs.findutils}/bin/find /site/data/cache -type f -mtime +1 -delete -print
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "dokuwiki_pool";
+      Group = "dokuwiki_pool";
+    };
+  };
+
 
 
   services.phpfpm.phpPackage = (
