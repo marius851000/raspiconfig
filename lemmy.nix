@@ -1,7 +1,7 @@
 { pkgs, ...}:
 
 {
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "lemmy.mariusdavid.fr" ];
+  marinfra.ssl.extraDomain = [ "lemmy.mariusdavid.fr" ];
 
   #services.postgresql.package = pkgs.postgresql_15;
 
@@ -21,6 +21,9 @@
         bind = "127.0.0.1";
         port = 10002;
       };
+      database = {
+        pool_size = 30;
+      };
     };
     smtpPasswordFile = "/secret-mail-grafana.txt";
     database.createLocally = true;
@@ -39,10 +42,9 @@
     }
   ];
 
-  services.nginx.virtualHosts."lemmy.mariusdavid.fr" = {
-    useACMEHost = "mariusdavid.fr";
+  /*services.nginx.virtualHosts."lemmy.mariusdavid.fr" = {
     forceSSL = true;
-  };
+    };*/
 
   #systemd.services.lemmy.environment.LEMMY_DATABASE_URL = pkgs.lib.mkForce "postgres:///lemmy?host=/run/postgresql&user=lemmy";
 

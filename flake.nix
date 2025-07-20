@@ -120,7 +120,6 @@
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
         ./peertube.nix
         (import ./mastodon.nix { inherit glitch-soc-package; })
-        ./lemmy.nix
         (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src napalm; })
         ./nextcloud.nix
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
@@ -224,6 +223,8 @@
         ./secret.nix
         ./hardware-configuration/noctus.nix
         ./syncthing.nix
+        ./backup.nix
+        ./lemmy.nix
         {
           #marinfra.kubernetes.enable = true;
           #marinfra.kubernetes.master.enable = true;
