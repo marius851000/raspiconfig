@@ -118,7 +118,7 @@
         ./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         (import ./retoot-bot.nix { inherit retoot-bot-src; })
-        ./peertube.nix
+        #./peertube.nix
         (import ./mastodon.nix { inherit glitch-soc-package; })
         (import ./notspritecollabviewer.nix { inherit spritecollab_srv-src pmdcollab_wiki-src napalm; })
         ./nextcloud.nix
