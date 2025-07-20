@@ -2,7 +2,7 @@
 
 rec {
   security.acme.certs."mariusdavid.fr".extraDomainNames = [ /*"roundcube.mariusdavid.fr"*/ ];
-  
+
   mailserver = {
     enable = true;
     fqdn = "mariusdavid.fr";
@@ -10,6 +10,8 @@ rec {
 
     enablePop3 = true;
     enablePop3Ssl = true;
+
+    stateVersion = 3;
 
     forwards = {
       "postmaster@hacknews.pmdcollab.org" = "marius@mariusdavid.fr";
@@ -172,6 +174,7 @@ rec {
       $config['smtp_pass'] = "%p";
     '';
   };
+
 
   services.dovecot2.sieve = {
     plugins = [ "sieve_imapsieve" "sieve_extprograms" ];
