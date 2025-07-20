@@ -213,9 +213,9 @@
       nginxaws = {
         logFile = "/var/log/nginx/access.log";
         webService = {
-          urlPrefix = "";
-          hostname = "127.0.0.1:90";
-          enable = false;
+          urlPrefix = "https://awstats.mariusdavid.fr";
+          hostname = "awstats.mariusdavid.fr";
+          enable = true;
         };
       };
     };
