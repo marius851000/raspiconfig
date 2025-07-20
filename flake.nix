@@ -190,7 +190,7 @@
             "d '/dragons' 700 dokuwiki_pool dokuwiki_pool -"
           ];
 
-          #marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.enable = true;
 
           /*services = {
             xserver = {
@@ -226,8 +226,8 @@
         ./backup.nix
         ./lemmy.nix
         {
-          #marinfra.kubernetes.enable = true;
-          #marinfra.kubernetes.master.enable = true;
+          marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.master.enable = true;
         }
       ];
     };

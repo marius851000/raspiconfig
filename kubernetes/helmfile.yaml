@@ -1,0 +1,55 @@
+repositories:
+ - name: rook-release
+   url: https://charts.rook.io/release
+
+releases:
+- name: rook
+  namespace: rook-ceph
+  chart: rook-release/rook-ceph
+  set:
+  - name: csi.csiCephFSPluginVolume[0].name
+    value: lib-modules
+  - name: csi.csiCephFSPluginVolume[0].hostPath
+    value:
+  - name: csi.csiCephFSPluginVolume[0].path
+    value: /run/booted-system/kernel-modules/lib/modules/
+  - name: csi.csiCephFSPluginVolume[1].name
+    value: host-nix
+  - name: csi.csiCephFSPluginVolume[1].hostPath
+    value:
+  - name: csi.csiCephFSPluginVolume[1].path
+    value: /nix
+  - name: csi.csiCephFSPluginVolumeMount[0].name
+    value: host-nix
+  - name: csi.csiCephFSPluginVolumeMount[0].mountPath
+    value: /nix
+  - name: csi.csiCephFSPluginVolumeMount[0].readOnly
+    value: true
+  - name: csi.csiRBDPluginVolume[0].name
+    value: lib-modules
+  - name: csi.csiRBDPluginVolume[0].hostPath
+    value:
+  - name: csi.csiRBDPluginVolume[0].path
+    value: /run/booted-system/kernel-modules/lib/modules/
+  - name: csi.csiRBDPluginVolume[1].name
+    value: host-nix
+  - name: csi.csiRBDPluginVolume[1].hostPath
+    value:
+  - name: csi.csiRBDPluginVolume[1].path
+    value: /nix
+  - name: csi.csiRBDPluginVolumeMount[0].name
+    value: host-nix
+  - name: csi.csiRBDPluginVolumeMount[0].mountPath
+    value: /nix
+  - name: csi.csiRBDPluginVolumeMount[0].readOnly
+    value: true
+- name: rook-cluster
+  namespace: rook-ceph
+  chart: rook-release/rook-ceph-cluster
+  set:
+  - name: cephClusterSpec.mon.count
+    value: 1
+  - name: cephClusterSpec.mgr.count
+    value: 1
+  - name: cephClusterSpec.dashboard.ssl
+    value: false
