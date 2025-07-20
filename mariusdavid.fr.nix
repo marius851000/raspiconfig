@@ -57,12 +57,12 @@ in
 
     wakapi.A = ip4scrogne;
     wakapi.AAAA = ip6scrogne;
-    
+
     hydra-scrogne.A = ip4scrogne;
     hydra-scrogne.AAAA = ip6scrogne;
 
-    #awstats.A = ip4scrogne;
-    #awstats.AAAA = ip6scrogne;
+    awstats.A = ip4scrogne;
+    awstats.AAAA = ip6scrogne;
 
     reddit1.A = ip4scrogne;
     reddit1.AAAA = ip6scrogne;
@@ -160,6 +160,11 @@ in
         };
         # Currently, marella isn’t publicly routable. I set up HTTP redirect, as it need a domain for SSL
         marella = {
+          A = ip4scrogne;
+          AAAA = ip6scrogne;
+        };
+        # idem for noctus
+        noctus = {
           A = ip4scrogne;
           AAAA = ip6scrogne;
         };
