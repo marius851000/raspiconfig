@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: 
+{ pkgs, lib, ... }:
 {
 
   imports = [
@@ -35,7 +35,7 @@
   };
 
   console.keyMap = "fr";
-  
+
   environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.lsof pkgs.bat pkgs.rclone pkgs.nethogs pkgs.brasero pkgs.vlc pkgs.cdrkit pkgs.dvdbackup ];
 
   services.journald.extraConfig = "SystemMaxUse=300M";
@@ -53,12 +53,13 @@
 
   zramSwap.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDuN+cUqYFhHULFrOK0oOxbd46ffjZGN5Nxh43LkgHgb3jEVPc/D1WaEVZj8emds3Vn3amnvLN+0AvHUszCzWKJEkwNwApBHxdupRSwVM6dFqXFkSpirPWkpdtwfx4IAaHyppmwJSYpqYRd3LHTc8NBvsFemO7x7rJHLRGi8sRsEZxqD5YoVBCGNBxIEg2BzxWcqmrveOK8YAIL2TuLkJWp0k6Q52BESvrd2IsqDDSsu/TdkOlSWQoIqTdupbm94EGMeRyFrpNuxbb0EVHd0f+/r3aXkCDDLr7CV5XO37lFgvEFCWYGhQnK8JjF/FZIABioBaStuc0rbGrxa5J/MUIR marius@marius-nixos" 
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDuN+cUqYFhHULFrOK0oOxbd46ffjZGN5Nxh43LkgHgb3jEVPc/D1WaEVZj8emds3Vn3amnvLN+0AvHUszCzWKJEkwNwApBHxdupRSwVM6dFqXFkSpirPWkpdtwfx4IAaHyppmwJSYpqYRd3LHTc8NBvsFemO7x7rJHLRGi8sRsEZxqD5YoVBCGNBxIEg2BzxWcqmrveOK8YAIL2TuLkJWp0k6Q52BESvrd2IsqDDSsu/TdkOlSWQoIqTdupbm94EGMeRyFrpNuxbb0EVHd0f+/r3aXkCDDLr7CV5XO37lFgvEFCWYGhQnK8JjF/FZIABioBaStuc0rbGrxa5J/MUIR marius@marius-nixos"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILut+U7dowX6Urm36j9LzIrhwGR22aQThmZOjSR5xgcD marius@nixos-fixe"
   ];
-  
+
   # !!! Adding a swap file is optional, but strongly recommended!
   hardware.enableRedistributableFirmware = false;
-  
+
   # Preserve space by sacrificing documentation and history
   /*nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 30d";
