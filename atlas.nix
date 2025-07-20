@@ -3,7 +3,7 @@
 let
   source_for_bot = builtins.fetchGit {
     url = "https://sc07.dev/fediverse.events/canvas-atlas.git";
-    rev = "89e6c7eb9496ddf2fca006243bb68d81f46025dd";
+    rev = "afbd14f798626867019eebf007a311f91000da31";
   };
 in {
 
