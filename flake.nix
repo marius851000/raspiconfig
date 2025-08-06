@@ -152,7 +152,8 @@
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         #TODO: fix compilation
 
-        ./synapse.nix
+        #TODO: temporary commented out. A critival vulnerability is bound to be revealed soon and won’t be here to patch it.
+        #./synapse.nix
         ./weblate.nix
 
         {
