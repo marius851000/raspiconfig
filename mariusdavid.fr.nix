@@ -94,6 +94,9 @@ in
 
     hydra.A = ip4scrogne; # actually Marella
 
+    ollama.A = ip4scrogne;
+    ollama.AAAA = ip6scrogne;
+
     /*testmastodon.A = ip4;
     testmastodon.AAAA = ip6;
 
