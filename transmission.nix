@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  systemd.services.transmission_mount = {
+  /*systemd.services.transmission_mount = {
     description = "mount the ceph path for transmission";
     wantedBy = [ "transmission.service" ]; #TODO: replace by transmission
     serviceConfig = {
@@ -16,7 +16,7 @@
       User = "transmission";
       Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
     };
-  };
+    };*/
 
   programs.fuse.userAllowOther = true;
 

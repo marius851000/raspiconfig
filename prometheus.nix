@@ -65,7 +65,7 @@
         };
         static_configs = [
           {
-            targets = [ "https://mariusdavid.fr" ];
+            targets = [ "https://mariusdavid.fr" "https://mlp-game-wiki.no" ];
           }
         ];
         relabel_configs = [

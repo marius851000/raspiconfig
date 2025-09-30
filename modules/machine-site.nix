@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 
 let
   cfg = config.marinfra.machine-site;
@@ -17,6 +17,16 @@ in {
       virtualHosts."${cfg.domain}" = {
         enableACME = lib.mkDefault false;
         forceSSL = lib.mkDefault false;
+        root = pkgs.stdenvNoCC.mkDerivation {
+          name = "${config.networking.hostName}-base-site";
+
+          dontUnpack = true;
+
+          installPhase = ''
+            mkdir $out
+            echo "welcome to the ${config.networking.hostName} server." > $out/index.html
+          '';
+        };
       };
     };
   };

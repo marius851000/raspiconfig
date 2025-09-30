@@ -13,6 +13,7 @@
       "marella" = { id = "V6F5IEJ-JZBIHOE-3TWO4FM-VHPM5ZK-WBVYIM4-PFWAALL-MILXYKK-DYHUZQR"; };
       "zana" = { id = "J5RMTP6-MAJIXWN-Y7OEFF4-FXVHY6G-EC2W5UH-EMMAL4G-BH4NIYM-27QUIA5"; };
     };
+    settings.urAccepted = true;
   };
 
   systemd.tmpfiles.rules = [
