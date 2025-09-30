@@ -35,6 +35,7 @@ in {
       enable = true;
       port = cfg.port;
       address = "localhost";
+      domain = "paperless.mariusdavid.fr";
 
       settings = {
         PAPERLESS_OCR_LANGUAGE = "fra+eng";

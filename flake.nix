@@ -46,7 +46,7 @@
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
 
   inputs.mariussite = {
-    url = "github:marius851000/mysite/8ff091f92e54d0c10b7952e7287f0224cdfda437";
+    url = "github:marius851000/mysite";
     flake = false;
   };
 
@@ -153,9 +153,7 @@
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         #TODO: fix compilation
 
-        #TODO: temporary commented out. A critival vulnerability is bound to be revealed soon and won’t be here to patch it.
-        #./synapse.nix
-        ./weblate.nix
+
 
         {
           #marinfra.otp.enable = true;
@@ -165,7 +163,7 @@
             domain = "paperless.mariusdavid.fr";
           };
 
-          marinfra.ceph.enable = true;
+          /*marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
           marinfra.ceph.daemon_name = "marella";
           marinfra.ceph.osd.storages = [ 1 5 ];
@@ -180,7 +178,7 @@
                 proxyPass = "http://localhost:8080/";
               };
             };
-          };
+          };*/
 
           services.syncthing.settings.folders.dragons = {
             id = "dragons";
@@ -230,6 +228,25 @@
         {
           marinfra.kubernetes.enable = true;
           marinfra.kubernetes.master.enable = true;
+        }
+      ];
+    };
+
+    # micro-pc with 32GB of RAM, and i5-5600 cpu and ssd
+    # Meant to replace marella and noctus
+    nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        ./secret.nix
+        ./hardware-configuration/zana.nix
+        ./syncthing.nix
+        ./backup.nix
+        ./weblate.nix
+        ./synapse.nix
+        {
+          marinfra.yggdrasil.enable = true;
+          marinfra.ssl.enable = true;
         }
       ];
     };

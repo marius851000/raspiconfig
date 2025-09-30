@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10045;
+    serial = 10046;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -168,6 +168,11 @@ in
         };
         # idem for noctus
         noctus = {
+          A = ip4scrogne;
+          AAAA = ip6scrogne;
+        };
+        # blablabla idem
+        zana = {
           A = ip4scrogne;
           AAAA = ip6scrogne;
         };

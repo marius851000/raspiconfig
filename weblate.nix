@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  marinfra.ssl.extraDomain = [ "translate.mariusdavid.fr" ];
+
   services.weblate = {
     enable = true;
     localDomain = "translate.mariusdavid.fr";
@@ -17,6 +19,8 @@
       DEBUG = True
     '';
   };
+
+  services.nginx.virtualHosts."translate.mariusdavid.fr".enableACME = pkgs.lib.mkForce false; # Let the SSL module manage that
 
   systemd.services.weblate.environment = {
     GUNICORN_CMD_ARGS = "--timeout=1200";

@@ -44,7 +44,7 @@ in
       experimental_features = {
         faster_joins = true;
       };
-      presence.enabled = false;
+      presence.enabled = true;
       server_name = "mariusdavid.fr";
       enable_metrics = true;
       allow_guest_access = true;

@@ -5,16 +5,15 @@ let
   marella_yggdrasil_ip = "202:3679:f712:fd04:e3de:a123:caf4:580d";
   noctus_yggdrasil_ip = "200:6233:ac7:f76c:ef8f:e313:aa1:b882";
   coryn_yggdrasil_ip = "201:c608:513e:2269:3d8d:b3eb:93c1:f1e7";
+  zana_yggdrasil_ip = "201:4227:d97:c7f2:54bc:b9f4:a4:508c";
   server_ip = "5.196.70.120";
   server_ip_v6 = "2001:41d0:e:378::1";
 
   domains_to_proxy_to_marella = [
     "paperless.mariusdavid.fr"
     "otp.mariusdavid.fr"
-    "matrix.mariusdavid.fr"
     "archive.mariusdavid.fr"
     "hydra.mariusdavid.fr"
-    "translate.mariusdavid.fr"
     "marella.net.mariusdavid.fr"
     "ceph.mariusdavid.fr"
     "torrent.mariusdavid.fr"
@@ -26,6 +25,11 @@ let
   domains_to_proxy_to_coryn = [
     "coryn.net.mariusdavid.fr"
     "openwebui.mariusdavid.fr"
+  ];
+  domains_to_proxy_to_zana = [
+    "zana.net.mariusdavid.fr"
+    "translate.mariusdavid.fr"
+    "matrix.mariusdavid.fr"
   ];
 in
 {
@@ -44,6 +48,7 @@ in
       ${lib.concatLines (builtins.map (domain: "${domain} https_marella_backend;") domains_to_proxy_to_marella)}
       ${lib.concatLines (builtins.map (domain: "${domain} https_noctus_backend;") domains_to_proxy_to_noctus)}
       ${lib.concatLines (builtins.map (domain: "${domain} https_coryn_backend;") domains_to_proxy_to_coryn)}
+      ${lib.concatLines (builtins.map (domain: "${domain} https_zana_backend;") domains_to_proxy_to_zana)}
         default https_default_backend;
       }
 
@@ -61,6 +66,10 @@ in
 
       upstream https_coryn_backend {
         server [${coryn_yggdrasil_ip}]:443;
+      }
+
+      upstream https_zana_backend {
+        server [${zana_yggdrasil_ip}]:443;
       }
 
       server {
@@ -89,6 +98,12 @@ in
           proxyPass = "http://[${coryn_yggdrasil_ip}]:80";
         };
       }) domains_to_proxy_to_coryn)
+      ++
+      (builtins.map (domain: lib.nameValuePair domain {
+        locations."/" = {
+          proxyPass = "http://[${zana_yggdrasil_ip}]:80";
+        };
+      }) domains_to_proxy_to_zana)
     );
   };
 }
