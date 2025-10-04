@@ -20,7 +20,6 @@ let
   ];
   domains_to_proxy_to_noctus = [
     "noctus.net.mariusdavid.fr"
-    "lemmy.mariusdavid.fr"
   ];
   domains_to_proxy_to_coryn = [
     "coryn.net.mariusdavid.fr"
@@ -30,6 +29,7 @@ let
     "zana.net.mariusdavid.fr"
     "translate.mariusdavid.fr"
     "matrix.mariusdavid.fr"
+    "lemmy.mariusdavid.fr"
   ];
 in
 {

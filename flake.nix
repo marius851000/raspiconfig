@@ -224,10 +224,15 @@
         ./hardware-configuration/noctus.nix
         ./syncthing.nix
         ./backup.nix
-        ./lemmy.nix
         {
           marinfra.kubernetes.enable = true;
           marinfra.kubernetes.master.enable = true;
+
+          services.syncthing.folders.noctus-share = {
+            path = "/zana-noctus-share";
+            id = "h5r3a-jqxrw";
+            devices = [ "zana" ];
+          };
         }
       ];
     };
@@ -244,9 +249,16 @@
         ./backup.nix
         ./weblate.nix
         ./synapse.nix
+        ./lemmy.nix
         {
           marinfra.yggdrasil.enable = true;
           marinfra.ssl.enable = true;
+
+          services.syncthing.folders.noctus-share = {
+            path = "/zana-noctus-share";
+            id = "h5r3a-jqxrw";
+            devices = [ "noctus" ];
+          };
         }
       ];
     };
