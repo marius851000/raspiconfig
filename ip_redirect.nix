@@ -3,7 +3,6 @@
 # My new home ISP does not provide static IPv4, so instead use the OVH server to redirect IPv4 traffic to the server via yggdrasil using nginx (IPv6 is left as-is)
 let
   marella_yggdrasil_ip = "202:3679:f712:fd04:e3de:a123:caf4:580d";
-  noctus_yggdrasil_ip = "200:6233:ac7:f76c:ef8f:e313:aa1:b882";
   coryn_yggdrasil_ip = "201:c608:513e:2269:3d8d:b3eb:93c1:f1e7";
   zana_yggdrasil_ip = "201:4227:d97:c7f2:54bc:b9f4:a4:508c";
   server_ip = "5.196.70.120";
@@ -17,9 +16,6 @@ let
     "marella.net.mariusdavid.fr"
     "ceph.mariusdavid.fr"
     "torrent.mariusdavid.fr"
-  ];
-  domains_to_proxy_to_noctus = [
-    "noctus.net.mariusdavid.fr"
   ];
   domains_to_proxy_to_coryn = [
     "coryn.net.mariusdavid.fr"
@@ -46,7 +42,6 @@ in
     streamConfig = ''
       map $ssl_preread_server_name $server_redirect {
       ${lib.concatLines (builtins.map (domain: "${domain} https_marella_backend;") domains_to_proxy_to_marella)}
-      ${lib.concatLines (builtins.map (domain: "${domain} https_noctus_backend;") domains_to_proxy_to_noctus)}
       ${lib.concatLines (builtins.map (domain: "${domain} https_coryn_backend;") domains_to_proxy_to_coryn)}
       ${lib.concatLines (builtins.map (domain: "${domain} https_zana_backend;") domains_to_proxy_to_zana)}
         default https_default_backend;
@@ -58,10 +53,6 @@ in
 
       upstream https_marella_backend {
         server [${marella_yggdrasil_ip}]:443;
-      }
-
-      upstream https_noctus_backend {
-        server [${noctus_yggdrasil_ip}]:443;
       }
 
       upstream https_coryn_backend {
@@ -86,12 +77,6 @@ in
           proxyPass = "http://[${marella_yggdrasil_ip}]:80";
         };
       }) domains_to_proxy_to_marella)
-      ++
-      (builtins.map (domain: lib.nameValuePair domain {
-        locations."/" = {
-          proxyPass = "http://[${noctus_yggdrasil_ip}]:80";
-        };
-      }) domains_to_proxy_to_noctus)
       ++
       (builtins.map (domain: lib.nameValuePair domain {
         locations."/" = {

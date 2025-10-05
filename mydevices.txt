@@ -1,11 +1,14 @@
 Lutta: My main laptop
 Soren: My Pixel 3a phone
 Coryn: The old galaxy A5 (2017) running lineageOS
+Coryn (bis): My new powerfull PC with a 3090, a Ryzen 9 7900X and 32GiB of DDR5 RAM
 Philip: The old and kinda broken Xiaomi Mi A1 with post market os
 // (decomissioned, replaced by Scrogne) Otulissa: the OVH VPS
 Scrogne: OVH bare metal with 2TiB of storage
 Marella: the laptop with a broken screen and 8GiB of RAM
-Noctus: the other laptop with a broken screen and 4GiB of RAM
+// (decommisioned, replaced by Zana) Noctus: the other laptop with a broken screen and 4GiB of RAM
+
+Zana: A micro-pc replacing Noctus and eventually Zana, with 32GiB of DDR4 ram and a good CPU (and free PCI slot)
 
 other:
 unnamed Phab 2 Pro (never connected to the network)

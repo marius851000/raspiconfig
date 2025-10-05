@@ -8,7 +8,6 @@ let
   kubeMasterAPIServerPort = 6443;
 
   trusted_ips = [
-    "200:6233:ac7:f76c:ef8f:e313:aa1:b882" # noctus
     "202:3679:f712:fd04:e3de:a123:caf4:580d" # marella
     "200:deb5:f162:56a0:b1d0:fee:6a44:9980" #TUF pc
   ];
@@ -40,12 +39,12 @@ in {
 
       ip6tables -s ${ip6} -A INPUT -p udp --dport 8285 -j ACCEPT # flannel
       ip6tables -s ${ip6} -A INPUT -p udp --dport 8472 -j ACCEPT # flannel
-    '') trusted_ips)) + 
+    '') trusted_ips)) +
     #TODO: seems weird we need to specifify that. Will need to spend some time to figure out why.
     ''
       ip6tables -s fd98::/15 -A INPUT -p tcp -j ACCEPT
       ip6tables -s fe80::/64 -A INPUT -p tcp -j ACCEPT # Why do we need that?
-      ip6tables -s fd99::/112 -A INPUT -p tcp -j ACCEPT 
+      ip6tables -s fd99::/112 -A INPUT -p tcp -j ACCEPT
     '';
 
     # packages for administration tasks
@@ -68,7 +67,7 @@ in {
       };
 
       # use coredns
-      addons.dns.enable = true;      
+      addons.dns.enable = true;
       kubelet.extraOpts = "--fail-swap-on=false";
 
       #flannel.enable = true;

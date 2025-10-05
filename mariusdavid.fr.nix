@@ -166,11 +166,6 @@ in
           A = ip4scrogne;
           AAAA = ip6scrogne;
         };
-        # idem for noctus
-        noctus = {
-          A = ip4scrogne;
-          AAAA = ip6scrogne;
-        };
         # blablabla idem
         zana = {
           A = ip4scrogne;
