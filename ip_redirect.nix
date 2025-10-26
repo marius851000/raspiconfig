@@ -18,8 +18,7 @@ let
     "torrent.mariusdavid.fr"
   ];
   domains_to_proxy_to_coryn = [
-    "coryn.net.mariusdavid.fr"
-    "openwebui.mariusdavid.fr"
+    "ollama.mariusdavid.fr"
   ];
   domains_to_proxy_to_zana = [
     "zana.net.mariusdavid.fr"
