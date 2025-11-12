@@ -125,6 +125,7 @@
         (import ./hacky-account-manager.nix { inherit hacky-account-manager system; })
         (import ./nixosweekly.nix { inherit pmd_hack_archive_server system; })
         (import ./dragon.nix { inherit depiction_map_src; })
+        (import ./univers.nix)
         #(import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
       ];
     };
