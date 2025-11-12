@@ -24,7 +24,7 @@ let
     echo "outPath: $outPath"
     revision=$(cat $outPath/revision)
     echo "revision: $revision"
-    
+
     buildId=$(${jq} --raw-output ".build" $HYDRA_JSON)
     message=""
     if [[ $buildStatus != 0 ]]; then
@@ -50,7 +50,7 @@ in
   };
 
   services.hydra = {
-    package = pkgs.hydra_unstable.overrideAttrs (oldAttrs: {
+    package = pkgs.hydra.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or []) ++ [
         # Fix CORS
         (pkgs.fetchpatch {

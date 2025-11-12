@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
         discordpy
         python
         pillow
-        GitPython
+        gitpython
         requests
         requests-oauthlib
         tweepy
@@ -70,7 +70,7 @@ stdenv.mkDerivation rec {
         cp * $out -r
         chmod +x $out/SpriteBot.py
         #cp LICENSE $out
-        
+
         makeWrapper ${python}/bin/python3 $out/bin/spritebot \
             --set PYTHONPATH $PYTHONPATH \
             --run ${prestartScript} \
