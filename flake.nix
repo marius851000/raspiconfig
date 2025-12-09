@@ -149,7 +149,7 @@
         ./backup.nix
         ./syncthing.nix
         ./nexusback.nix
-        ./transmission.nix
+        #./transmission.nix
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         #TODO: fix compilation
 
