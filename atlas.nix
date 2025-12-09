@@ -25,19 +25,21 @@ in {
     enable = true;
 
     virtualHosts."atlas.mariusdavid.fr" = {
-      root = "/atlas/atlas2024/web";
-      forceSSL = true;
+      #root = "/atlas/atlas2024/web";
+      globalRedirect = "2024.canvas-atlas.fediverse.events";
+      forceSSL = false;
     };
 
     virtualHosts."atlas2025.mariusdavid.fr" = {
-      root = "/atlas/atlas2025/web";
-      forceSSL = true;
+      #root = "/atlas/atlas2025/web";
+      globalRedirect = "2025.canvas-atlas.fediverse.events";
+      forceSSL = false;
     };
   };
 
   marinfra.ssl.extraDomain = [ "atlas.mariusdavid.fr" "atlas2025.mariusdavid.fr" ];
 
-  systemd.services.canvas_atlas_2024 = {
+  /*systemd.services.canvas_atlas_2024 = {
     enable = true;
     serviceConfig = {
       Type = "oneshot";
@@ -88,7 +90,7 @@ in {
       Unit = "canvas_atlas_2025.service";
     };
     wantedBy = [ "timers.target" ];
-  };
+  };*/
 
   systemd.timers.canvas_atlas_bot = {
     enable = true;
