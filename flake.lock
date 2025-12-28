@@ -255,11 +255,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762441963,
-        "narHash": "sha256-j+rNQ119ffYUkYt2YYS6rnd6Jh/crMZmbqpkGLXaEt0=",
+        "lastModified": 1763988335,
+        "narHash": "sha256-QlcnByMc8KBjpU37rbq5iP7Cp97HvjRP0ucfdh+M4Qc=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "8e7576e79b88c16d7ee3bbd112c8d90070832885",
+        "rev": "50b9238891e388c9fdc6a5c49e49c42533a1b5ce",
         "type": "github"
       },
       "original": {
@@ -411,11 +411,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1762740199,
-        "narHash": "sha256-B8aMgLj5moqKVDlgxo29Ef2jX9SsUkAQhJalpI9MNgA=",
+        "lastModified": 1764763336,
+        "narHash": "sha256-007DlZGjQ3ziQ5UMjt3GdjBAbgAtHgMwOxMY2v7/b7c=",
         "ref": "refs/heads/master",
-        "rev": "b633223a33f6aa2a81a8f65ed056be4234bd0822",
-        "revCount": 823,
+        "rev": "1ccd57f177539ed8c207b893c3f9798d88f87d2e",
+        "revCount": 850,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -457,11 +457,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1762721782,
-        "narHash": "sha256-ftv0n3xkKawHQgxZ6FGr2F1GdaYT/79aESm4t1LQ6X4=",
+        "lastModified": 1764374374,
+        "narHash": "sha256-naS7hg/D1yLKSZoENx9gvsPLFiNEOTcqamJSu0OEvCA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e5d07586ec39f74b390308f2e00040c23bdef530",
+        "rev": "6a49303095abc094ee77dc243a9e351b642e8e75",
         "type": "github"
       },
       "original": {
@@ -473,11 +473,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1762936422,
-        "narHash": "sha256-GSYp+Yi7RhBH4A/g/Qh21qBq2ggCmfJvdvr91U3vxhs=",
+        "lastModified": 1765308238,
+        "narHash": "sha256-mDpkh3LFfvxJ1RTlwxnP2pG2pHCphyf/i7XUXbpll1Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ab5762ebcb2fdebca57f188678437333d07af572",
+        "rev": "9da06d4665c058e39cfdadcddb0a257a9096cb26",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1762796725,
-        "narHash": "sha256-h5nSC6eWnv/76zE9Dm3mzYCjTZgKbDjutHISCnxGmqI=",
+        "lastModified": 1765227624,
+        "narHash": "sha256-TBddcPCRZMf1mcxpdVVzPyj8YmNOpJ7zo4CCSa68Vv8=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "7b78f06a68f3e74174c1a58c6adac9a9433fabe7",
+        "rev": "381d67af965890ee9b1eea25d7bded4cab303725",
         "type": "github"
       },
       "original": {
