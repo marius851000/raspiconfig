@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10047;
+    serial = 10048;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -158,6 +158,9 @@ in
     univers.A = ip4scrogne;
     univers.AAAA = ip6scrogne;
 
+    nesmy.A = ip4scrogne;
+    nesmy.AAAA = ip6scrogne;
+
     net = {
       subdomains = {
         scrogne = {
@@ -173,6 +176,9 @@ in
         zana = {
           A = ip4scrogne;
           AAAA = ip6scrogne;
+          subdomains = {
+            ygg.AAAA = [ "201:4227:d97:c7f2:54bc:b9f4:a4:508c" ];
+          };
         };
       };
     };

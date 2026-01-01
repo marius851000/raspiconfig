@@ -228,6 +228,7 @@
         ./weblate.nix
         ./synapse.nix
         ./lemmy.nix
+        ./nesmy.nix
         {
           marinfra.yggdrasil.enable = true;
           marinfra.ssl.enable = true;

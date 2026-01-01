@@ -25,6 +25,7 @@ let
     "translate.mariusdavid.fr"
     "matrix.mariusdavid.fr"
     "lemmy.mariusdavid.fr"
+    "nesmy.mariusdavid.fr"
   ];
 in
 {
