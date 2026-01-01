@@ -134,8 +134,7 @@ rec {
       };
     };
 
-    certificateScheme = "acme-nginx";
-    certificateDomains = [ ];
+    x509.useACMEHost = "mariusdavid.fr";
 
     localDnsResolver = false;
   };
@@ -169,7 +168,8 @@ rec {
     extraConfig = ''
       # starttls needed for authentication, so the fqdn required to match
       # the certificate
-      $config['smtp_server'] = "tls://${mailserver.fqdn}";
+      $config['imap_host'] = "tls://${mailserver.fqdn}";
+      $config['smtp_host'] = "tls://${mailserver.fqdn}";
       $config['smtp_user'] = "%u";
       $config['smtp_pass'] = "%p";
     '';

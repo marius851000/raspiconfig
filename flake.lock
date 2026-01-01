@@ -70,11 +70,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1762286984,
-        "narHash": "sha256-9I2H9x5We6Pl+DBYHjR1s3UT8wgwcpAH03kn9CqtdQc=",
+        "lastModified": 1766051518,
+        "narHash": "sha256-znKOwPXQnt3o7lDb3hdf19oDo0BLP4MfBOYiWkEHoik=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "9c870f63e28ec1e83305f7f6cb73c941e699f74f",
+        "rev": "d5eff7f948535b9c723d60cd8239f8f11ddc90fa",
         "type": "github"
       },
       "original": {
@@ -411,11 +411,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1764763336,
-        "narHash": "sha256-007DlZGjQ3ziQ5UMjt3GdjBAbgAtHgMwOxMY2v7/b7c=",
+        "lastModified": 1766321686,
+        "narHash": "sha256-icOWbnD977HXhveirqA10zoqvErczVs3NKx8Bj+ikHY=",
         "ref": "refs/heads/master",
-        "rev": "1ccd57f177539ed8c207b893c3f9798d88f87d2e",
-        "revCount": 850,
+        "rev": "7d433bf89882f61621f95082e90a4ab91eb0bdd3",
+        "revCount": 860,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -473,11 +473,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1765308238,
-        "narHash": "sha256-mDpkh3LFfvxJ1RTlwxnP2pG2pHCphyf/i7XUXbpll1Y=",
+        "lastModified": 1767268904,
+        "narHash": "sha256-Fzm9NZVZD/MO2atEztKq1VQiQwMh+1O4nmrfCdhviW0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9da06d4665c058e39cfdadcddb0a257a9096cb26",
+        "rev": "c26eb5e78b1ac63a8e99c210ef131e155e93e090",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1765227624,
-        "narHash": "sha256-TBddcPCRZMf1mcxpdVVzPyj8YmNOpJ7zo4CCSa68Vv8=",
+        "lastModified": 1766537101,
+        "narHash": "sha256-dK6qkso5GOV/eZRGcwOCKn8faMuTr7czTvISLioKgVs=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "381d67af965890ee9b1eea25d7bded4cab303725",
+        "rev": "858731ebbd609c9eb5caecce9bbb8b5e04b490bb",
         "type": "github"
       },
       "original": {
