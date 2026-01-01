@@ -97,7 +97,7 @@
 
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
 
   systemd.oomd.enableUserSlices = true;
   systemd.oomd.enableRootSlice = true;
