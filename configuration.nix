@@ -58,7 +58,7 @@
   ];
 
   # !!! Adding a swap file is optional, but strongly recommended!
-  hardware.enableRedistributableFirmware = false;
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   # Preserve space by sacrificing documentation and history
   /*nix.gc.automatic = true;

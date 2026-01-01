@@ -48,6 +48,8 @@
 
   system.stateVersion = "21.11";
 
+  hardware.enableRedistributableFirmware = false; # disable, as it appear unneeded and it take a long time to transfer
+
 
   # TODO: move to it’s own module
 

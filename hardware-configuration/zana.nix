@@ -37,6 +37,19 @@
 
   networking.hostName = "zana";
 
+  networking.wireless = {
+    enable = true;
+    secretsFile = "/secret/wireless";
+    networks = {
+      Freebox-2532F4_David = {
+        pskRaw = "ext:local_wireless_pass";
+      };
+    };
+  };
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
+  hardware.enableRedistributableFirmware = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
