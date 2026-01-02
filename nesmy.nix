@@ -8,15 +8,34 @@
     database.type = "mysql";
     extensions = {
       ConfirmEdit = null;
+      VisualEditor = null;
+      Cite = null;
     };
+
+    # create the user session "cache" table
+    # CREATE TABLE `mwnix_persistant_cache` (
+    #   `keyname` varbinary(255) NOT NULL DEFAULT '',
+    #   `value` mediumblob DEFAULT NULL,
+    #   `exptime` binary(14) NOT NULL,
+    #   `modtoken` varbinary(17) NOT NULL DEFAULT '00000000000000000',
+    #   `flags` int(10) unsigned DEFAULT NULL,
+    #   PRIMARY KEY (`keyname`),
+    #   KEY `exptime` (`exptime`)
+    # );
+
     extraConfig = ''
       $wgLanguageCode = "fr";
-      $wgRightsUrl = "https://creativecommons.org/licenses/by/3.0/";
+      $wgRightsUrl = "https://creativecommons.org/licenses/by/4.0/";
+      $wgRightsText = "CC-BY 4.0";
+      $wgCiteBookReferencing = true;
+      $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
 
       // this cache option is only safe for single-server install (which is the case here)
       $wgMainCacheType = CACHE_ACCEL;
       // user may be logged out after a server restart if the user account cache is not persistent. Does not appear to still work..?
-      $wgMainCacheType = CACHE_DB;
+      // apparently, the DB objectcache is cleared when mediawiki-init is run...
+      $wgObjectCaches["session_db"] = [ 'class' => SqlBagOStuff::class, 'loggroup' => 'SQLBagOStuff', 'tableName' => 'mwnix_persistant_cache' ];
+      $wgSessionCacheType = "session_db";
 
       // captcha stuff. Pretty permissive. Should be ok as long as I am not targetted.
       $wgCaptchaClass = 'QuestyCaptcha';
