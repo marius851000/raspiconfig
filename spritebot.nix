@@ -30,8 +30,10 @@ stdenv.mkDerivation rec {
         })*/
 
         ./single_allow.diff
-        #./apply_shift_credit_once.diff
         ./non-privileged-add-spritebot.patch
+
+
+        #./apply_shift_credit_once.diff
         #./fix-crash-size-credits.diff
     ];
 

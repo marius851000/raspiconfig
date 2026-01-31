@@ -9,7 +9,9 @@ let
 
   trusted_ips = [
     "202:3679:f712:fd04:e3de:a123:caf4:580d" # marella
-    "200:deb5:f162:56a0:b1d0:fee:6a44:9980" #TUF pc
+    "200:deb5:f162:56a0:b1d0:fee:6a44:9980" # TUF pc
+    "201:4227:d97:c7f2:54bc:b9f4:a4:508c" # zana
+    "201:c608:513e:2269:3d8d:b3eb:93c1:f1e7" # coryn
   ];
 in {
   options.marinfra.kubernetes = {
@@ -23,23 +25,10 @@ in {
   config = let
     api = "https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}";
   in lib.mkIf cfg.enable {
-
     networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 
-    networking.firewall.extraCommands = (lib.concatLines (builtins.map (ip6: ''
-      #TODO: put that ssh in its own file
-      ip6tables -s ${ip6} -A INPUT -p tcp --dport 22 -j ACCEPT # ssh
-      ip6tables -s ${ip6} -A INPUT -p udp --dport 22 -j ACCEPT # ssh
-
-      ip6tables -s ${ip6} -A INPUT -p tcp --dport 8888 -j ACCEPT # kubeapi
-      ip6tables -s ${ip6} -A INPUT -p udp --dport 8888 -j ACCEPT # kubeapi
-
-      ip6tables -s ${ip6} -A INPUT -p tcp --dport 6443 -j ACCEPT # kubeapi
-      ip6tables -s ${ip6} -A INPUT -p udp --dport 6443 -j ACCEPT # kubeapi
-
-      ip6tables -s ${ip6} -A INPUT -p udp --dport 8285 -j ACCEPT # flannel
-      ip6tables -s ${ip6} -A INPUT -p udp --dport 8472 -j ACCEPT # flannel
-    '') trusted_ips)) +
+    marinfra.open_to_trusted.ports = [ "8888" "6443" "8285" "8472" ];
+    networking.firewall.extraCommands =
     #TODO: seems weird we need to specifify that. Will need to spend some time to figure out why.
     ''
       ip6tables -s fd98::/15 -A INPUT -p tcp -j ACCEPT

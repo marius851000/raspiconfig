@@ -24,8 +24,8 @@
     settings.smtp = rec {
       user = "grafana@mariusdavid.fr";
       fromAddress = user;
-      host = "mariusdavid.fr:587";
-      enable = true;
+      host = "mariusdavid.fr:465";
+      enabled = true;
       passwordFile = "/secret-mail-grafana.txt";
     };
     provision.datasources.settings.datasources = [

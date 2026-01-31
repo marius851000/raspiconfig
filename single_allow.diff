@@ -1,21 +1,21 @@
 diff --git a/SpriteBot.py b/SpriteBot.py
-index 2d1ac7f..26f4218 100644
+index 1381a10..c1e32fe 100644
 --- a/SpriteBot.py
 +++ b/SpriteBot.py
-@@ -1098,13 +1098,13 @@ class SpriteBot:
+@@ -1236,13 +1236,13 @@ class SpriteBot:
                  return False
              elif not warn:
                  if deleting:
 -                    if len(approve) >= 3 and consent:
 +                    if len(approve) >= 1 and consent:
-                         await self.submissionApproved(msg, orig_sender, orig_author, approve)
+                         await self.submissionApproved(msg, orig_sender, orig_author, approve, silent)
                          return False
 -                elif asset_type == "sprite" and len(approve) >= 3:
 +                elif asset_type == "sprite" and len(approve) >= 1:
-                     await self.submissionApproved(msg, orig_sender, orig_author, approve)
+                     await self.submissionApproved(msg, orig_sender, orig_author, approve, silent)
                      return False
 -                elif asset_type == "portrait" and len(approve) >= 2:
 +                elif asset_type == "portrait" and len(approve) >= 1:
-                     await self.submissionApproved(msg, orig_sender, orig_author, approve)
+                     await self.submissionApproved(msg, orig_sender, orig_author, approve, silent)
                      return False
  

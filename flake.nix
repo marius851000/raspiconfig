@@ -1,5 +1,6 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  inputs.nixpkgs.url = "nixpkgs";
+  #inputs.nixpkgs.url = "github:SuperSandro2000/nixpkgs/mediawiki-apcu";
   #inputs.nixpkgs.url = "github:marius851000/nixpkgs/fix_lemmy_ui";
   /*inputs.nixpkgs = {
     url = "/home/marius/nixpkgs";
@@ -14,8 +15,7 @@
 
   #TODO: maybe upstream
   inputs.spritebot_src = {
-    #url = "github:PMDCollab/SpriteBot";
-    url = "github:marius851000/SpriteBot/deletion_fix";
+    url = "github:PMDCollab/SpriteBot";
     flake = false;
   };
 

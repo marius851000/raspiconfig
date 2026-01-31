@@ -34,7 +34,7 @@
         scrape_interval = "30s";
         static_configs = [
           {
-            targets = [ "localhost:9558" ];
+            targets = [ "localhost:9558" "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]:9558" ];
           }
         ];
       }
@@ -52,7 +52,7 @@
         scrape_interval = "30s";
         static_configs = [
           {
-            targets = [ "localhost:9100" ];
+            targets = [ "localhost:9100" "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]:9100" ];
           }
         ];
       }
@@ -65,7 +65,7 @@
         };
         static_configs = [
           {
-            targets = [ "https://mariusdavid.fr" "https://mlp-game-wiki.no" ];
+            targets = [ "https://mariusdavid.fr" "https://mlp-game-wiki.no" "https://nesmy.mariusdavid.fr/wiki/Accueil"];
           }
         ];
         relabel_configs = [

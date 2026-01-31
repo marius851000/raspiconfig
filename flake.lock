@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759510210,
-        "narHash": "sha256-rR3BuhcSyQ3bQ0rS14I53O7gWzlPEs15skl1TWx+TeI=",
+        "lastModified": 1768143854,
+        "narHash": "sha256-E5/kyPz4zAZn/lZdvqlF83jMgCWNxmqYjjWuadngCbk=",
         "owner": "kirelagin",
         "repo": "dns.nix",
-        "rev": "f3cb11f642d4fa6224e2b1ddfd2c3ba42e9ffea2",
+        "rev": "a97cf4156e9f044fe4bed5be531061000dfabb07",
         "type": "github"
       },
       "original": {
@@ -473,17 +473,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1767268904,
-        "narHash": "sha256-Fzm9NZVZD/MO2atEztKq1VQiQwMh+1O4nmrfCdhviW0=",
+        "lastModified": 1769740369,
+        "narHash": "sha256-xKPyJoMoXfXpDM5DFDZDsi9PHArf2k5BJjvReYXoFpM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c26eb5e78b1ac63a8e99c210ef131e155e93e090",
+        "rev": "6308c3b21396534d8aaeac46179c14c439a89b8a",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs_5": {
@@ -540,11 +539,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1766537101,
-        "narHash": "sha256-dK6qkso5GOV/eZRGcwOCKn8faMuTr7czTvISLioKgVs=",
+        "lastModified": 1769442869,
+        "narHash": "sha256-rvpxJb8iSuGAZzavscjci/l+hZifMKNfkL7MnAQeApo=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "858731ebbd609c9eb5caecce9bbb8b5e04b490bb",
+        "rev": "4b2295db0dc4c8ee5ead7f2e0aeb206f60325f98",
         "type": "github"
       },
       "original": {
@@ -609,16 +608,15 @@
     "spritebot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1737802928,
-        "narHash": "sha256-zSLrBglVg7mFa5jS/3aaonsO0EGm3j+/FeviHsDADDQ=",
-        "owner": "marius851000",
+        "lastModified": 1767757326,
+        "narHash": "sha256-lb0eNkFrfE6iAFmBrMsP6L3w15bQQWWaaBNINqLFve8=",
+        "owner": "PMDCollab",
         "repo": "SpriteBot",
-        "rev": "cf1d61552736417f71d531e33e8ab68e82377c74",
+        "rev": "b8f5111eb7ebcb7f602e390d24d837189359982b",
         "type": "github"
       },
       "original": {
-        "owner": "marius851000",
-        "ref": "deletion_fix",
+        "owner": "PMDCollab",
         "repo": "SpriteBot",
         "type": "github"
       }
