@@ -1,6 +1,13 @@
-{ other_machines }:
+{ machines, this_name }:
 { pkgs, lib, ... }:
-{
+
+let
+  removeAttrsOrThrow = set: key:
+    if builtins.hasAttr key set then
+      builtins.removeAttrs set [ key ]
+    else
+      builtins.throw "removeAttrsOrThrow: key '${key}' does not exist in the set.";
+in {
 
   imports = [
     ./modules/machine-site.nix
@@ -12,11 +19,21 @@
     ./modules/kubernetes.nix
     ./modules/open_to_trusted.nix
     ./modules/expose_info.nix
+    ./modules/extra_hosts.nix
   ];
 
-marinfra.info = {
-  other_machines = other_machines;
-};
+  marinfra.info = {
+    other_machines = removeAttrsOrThrow machines this_name;
+    this_machine_key = this_name;
+  };
+  marinfra.extraHosts.enable = true;
+
+
+  marinfra.machine-site.enable = true;
+  marinfra.yggdrasil.enable = true;
+  marinfra.ssl.enable = true;
+
+  marinfra.open_to_trusted.ports = [ "22" "9100" "9558" ]; # some ssh, node exporter, systemd exporter
 
   nix = {
     #package = pkgs.nixLatest;
@@ -99,11 +116,6 @@ marinfra.info = {
     recommendedGzipSettings = true;
   };
 
-  marinfra.machine-site.enable = true;
-  marinfra.yggdrasil.enable = true;
-  marinfra.ssl.enable = true;
-
-  marinfra.open_to_trusted.ports = [ "22" "9100" "9558" ]; # some ssh, node exporter, systemd exporter
   services.prometheus.exporters = {
     node.enable = true;
     systemd.enable = true;

@@ -1,5 +1,7 @@
 { lib, config, pkgs, ... }:
 
+
+
 let
   cfg = config.marinfra.info;
 in
@@ -14,6 +16,11 @@ in
       type = types.attrs;
       default = {};
       description = "Set of other machines as passed from the flake; typically the machine configuration map.";
+    };
+    this_machine_key = mkOption {
+      type = types.str;
+      default = "";
+      description = "this machine key, as used in machines in the flake.nix";
     };
   };
 }

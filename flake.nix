@@ -104,14 +104,6 @@
         marella = self.nixosConfigurations.marella;
         zana = self.nixosConfigurations.zana;
       };
-
-      removeAttrsOrThrow = set: key:
-          if builtins.hasAttr key set then
-            builtins.removeAttrs set [ key ]
-          else
-            builtins.throw "removeAttrsOrThrow: key '${key}' does not exist in the set.";
-
-      machines_without = machine_name: removeAttrsOrThrow machines machine_name;
     in {
     # A cheap baremetal server at OVH with lots of storage
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
@@ -120,7 +112,10 @@
         ./secret.nix
         ./ip_redirect.nix
         ./hardware-configuration/scrogne.nix
-        (import ./configuration.nix { other_machines = machines_without "scrogne"; })
+        (import ./configuration.nix {
+          inherit machines;
+          this_name = "scrogne";
+        })
         nixos-simple-mailserver.nixosModules.mailserver
         ./mailserver.nix
         ./backup.nix
@@ -158,7 +153,10 @@
     nixosConfigurations.marella = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import ./configuration.nix { other_machines = machines_without "marella"; })
+        (import ./configuration.nix {
+          inherit machines;
+          this_name = "marella";
+        })
         ./secret.nix
         ./hardware-configuration/marella.nix
         ./backup.nix
@@ -235,7 +233,10 @@
     nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import ./configuration.nix { other_machines = machines_without "zana"; })
+        (import ./configuration.nix {
+          inherit machines;
+          this_name = "zana";
+        })
         ./secret.nix
         ./hardware-configuration/zana.nix
         ./syncthing.nix
