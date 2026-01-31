@@ -1,3 +1,4 @@
+{ other_machines }:
 { pkgs, lib, ... }:
 {
 
@@ -10,7 +11,12 @@
     ./modules/ceph.nix
     ./modules/kubernetes.nix
     ./modules/open_to_trusted.nix
+    ./modules/expose_info.nix
   ];
+
+marinfra.info = {
+  other_machines = other_machines;
+};
 
   nix = {
     #package = pkgs.nixLatest;
@@ -95,6 +101,7 @@
 
   marinfra.machine-site.enable = true;
   marinfra.yggdrasil.enable = true;
+  marinfra.ssl.enable = true;
 
   marinfra.open_to_trusted.ports = [ "22" "9100" "9558" ]; # some ssh, node exporter, systemd exporter
   services.prometheus.exporters = {

@@ -77,4 +77,5 @@
     };*/
 
   marinfra.ssl.enable = true;
+  marinfra.info.ygg_address = "200:e7e5:8090:9030:15d0:d8d4:8f8f:3ced";
 }

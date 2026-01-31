@@ -97,7 +97,22 @@
     deploy-rs,
     napalm,
     depiction_map_src
-  }: {
+  }:
+    let
+      machines = {
+        scrogne = self.nixosConfigurations.scrogne;
+        marella = self.nixosConfigurations.marella;
+        zana = self.nixosConfigurations.zana;
+      };
+
+      removeAttrsOrThrow = set: key:
+          if builtins.hasAttr key set then
+            builtins.removeAttrs set [ key ]
+          else
+            builtins.throw "removeAttrsOrThrow: key '${key}' does not exist in the set.";
+
+      machines_without = machine_name: removeAttrsOrThrow machines machine_name;
+    in {
     # A cheap baremetal server at OVH with lots of storage
     nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
@@ -105,7 +120,7 @@
         ./secret.nix
         ./ip_redirect.nix
         ./hardware-configuration/scrogne.nix
-        ./configuration.nix
+        (import ./configuration.nix { other_machines = machines_without "scrogne"; })
         nixos-simple-mailserver.nixosModules.mailserver
         ./mailserver.nix
         ./backup.nix
@@ -143,7 +158,7 @@
     nixosConfigurations.marella = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        (import ./configuration.nix { other_machines = machines_without "marella"; })
         ./secret.nix
         ./hardware-configuration/marella.nix
         ./backup.nix
@@ -220,7 +235,7 @@
     nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        (import ./configuration.nix { other_machines = machines_without "zana"; })
         ./secret.nix
         ./hardware-configuration/zana.nix
         ./syncthing.nix
@@ -229,10 +244,6 @@
         ./synapse.nix
         ./lemmy.nix
         ./nesmy.nix
-        {
-          marinfra.yggdrasil.enable = true;
-          marinfra.ssl.enable = true;
-        }
       ];
     };
 
