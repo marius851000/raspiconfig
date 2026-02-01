@@ -255,6 +255,8 @@
       ];
     };
 
+    hydraJobs = builtins.mapAttrs (_: cfg: cfg.config.system.build.toplevel) machines;
+
     #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
