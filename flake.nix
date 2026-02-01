@@ -245,6 +245,12 @@
         ./synapse.nix
         ./lemmy.nix
         ./nesmy.nix
+        /*{
+          marinfra.ceph.enable = true;
+          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.daemon_name = "zana";
+          marinfra.ceph.mds.enable = false;
+          }*/
       ];
     };
 

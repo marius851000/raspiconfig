@@ -2,11 +2,6 @@
 
 let
   cfg = config.marinfra.ceph;
-  trusted_ips = [
-    "202:3679:f712:fd04:e3de:a123:caf4:580d"
-    "200:e7e5:8090:9030:15d0:d8d4:8f8f:3ced"
-    "200:deb5:f162:56a0:b1d0:fee:6a44:9980" #TUF pc
-  ];
 in {
   options.marinfra.ceph = {
     enable = lib.mkEnableOption "Global CEPH settings";
@@ -34,16 +29,16 @@ in {
   config = lib.mkIf cfg.enable ({
     environment.systemPackages = [ pkgs.ceph ];
 
-    networking.firewall.extraCommands = lib.concatLines (builtins.map (ip6: ''
-      ip6tables -s ${ip6} -A INPUT -p tcp --dport 3300 -j ACCEPT
-      ip6tables -s ${ip6} -A INPUT -p tcp --match multiport --dports 6800:7300 -j ACCEPT
-    '') trusted_ips);
+    marinfra.open_to_trusted.ports = [ "3300" ];
+    marinfra.open_to_trusted.extra_filters = [
+      "-A INPUT -p tcp --match multiport --dports 6800:7300 -j ACCEPT"
+    ];
 
     services.ceph.enable = true;
     services.ceph.global = {
-      fsid = "dfeed42b-650f-470d-a0e2-655f82a51651";
-      monHost = "[202:3679:f712:fd04:e3de:a123:caf4:580d]"; # marella
-      monInitialMembers = "marella";
+      fsid = "d236228d-314e-4eeb-b2c8-5edd6e4718a6";
+      monHost = "zana.local";
+      monInitialMembers = "zana";
     };
 
     services.ceph.extraConfig = {
@@ -73,7 +68,7 @@ in {
       enable = true;
       daemons = [ cfg.daemon_name ];
     };
-    
+
     services.ceph.osd = lib.mkIf (cfg.osd.storages != []) {
       enable = true;
       # ids must be number... I’m deceived (until they can be auto-attributed...)

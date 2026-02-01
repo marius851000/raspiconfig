@@ -17,16 +17,30 @@ in
       default = [];
       type = lib.types.listOf lib.types.str;
     };
+    extra_filters = lib.mkOption {
+      default = [];
+      type = lib.types.listOf lib.types.str;
+    };
   };
 
   config = {
     networking.firewall.extraCommands = (lib.concatLines (builtins.map (ip6:
-      (lib.concatLines (builtins.map (port:
-        ''
-          ip6tables -s ${ip6} -A INPUT -p tcp --dport ${port} -j ACCEPT
-          ip6tables -s ${ip6} -A INPUT -p udp --dport ${port} -j ACCEPT
-        ''
-      ) cfg.ports))
+      (
+        lib.concatLines
+        (
+          ((builtins.map (port:
+            ''
+              ip6tables -s ${ip6} -A INPUT -p tcp --dport ${port} -j ACCEPT
+              ip6tables -s ${ip6} -A INPUT -p udp --dport ${port} -j ACCEPT
+            ''
+          ) cfg.ports)) ++
+          ((builtins.map (extra:
+            ''
+              ip6tables -s ${ip6} ${extra}
+            ''
+          ) cfg.extra_filters))
+        )
+      )
     ) trusted_ips));
   };
 }
