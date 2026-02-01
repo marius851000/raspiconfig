@@ -14,16 +14,6 @@
   };
 
   services.hydra = {
-    package = pkgs.hydra.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or []) ++ [
-        # Fix CORS
-        (pkgs.fetchpatch {
-          url = "https://github.com/NixOS/hydra/pull/1397.patch";
-          sha256 = "sha256-u2k1Xhfg733ccBukn+I2L0UArFs/bkOqAu6ZPCW1oRM=";
-        })
-      ];
-    });
-
     enable = true;
     useSubstitutes = true;
     port = 3010;
@@ -34,10 +24,15 @@
     buildMachinesFiles = [];
     notificationSender = "hydra@mariusdavid.fr";
     extraConfig = ''
+      allow_import_from_derivation = true
       <git-input>
         timeout = 99990
       </git-input>
     '';
+  };
+
+  nix.settings = {
+    allow-import-from-derivation = true;
   };
 
   nix.package = pkgs.nixVersions.latest;
