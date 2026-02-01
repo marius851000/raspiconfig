@@ -12,7 +12,6 @@ let
     "paperless.mariusdavid.fr"
     "otp.mariusdavid.fr"
     "archive.mariusdavid.fr"
-    "hydra.mariusdavid.fr"
     "marella.net.mariusdavid.fr"
     "ceph.mariusdavid.fr"
     "torrent.mariusdavid.fr"
@@ -26,6 +25,7 @@ let
     "matrix.mariusdavid.fr"
     "lemmy.mariusdavid.fr"
     "nesmy.mariusdavid.fr"
+    "hydra.mariusdavid.fr"
   ];
 in
 {

@@ -163,7 +163,7 @@
         ./syncthing.nix
         ./nexusback.nix
         #./transmission.nix
-        (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
+        #(import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         #TODO: fix compilation
 
 
@@ -245,6 +245,7 @@
         ./synapse.nix
         ./lemmy.nix
         ./nesmy.nix
+        (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         /*{
           marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
