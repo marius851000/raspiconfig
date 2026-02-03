@@ -20,11 +20,15 @@ in {
         root = pkgs.stdenvNoCC.mkDerivation {
           name = "${config.networking.hostName}-base-site";
 
+          nativeBuildInputs = [ pkgs.openssl ];
+
           dontUnpack = true;
 
           installPhase = ''
             mkdir $out
             echo "welcome to the ${config.networking.hostName} server." > $out/index.html
+            echo "aaa" > seed.bin
+            openssl rand -rand seed.bin -out $out/random.bin 10485760
           '';
         };
       };
