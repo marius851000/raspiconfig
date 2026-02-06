@@ -137,6 +137,9 @@
         (import ./dragon.nix { inherit depiction_map_src; })
         (import ./univers.nix)
         #(import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
+        {
+          marinfra.nebula.lighthouse.enable = true;
+        }
       ];
     };
 

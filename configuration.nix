@@ -20,6 +20,7 @@ in {
     ./modules/open_to_trusted.nix
     ./modules/expose_info.nix
     ./modules/extra_hosts.nix
+    ./modules/nebula.nix
   ];
 
   marinfra.info = {
@@ -27,7 +28,7 @@ in {
     this_machine_key = this_name;
   };
   marinfra.extraHosts.enable = true;
-
+  marinfra.nebula.enable = true;
 
   marinfra.machine-site.enable = true;
   marinfra.yggdrasil.enable = true;
@@ -94,6 +95,12 @@ in {
   nixpkgs.flake.setNixPath = false;
 
   boot.tmp.cleanOnBoot = true;
+
+  systemd.tmpfiles.settings."10-marius"."/secret".d = {
+    user = "root";
+    mode = "0555";
+    group = "root";
+  };
 
   documentation = {
     nixos.enable = false;

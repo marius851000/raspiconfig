@@ -1,6 +1,7 @@
 import subprocess
 import argparse
 import sys
+import os
 import concurrent.futures
 from typing import Iterable
 
@@ -12,9 +13,46 @@ MACHINES = {
     "scrogne": {"host": "mariusdavid.fr", "name": "scrogne"},
 }
 
+def deploy_nebula(host: str, name: str):
+    # copy nebula mesh VPN cert stuff
+    # (can’t move after rebuild. It might not execute if nebula fail to start)
+    # But the nebula-mariusnet might not exist yet...
+    path_to_secrets = "private/"
+    crt_src = os.path.join(path_to_secrets, name + ".crt")
+    key_src = os.path.join(path_to_secrets, name + ".key")
+    ca_crt_src = os.path.join(path_to_secrets, "ca.crt")
+    with open(crt_src, "rb") as f:
+        subprocess.run(
+            ["ssh", f"root@{host}", "umask 077; cat > /secret/nebula-" + name + ".crt"],
+            input=f.read(),
+            check=True,
+        )
+    with open(key_src, "rb") as f:
+        subprocess.run(
+            ["ssh", f"root@{host}", "umask 077; cat > /secret/nebula-" + name + ".key"],
+            input=f.read(),
+            check=True,
+        )
+    with open(ca_crt_src, "rb") as f:
+        subprocess.run(
+            ["ssh", f"root@{host}", "umask 077; cat > /secret/nebula-ca.crt"],
+            input=f.read(),
+            check=True,
+        )
+
+    subprocess.run(
+        ["ssh", f"root@{host}", "chown nebula-mariusnet /secret/nebula-ca.crt /secret/nebula-" + name + ".crt /secret/nebula-" + name + ".key"],
+        check=True,
+    )
 
 def run_rebuild(host: str, name: str) -> None:
-    """Run nixos‑rebuild for a single machine."""
+    nebula_error = None
+    try:
+        deploy_nebula(host, name)
+    except Exception as e:
+        nebula_error = e
+
+    # deploy itself
     subprocess.run(
         [
             "nixos-rebuild",
@@ -26,6 +64,9 @@ def run_rebuild(host: str, name: str) -> None:
         ],
         check=True,
     )
+
+    if nebula_error is not None:
+        raise nebula_error
 
 
 def deploy_parallel(machines: Iterable[str], workers: int = 4) -> None:
