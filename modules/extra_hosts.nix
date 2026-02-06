@@ -13,7 +13,11 @@ in {
       ::1 ${config.marinfra.info.this_machine_key}.local
       ${builtins.concatStringsSep "\n" (
         builtins.map (
-          m: "${m.value.options.marinfra.info.ygg_address.value} ${m.name}.local"
+          m: if m.value.options.marinfra.nebula.enable.value then
+            "${m.value.options.marinfra.info.nebula_address.value} ${m.name}.local\n" +
+            "${m.value.options.marinfra.info.nebula_address.value} ${m.name}.net.mariusdavid.fr"
+          else
+            ""
         ) (lib.attrsToList config.marinfra.info.other_machines)
       )}
     '';

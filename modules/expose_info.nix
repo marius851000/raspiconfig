@@ -12,6 +12,11 @@ in
       default = "";
       description = "IPv6 address of this machine on the Yggdrasil network. Empty string if unknown.";
     };
+    nebula_address = mkOption {
+      type = types.str;
+      default = "";
+      description = "IPv4 nebula address, if the nebula module is enabled.";
+    };
     other_machines = mkOption {
       type = types.attrs;
       default = {};

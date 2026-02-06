@@ -48,4 +48,5 @@
   system.stateVersion = "23.05";
   marinfra.ssl.enable = true;
   marinfra.info.ygg_address = "202:3679:f712:fd04:e3de:a123:caf4:580d";
+  marinfra.info.nebula_address = "10.100.0.3";
 }

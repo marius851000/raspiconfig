@@ -62,4 +62,5 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   marinfra.info.ygg_address = "201:4227:d97:c7f2:54bc:b9f4:a4:508c";
+  marinfra.info.nebula_address = "10.100.0.2";
 }

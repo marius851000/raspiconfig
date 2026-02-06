@@ -47,11 +47,20 @@ in {
               proto = "icmp";
               host = "any";
             }
-            #TODO: use the firewall module to configure stuff here.
+            {
+              port = "80";
+              proto = "any";
+              host = "any";
+            }
+            {
+              port = "443";
+              proto = "any";
+              host = "any";
+            }
+            #TODO: use the firewall module to configure stuff here?
           ];
         };
       };
-      #TODO: configure lighthouse?
     };
   };
 }
