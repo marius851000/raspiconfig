@@ -17,7 +17,7 @@ def deploy_nebula(host: str, name: str):
     # copy nebula mesh VPN cert stuff
     # (can’t move after rebuild. It might not execute if nebula fail to start)
     # But the nebula-mariusnet might not exist yet...
-    path_to_secrets = "private/"
+    path_to_secrets = "ca/private/"
     crt_src = os.path.join(path_to_secrets, name + ".crt")
     key_src = os.path.join(path_to_secrets, name + ".key")
     ca_crt_src = os.path.join(path_to_secrets, "merged_ca.crt")
