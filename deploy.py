@@ -45,6 +45,16 @@ def deploy_nebula(host: str, name: str):
         check=True,
     )
 
+    subprocess.run(
+        ["ssh", f"root@{host}", "systemctl start nebula@mariusnet.service"],
+        check=True,
+    )
+
+    subprocess.run(
+        ["ssh", f"root@{host}", "systemctl kill -s SIGHUP --kill-who=main nebula@mariusnet.service"],
+        check=True,
+    )
+
 def run_rebuild(host: str, name: str) -> None:
     nebula_error = None
     try:
