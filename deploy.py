@@ -20,7 +20,7 @@ def deploy_nebula(host: str, name: str):
     path_to_secrets = "private/"
     crt_src = os.path.join(path_to_secrets, name + ".crt")
     key_src = os.path.join(path_to_secrets, name + ".key")
-    ca_crt_src = os.path.join(path_to_secrets, "ca.crt")
+    ca_crt_src = os.path.join(path_to_secrets, "merged_ca.crt")
     with open(crt_src, "rb") as f:
         subprocess.run(
             ["ssh", f"root@{host}", "umask 077; cat > /secret/nebula-" + name + ".crt"],
