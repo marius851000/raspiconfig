@@ -15,3 +15,6 @@ releases:
 #   kubectl --namespace kube-system port-forward $POD_NAME 8080:$CONTAINER_PORT
 # 2. Get the token using
 #   kubectl create token headlamp --namespace kube-system
+
+
+# And also, kubectl port-forward -n kube-system service/headlamp 8080:80

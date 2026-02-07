@@ -3,11 +3,11 @@
 # My new home ISP does not provide static IPv4, so instead use the OVH server to redirect IPv4 traffic to the server via yggdrasil using nginx (IPv6 is left as-is)
 let
   # for some reason, nebula doesn’t work well with this in a weird way.
-  marella_yggdrasil_ip = "[202:3679:f712:fd04:e3de:a123:caf4:580d]";
-  #marella_yggdrasil_ip = "10.100.0.3"; # actually nebula
+  #marella_yggdrasil_ip = "[202:3679:f712:fd04:e3de:a123:caf4:580d]";
+  marella_yggdrasil_ip = "10.100.0.3"; # actually nebula
   coryn_yggdrasil_ip = "[201:c608:513e:2269:3d8d:b3eb:93c1:f1e7]";
-  zana_yggdrasil_ip = "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]";
-  #zana_yggdrasil_ip = "10.100.0.2"; # actually nebula
+  #zana_yggdrasil_ip = "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]";
+  zana_yggdrasil_ip = "10.100.0.2"; # actually nebula
 
   domains_to_proxy_to_marella = [
     "paperless.mariusdavid.fr"

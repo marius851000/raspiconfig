@@ -98,7 +98,7 @@ in {
     services.syncthing.settings.folders = {
       "/raspiconfig-downstream" = {
         id = "txuv9-adhsr";
-        devices = [ "mariuspc" ];
+        devices = [ "coryn" ];
         label = "raspiconfig";
         type = "receiveonly";
       };

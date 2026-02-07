@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik            # must match the HelmChart name
+  namespace: kube-system
+spec:
+  valuesContent: |
+    ports:
+      web:
+        exposedPort: 3080
+      #TODO: actually disable websecure
+      websecure:
+        exposedPort: 3443

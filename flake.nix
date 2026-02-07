@@ -139,6 +139,10 @@
         #(import ./hydra.nix { hostname = "hydra-scrogne.mariusdavid.fr"; })
         {
           marinfra.nebula.lighthouse.enable = true;
+
+
+          marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.master.enable = true;
         }
       ];
     };
@@ -175,6 +179,7 @@
           #marinfra.otp.enable = true;
 
           marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.master.enable = true;
 
           marinfra.paperless = {
             enable = true;
