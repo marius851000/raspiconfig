@@ -84,6 +84,7 @@ in {
         "--cluster-cidr=10.200.0.0/16"
       ] else []) ++ [
         "--embedded-registry"
+        "--flannel-backend=wireguard-native"
         #TODO: the full P2P registry stuff
       ];
     } // (if cfg.master.clusterInit then {

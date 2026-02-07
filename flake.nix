@@ -253,6 +253,7 @@
         ./synapse.nix
         ./lemmy.nix
         ./nesmy.nix
+        ./expose_kubernetes.nix
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         {
           marinfra.kubernetes.enable = true;

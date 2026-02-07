@@ -6,6 +6,14 @@ releases:
    - name: headlamp
      namespace: kube-system
      chart: headlamp/headlamp
+     values:
+      - ingress:
+          enabled: true
+          hosts:
+            - host: "lamp.mariusdavid.fr"
+              paths:
+                - path: /
+                  type: ImplementationSpecific
 
 # NOTES:
 # 1. Get the application URL by running these commands:

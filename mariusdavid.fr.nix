@@ -161,6 +161,9 @@ in
     nesmy.A = ip4scrogne;
     nesmy.AAAA = ip6scrogne;
 
+    lamp.A = ip4scrogne;
+    lamp.AAAA = ip6scrogne;
+
     net = {
       subdomains = {
         scrogne = {

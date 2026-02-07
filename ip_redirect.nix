@@ -27,6 +27,7 @@ let
     "lemmy.mariusdavid.fr"
     "nesmy.mariusdavid.fr"
     "hydra.mariusdavid.fr"
+    "lamp.mariusdavid.fr"
   ];
 in
 {
