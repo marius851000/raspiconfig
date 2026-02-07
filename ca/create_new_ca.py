@@ -20,8 +20,8 @@ for old in ("ca.key", "ca.crt"):
 
 # 1. Create a new CA
 subprocess.run(
-    # this short for testing purpose
-    ["nebula-cert", "ca", "-name", "Marius net", "-duration", "1h"],
+    # 1 year.
+    ["nebula-cert", "ca", "-name", "Marius net", "-duration", "8760h"],
     check=True,
 )
 

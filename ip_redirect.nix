@@ -2,11 +2,9 @@
 
 # My new home ISP does not provide static IPv4, so instead use the OVH server to redirect IPv4 traffic to the server via yggdrasil using nginx (IPv6 is left as-is)
 let
-  marella_yggdrasil_ip = "202:3679:f712:fd04:e3de:a123:caf4:580d";
-  coryn_yggdrasil_ip = "201:c608:513e:2269:3d8d:b3eb:93c1:f1e7";
-  zana_yggdrasil_ip = "201:4227:d97:c7f2:54bc:b9f4:a4:508c";
-  server_ip = "5.196.70.120";
-  server_ip_v6 = "2001:41d0:e:378::1";
+  marella_yggdrasil_ip = "10.100.0.3"; # actually nebula
+  coryn_yggdrasil_ip = "[201:c608:513e:2269:3d8d:b3eb:93c1:f1e7]";
+  zana_yggdrasil_ip = "10.100.0.2"; # actually nebula
 
   domains_to_proxy_to_marella = [
     "paperless.mariusdavid.fr"
@@ -52,15 +50,15 @@ in
       }
 
       upstream https_marella_backend {
-        server [${marella_yggdrasil_ip}]:443;
+        server ${marella_yggdrasil_ip}:443;
       }
 
       upstream https_coryn_backend {
-        server [${coryn_yggdrasil_ip}]:443;
+        server ${coryn_yggdrasil_ip}:443;
       }
 
       upstream https_zana_backend {
-        server [${zana_yggdrasil_ip}]:443;
+        server ${zana_yggdrasil_ip}:443;
       }
 
       server {
@@ -74,19 +72,19 @@ in
     virtualHosts = builtins.listToAttrs (
       (builtins.map (domain: lib.nameValuePair domain {
         locations."/" = {
-          proxyPass = "http://[${marella_yggdrasil_ip}]:80";
+          proxyPass = "http://${marella_yggdrasil_ip}:80";
         };
       }) domains_to_proxy_to_marella)
       ++
       (builtins.map (domain: lib.nameValuePair domain {
         locations."/" = {
-          proxyPass = "http://[${coryn_yggdrasil_ip}]:80";
+          proxyPass = "http://${coryn_yggdrasil_ip}:80";
         };
       }) domains_to_proxy_to_coryn)
       ++
       (builtins.map (domain: lib.nameValuePair domain {
         locations."/" = {
-          proxyPass = "http://[${zana_yggdrasil_ip}]:80";
+          proxyPass = "http://${zana_yggdrasil_ip}:80";
         };
       }) domains_to_proxy_to_zana)
     );
