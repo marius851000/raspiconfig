@@ -80,9 +80,12 @@ in {
       role = if cfg.master.enable then "server" else "agent";
       nodeIP = config.marinfra.info.nebula_address;
       tokenFile = "/secret/k3s-secret";
-      extraFlags = if cfg.master.enable then [
+      extraFlags = (if cfg.master.enable then [
         "--cluster-cidr=10.200.0.0/16"
-      ] else [];
+      ] else []) ++ [
+        "--embedded-registry"
+        #TODO: the full P2P registry stuff
+      ];
     } // (if cfg.master.clusterInit then {
       clusterInit = true;
     } else {
@@ -105,8 +108,11 @@ in {
       "d '/raspiconfig-downstream' 700 dokuwiki_pool dokuwiki_pool -"
     ];
 
-    # Rook
+    environment.variables = {
+      KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+    };
 
+    # Rook
     boot.kernelModules = [ "ceph" "rbd" ];
 
     systemd.services.containerd.serviceConfig = {
