@@ -16,6 +16,11 @@ in {
     environment.systemPackages = with pkgs; [ nebula ];
     networking.firewall.allowedUDPPorts = [ 4242 ];
 
+    networking.firewall.trustedInterfaces = [
+      # let nebula handle the firewall
+      "nebula.mariusne"
+    ];
+
     services.nebula.networks.mariusnet = {
       enable = true;
       isLighthouse = cfg.lighthouse.enable;

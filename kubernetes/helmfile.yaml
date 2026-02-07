@@ -43,6 +43,7 @@ releases:
     value: /nix
   - name: csi.csiRBDPluginVolumeMount[0].readOnly
     value: true
+
 - name: rook-cluster
   namespace: rook-ceph
   chart: rook-release/rook-ceph-cluster

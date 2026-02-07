@@ -174,6 +174,8 @@
         {
           #marinfra.otp.enable = true;
 
+          marinfra.kubernetes.enable = true;
+
           marinfra.paperless = {
             enable = true;
             domain = "paperless.mariusdavid.fr";
@@ -205,8 +207,6 @@
           systemd.tmpfiles.rules = [
             "d '/dragons' 700 dokuwiki_pool dokuwiki_pool -"
           ];
-
-          #marinfra.kubernetes.enable = true;
 
           /*services = {
             xserver = {
@@ -249,6 +249,11 @@
         ./lemmy.nix
         ./nesmy.nix
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
+        {
+          marinfra.kubernetes.enable = true;
+          marinfra.kubernetes.master.enable = true;
+          marinfra.kubernetes.master.clusterInit = true;
+        }
         /*{
           marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
