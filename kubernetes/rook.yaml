@@ -44,6 +44,7 @@ releases:
   - name: csi.csiRBDPluginVolumeMount[0].readOnly
     value: true
 
+#note: for initial deployment, this should be first commented out to make sure the generic rook stuff are installed first
 - name: rook-cluster
   namespace: rook-ceph
   chart: rook-release/rook-ceph-cluster
@@ -54,3 +55,19 @@ releases:
     value: 1
   - name: cephClusterSpec.dashboard.ssl
     value: false
+  - name: cephClusterSpec.cephConfig.mon_allow_pool_size_one
+    value: "true"
+  - name: cephClusterSpec.cephConfig.auth_allow_insecure_global_id_reclaim
+    value: "true"
+
+# The Ceph Cluster has been installed. Check its status by running:
+#   kubectl --namespace rook-ceph get cephcluster
+
+# Visit https://rook.io/docs/rook/latest/CRDs/Cluster/ceph-cluster-crd/ for more information about the Ceph CRD.
+
+# Important Notes:
+# - You can only deploy a single cluster per namespace
+# - If you wish to delete this cluster and start fresh, you will also have to wipe the OSD disks using `sfdisk`
+
+
+# Grmph. Had problem. Will go with manual deployment. Still delating. Will it ever finish? https://rook.io/docs/rook/latest-release/Getting-Started/ceph-teardown/#delete-the-cephcluster-crd

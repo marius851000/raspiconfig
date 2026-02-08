@@ -143,6 +143,8 @@
 
           marinfra.kubernetes.enable = true;
           marinfra.kubernetes.master.enable = true;
+
+          # services.k3s.disableAgent = true; # do not have as much room space as other servers, plus appear to have issue running ceph that need x86_64-v2
         }
       ];
     };

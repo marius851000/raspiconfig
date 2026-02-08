@@ -8,6 +8,7 @@
     virtualHosts."lamp.mariusdavid.fr" = {
       locations."/" = {
         proxyPass = "http://${config.marinfra.info.nebula_address}:3080";
+        proxyWebsockets = true;
       };
     };
   };

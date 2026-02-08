@@ -1,7 +1,7 @@
 releases:
-  - name: traefik-config
-    chart: ./marius-traefik-config
+  - name: marius-config
+    chart: ./marius-config
 
 helmfiles:
   - path: ./headlamp.yaml
-  #- path: ./rook.yaml
+#  - path: ./rook.yaml
