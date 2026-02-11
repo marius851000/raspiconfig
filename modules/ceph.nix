@@ -29,23 +29,30 @@ in {
   config = lib.mkIf cfg.enable ({
     environment.systemPackages = [ pkgs.ceph ];
 
-    marinfra.open_to_trusted.ports = [ "3300" ];
-    marinfra.open_to_trusted.extra_filters = [
-      "-A INPUT -p tcp --match multiport --dports 6800:7300 -j ACCEPT"
+    services.nebula.networks.mariusnet.settings.firewall.inbound = [
+      {
+        port = "3300";
+        proto = "any";
+        host = "any";
+      }
+      {
+        port = "6800-7300";
+        proto = "tcp";
+        host = "any";
+      }
     ];
 
     services.ceph.enable = true;
     services.ceph.global = {
       fsid = "d236228d-314e-4eeb-b2c8-5edd6e4718a6";
-      monHost = "zana.local";
-      monInitialMembers = "zana";
+      monHost = "10.100.0.2, 10.100.0.3";
+      monInitialMembers = "zana, marella";
     };
 
     services.ceph.extraConfig = {
-      "ms bind ipv6" = "true";
-      "ms_bind_msgr1" = "false";
-      "ms_bind_msgr2" = "true";
-      "auth_allow_insecure_global_id_reclaim" = "false";
+      ms_bind_msgr1 = "false";
+      ms_bind_msgr2 = "true";
+      auth_allow_insecure_global_id_reclaim = "false";
       mon_allow_pool_size_one = "true";
 
       # reduce memory usage at the cost of caching
@@ -57,7 +64,12 @@ in {
     services.ceph.mon = lib.mkIf cfg.mon-mgr.enable {
       enable = true;
       daemons = [ cfg.daemon_name ];
+      extraConfig = {
+        public_addr = config.marinfra.info.nebula_address;
+      };
     };
+
+
 
     services.ceph.mgr = lib.mkIf cfg.mon-mgr.enable {
       enable = true;

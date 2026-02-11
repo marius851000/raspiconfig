@@ -188,13 +188,12 @@
             domain = "paperless.mariusdavid.fr";
           };
 
-          /*marinfra.ceph.enable = true;
+          marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
           marinfra.ceph.daemon_name = "marella";
-          marinfra.ceph.osd.storages = [ 1 5 ];
-          marinfra.ceph.mds.enable = true;
+          marinfra.ceph.mds.enable = false;
 
-          marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];
+          /*marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];
 
           services.nginx = {
             virtualHosts."ceph.mariusdavid.fr" = {
@@ -261,6 +260,11 @@
           marinfra.kubernetes.enable = true;
           marinfra.kubernetes.master.enable = true;
           marinfra.kubernetes.master.clusterInit = true;
+
+          marinfra.ceph.enable = true;
+          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.daemon_name = "zana";
+          marinfra.ceph.mds.enable = false;
         }
         /*{
           marinfra.ceph.enable = true;
