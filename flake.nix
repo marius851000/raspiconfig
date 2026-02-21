@@ -140,11 +140,14 @@
         {
           marinfra.nebula.lighthouse.enable = true;
 
+          #well. k3s eat about 400MiB of RAM, which is usually reasonable, but that’s a machine with 4GB we’re talking about.
+          #marinfra.kubernetes.enable = true;
+          #marinfra.kubernetes.master.enable = true;
 
-          marinfra.kubernetes.enable = true;
-          marinfra.kubernetes.master.enable = true;
+          marinfra.ceph.enable = true;
+          marinfra.ceph.mon-mgr.enable = true;
 
-          # services.k3s.disableAgent = true; # do not have as much room space as other servers, plus appear to have issue running ceph that need x86_64-v2
+          services.k3s.disableAgent = true; # do not have as much room space as other servers, plus is under x86_64-v2, which cause some problem with some containeres.
         }
       ];
     };
@@ -190,7 +193,6 @@
 
           marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
-          marinfra.ceph.daemon_name = "marella";
           marinfra.ceph.mds.enable = false;
 
           /*marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];
@@ -263,7 +265,6 @@
 
           marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
-          marinfra.ceph.daemon_name = "zana";
           marinfra.ceph.mds.enable = false;
         }
         /*{

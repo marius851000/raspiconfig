@@ -45,15 +45,15 @@ in {
     services.ceph.enable = true;
     services.ceph.global = {
       fsid = "d236228d-314e-4eeb-b2c8-5edd6e4718a6";
-      monHost = "10.100.0.2, 10.100.0.3";
-      monInitialMembers = "zana, marella";
+      monHost = "10.100.0.2, 10.100.0.3, 10.100.0.1";
+      monInitialMembers = "zana, marella, scrogne";
     };
 
     services.ceph.extraConfig = {
       ms_bind_msgr1 = "false";
       ms_bind_msgr2 = "true";
       auth_allow_insecure_global_id_reclaim = "false";
-      mon_allow_pool_size_one = "true";
+      mon_allow_pool_size_one = "false";
 
       # reduce memory usage at the cost of caching
       bluestore_cache_autotune = "false";

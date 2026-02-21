@@ -29,6 +29,7 @@ in {
   };
   marinfra.extraHosts.enable = true;
   marinfra.nebula.enable = true;
+  marinfra.ceph.daemon_name = this_name;
 
   marinfra.machine-site.enable = true;
   marinfra.yggdrasil.enable = true;
