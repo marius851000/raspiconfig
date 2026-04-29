@@ -34,7 +34,7 @@ in {
     services.paperless = {
       enable = true;
       port = cfg.port;
-      address = "localhost";
+      address = "0.0.0.0";
       domain = "paperless.mariusdavid.fr";
 
       settings = {
