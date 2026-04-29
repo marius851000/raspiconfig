@@ -144,8 +144,8 @@
           #marinfra.kubernetes.enable = true;
           #marinfra.kubernetes.master.enable = true;
 
-          marinfra.ceph.enable = true;
-          marinfra.ceph.mon-mgr.enable = true;
+          #marinfra.ceph.enable = true;
+          #marinfra.ceph.mon-mgr.enable = true;
 
           services.k3s.disableAgent = true; # do not have as much room space as other servers, plus is under x86_64-v2, which cause some problem with some containeres.
         }
@@ -257,22 +257,18 @@
         ./lemmy.nix
         ./nesmy.nix
         ./expose_kubernetes.nix
+        #TODO: verify the new nix version contain the fix
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         {
-          marinfra.kubernetes.enable = true;
+          /*marinfra.kubernetes.enable = true;
           marinfra.kubernetes.master.enable = true;
-          marinfra.kubernetes.master.clusterInit = true;
+          marinfra.kubernetes.master.clusterInit = true;*/
 
-          marinfra.ceph.enable = true;
+          #TODO: re-enable
+          /*marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
-          marinfra.ceph.mds.enable = false;
+          marinfra.ceph.mds.enable = false;*/
         }
-        /*{
-          marinfra.ceph.enable = true;
-          marinfra.ceph.mon-mgr.enable = true;
-          marinfra.ceph.daemon_name = "zana";
-          marinfra.ceph.mds.enable = false;
-          }*/
       ];
     };
 
