@@ -473,16 +473,17 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1777270315,
-        "narHash": "sha256-yKB4G6cKsQsWN7M6rZGk6gkJPDNPIzT05y4qzRyCDlI=",
+        "lastModified": 1778875947,
+        "narHash": "sha256-86qdQSMLHQC5yyznBYtW/AUeqnJjD5rpvHRKVJFAW0Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6368eda62c9775c38ef7f714b2555a741c20c72d",
+        "rev": "7c1e2887e60d68213a255f9cb12cff4e8db6723e",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_5": {
@@ -506,11 +507,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1769867135,
-        "narHash": "sha256-53/Ntr26c44zcKS60SZ8974Csq+K3ulCn5q1pngNomI=",
+        "lastModified": 1778877637,
+        "narHash": "sha256-zlKbVd/W+1jOxjvzlbuRGjnjQv7N4yA7hhAomO94dJM=",
         "owner": "marius851000",
         "repo": "hack_archive_server",
-        "rev": "b712ba3eebb6feba61c6cc613974fe672b78a5ac",
+        "rev": "e2ab87dea0b679ce640448692e35fc8cc4a100b3",
         "type": "github"
       },
       "original": {
@@ -539,11 +540,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1777464611,
-        "narHash": "sha256-9UKobwWWzQgZucimboNOLeiV/QdSkYjUgP5m2b1VEvM=",
+        "lastModified": 1777564361,
+        "narHash": "sha256-G23kwtgL/HbfSZ1Go/wPk3fYCKqZzD5nGGi12kXdhk8=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "f8cdf55050770bbcb1b5ba178d73b346988f0f89",
+        "rev": "bd6eea02d5095a83d25f2d57202bb78c93be1cc2",
         "type": "github"
       },
       "original": {

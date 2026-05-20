@@ -55,7 +55,7 @@ def deploy_nebula(host: str, name: str):
         check=True,
     )
 
-def run_rebuild(host: str, name: str) -> None:
+def run_rebuild(host: str, name: str, boot: bool = False) -> None:
     nebula_error = None
     try:
         deploy_nebula(host, name)
@@ -63,10 +63,11 @@ def run_rebuild(host: str, name: str) -> None:
         nebula_error = e
 
     # deploy itself
+    rebuild_command = "boot" if boot else "switch"
     subprocess.run(
         [
             "nixos-rebuild",
-            "switch",
+            rebuild_command,
             "--target-host",
             f"root@{host}",
             "--flake",
@@ -79,12 +80,12 @@ def run_rebuild(host: str, name: str) -> None:
         raise nebula_error
 
 
-def deploy_parallel(machines: Iterable[str], workers: int = 4) -> None:
+def deploy_parallel(machines: Iterable[str], workers: int = 4, boot: bool = False) -> None:
     """Deploy multiple machines concurrently."""
     jobs = [(MACHINES[m]["host"], MACHINES[m]["name"]) for m in machines]
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
         futures = {
-            pool.submit(run_rebuild, host, name): m for (host, name), m in zip(jobs, machines)
+            pool.submit(run_rebuild, host, name, boot): m for (host, name), m in zip(jobs, machines)
         }
         for future in concurrent.futures.as_completed(futures):
             machine = futures[future]
@@ -113,6 +114,11 @@ def main() -> None:
         default=4,
         help="Number of parallel workers, used only when --parallel is set",
     )
+    parser.add_argument(
+        "--boot",
+        action="store_true",
+        help="Use 'nixos-rebuild boot' instead of 'nixos-rebuild switch'",
+    )
     args = parser.parse_args()
 
     if args.machines == "all":
@@ -126,12 +132,12 @@ def main() -> None:
         sys.exit(1)
 
     if args.parallel:
-        deploy_parallel(target_machines, workers=args.workers)
+        deploy_parallel(target_machines, workers=args.workers, boot=args.boot)
     else:
         for machine in target_machines:
             info = MACHINES[machine]
             try:
-                run_rebuild(info["host"], info["name"])
+                run_rebuild(info["host"], info["name"], boot=args.boot)
                 print(f"\033[32m[✓] Deployed {machine}\033[0m")
             except Exception as exc:
                 print(f"\033[31m[✗] {machine} failed: {exc}\033[0m", file=sys.stderr)

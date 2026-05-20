@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "nixpkgs";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   #inputs.nixpkgs.url = "github:SuperSandro2000/nixpkgs/mediawiki-apcu";
   #inputs.nixpkgs.url = "github:marius851000/nixpkgs/fix_lemmy_ui";
   /*inputs.nixpkgs = {
@@ -125,7 +125,8 @@
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
         ./prometheus.nix
-        ./grafana.nix
+        #TODO: re-enable, require some new secret_key stuff?
+        #./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         #(import ./retoot-bot.nix { inherit retoot-bot-src; })
         #./peertube.nix

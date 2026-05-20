@@ -35,7 +35,7 @@ in
 
     src = builtins.trace "${package}" package;
 
-    nativeBuildInputs = [ nodePackages.npm nodejs_22 ];
+    nativeBuildInputs = [ nodejs_22 ];
 
     patches = [
       ./nsc-bar-cleanup.diff

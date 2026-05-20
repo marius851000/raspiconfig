@@ -175,10 +175,10 @@ rec {
     '';
   };
 
-
-  services.dovecot2.sieve = {
+  #TODO: re-enable
+  /*services.dovecot2.sieve = {
     plugins = [ "sieve_imapsieve" "sieve_extprograms" ];
     extensions = [ "fileinto" ];
     globalExtensions = [ "+vnd.dovecot.pipe" "+vnd.dovecot.environment" ];
-  };
+  };*/
 }
