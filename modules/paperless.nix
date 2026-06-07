@@ -21,8 +21,7 @@ in {
 
     services.nginx = {
       virtualHosts."${cfg.domain}" = {
-        enableACME = false;
-        forceSSL = false;
+        forceSSL = true;
 
         locations."/" = {
           proxyPass = "http://localhost:${builtins.toString cfg.port}";
