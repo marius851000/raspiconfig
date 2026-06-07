@@ -1,20 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
+    #TODO: atomic backup (create a subvolume)
     services.restic = {
         backups = {
-            toazure = {
+            root = {
                 initialize = true;
-                repository = "rclone:tardigrade:/hacknews-backup/"; #azurebloc::/backup
-                rcloneConfig = {
-                    type = "tardigrade";
-                    satellite_address = "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs@europe-west-1.tardigrade.io:7777";
-                };
-                rcloneConfigFile = "/secret/restic-tardigrade-config.conf";
+                repository = "s3:https://s3.gra.io.cloud.ovh.net/backup-${config.marinfra.info.this_machine_key}";
                 #TODO: actually use a proper secret management system (or at least put them all in a folder)
                 passwordFile = "/secret/restic-password";
-                #initialize = true;
+                environmentFile = "/secret/restic-secrets.txt";
                 extraBackupArgs = [
+                    "-o s3.bucket-lookup=path"
+                    "-o s3.storage-class=STANDARD_IA"
+                    "-o s3.region=\"gra\""
+
                     "--exclude=/nix"
                     "--exclude=/proc"
                     "--exclude=/tmp"
