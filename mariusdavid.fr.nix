@@ -84,7 +84,7 @@ in
     #otp.AAAA = ip6marella;
 
     paperless.A = ip4scrogne; # actually hosted on Marella
-    #paperless.AAAA = ip6marella;
+    paperless.AAAA = ip6scrogne;
 
     matrix.A = ip4scrogne; # actually Marella
     #matrix.AAAA = ip6marella;
