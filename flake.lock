@@ -369,11 +369,11 @@
     "mariussite": {
       "flake": false,
       "locked": {
-        "lastModified": 1780742678,
-        "narHash": "sha256-AlPW5QOR7o2t7GLmWQkC2FT9QG+bEe0mYJuCTPrm9Cg=",
+        "lastModified": 1781203517,
+        "narHash": "sha256-+E9DoXbUX+tHhZcfI+aJaVmbQ+kBldbgyTkwnqNysVM=",
         "owner": "marius851000",
         "repo": "mysite",
-        "rev": "a233d1dc45d06a1b775a534ebed480ed8eab0dbd",
+        "rev": "5976586c79d8b9a154521fbae29a39df9fb780c5",
         "type": "github"
       },
       "original": {
