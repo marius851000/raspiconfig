@@ -213,7 +213,7 @@
       nginxaws = {
         logFile = "/var/log/nginx/access.log";
         webService = {
-          urlPrefix = "https://awstats.mariusdavid.fr";
+          urlPrefix = "";
           hostname = "awstats.mariusdavid.fr";
           enable = true;
         };
