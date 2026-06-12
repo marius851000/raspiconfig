@@ -11,7 +11,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10048;
+    serial = 10049;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -23,6 +23,7 @@ in
 
   TXT = [
     "v=spf1 a:mariusdavid.fr -all"
+    "google-site-verification=9FU5lYhyo7V7JmCdylxjhS9a0M9_8J4632Whd-wPEGo"
   ];
 
   DKIM = [
