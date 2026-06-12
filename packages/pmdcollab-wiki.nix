@@ -29,6 +29,9 @@ export default function About(){
 }'';
 
   package = napalm_inst.buildPackage "${pmdcollab_wiki-src}" { };
+
+
+  b = "`";
 in
   stdenv.mkDerivation {
     name = "pmdcollab-wiki";
@@ -76,6 +79,11 @@ in
 
       substituteInPlace src/components/footer.tsx \
         --replace-fail "https://github.com/PMDCollab/SpriteCollab" "https://github.com/marius851000/NotSpriteCollab"
+
+      substituteInPlace src/components/generate-credits.ts \
+        --replace-fail 'let buffer = ${b}All custom graphics not originating from official PMD games are licensed under Attribution-NonCommercial 4.0 International ${b} +' 'let buffer = ${b}Credit list generated from NotSpriteCollab (https://nsc.pmdcollab.org/).\nNote that there is no unifying license.\n\n${b};' \
+        --replace-fail '${b}http://creativecommons.org/licenses/by/4.0/.\n${b} +' "" \
+        --replace-fail '${b}All graphics referred to in this file can be found in http://sprites.pmdcollab.org/\n\n${b};' ""
 
       cp ${customAbout} src/About.tsx
 
