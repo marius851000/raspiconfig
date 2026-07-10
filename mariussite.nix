@@ -50,18 +50,19 @@ in
         "/element/" = {
           alias = let
             element = pkgs.element-web.override {
-            conf = {
-              default_server_config = {
-                "m.homeserver" = {
-                  "base_url" = "https://mariusdavid.fr";
-                  "server_name" = "mariusdavid.fr";
+              conf = {
+                default_server_config = {
+                  "m.homeserver" = {
+                    "base_url" = "https://mariusdavid.fr";
+                    "server_name" = "mariusdavid.fr";
+                  };
                 };
+                disable_guests = true;
               };
-              disable_guests = true;
             };
-          };
-        in
-          "${element}/";
+          in
+            "${element}/";
+
           extraConfig = ''
             add_header X-Frame-Options SAMEORIGIN;
             add_header X-Content-Type-Options nosniff;
@@ -69,6 +70,7 @@ in
             add_header Content-Security-Policy "frame-ancestors 'none'";
           '';
         };
+
         "= /element" = {
           return = "https://mariusdavid.fr/element/";
         };
