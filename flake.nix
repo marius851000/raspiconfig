@@ -119,7 +119,7 @@
         ./ip_redirect.nix
         ./hardware-configuration/scrogne.nix
         (import ./configuration.nix {
-          inherit machines;
+          inherit machines mlpgames_downloader_src;
           this_name = "scrogne";
         })
         nixos-simple-mailserver.nixosModules.mailserver
@@ -131,7 +131,14 @@
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
         ./prometheus.nix
-        (import ./mlpgames.nix { inherit mlpgames_downloader_src; })
+        #(import ./mlpgames.nix { inherit mlpgames_downloader_src; })
+        {
+          marinfra.mlpgames_mirror = {
+            enable = true;
+            domain = "mlpgames.mariusdavid.fr";
+            backup_dir = "/mlpgamesdownload/dest/";
+          };
+        }
         #TODO: re-enable, require some new secret_key stuff?
         #./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
@@ -174,7 +181,7 @@
       system = "x86_64-linux";
       modules = [
         (import ./configuration.nix {
-          inherit machines;
+          inherit machines mlpgames_downloader_src;
           this_name = "marella";
         })
         ./secret.nix
@@ -252,8 +259,8 @@
     nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import ./configuration.nix {
-          inherit machines;
+        (import ./configuraàtion.nix {
+          inherit machines mlpgames_downloader_src;
           this_name = "zana";
         })
         ./secret.nix

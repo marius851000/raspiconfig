@@ -1,4 +1,4 @@
-{ machines, this_name }:
+{ machines, this_name, mlpgames_downloader_src }:
 { pkgs, lib, ... }:
 
 let
@@ -21,6 +21,7 @@ in {
     ./modules/expose_info.nix
     ./modules/extra_hosts.nix
     ./modules/nebula.nix
+    (import ./modules/mlpgames_mirror.nix { inherit mlpgames_downloader_src; })
   ];
 
   marinfra.info = {
