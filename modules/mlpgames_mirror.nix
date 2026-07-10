@@ -46,7 +46,7 @@ in
       description = "mlpgames downloader server";
       wantedBy = [ "multi-user.target" ];
       environment = {
-        RUST_LOG = "trace";
+        RUST_LOG = "info";
       };
       serviceConfig = {
         Type = "simple";
