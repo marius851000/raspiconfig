@@ -28,6 +28,10 @@
       enabled = true;
       passwordFile = "/secret-mail-grafana.txt";
     };
+    settings.security = {
+      # actually not a secret. This is fine. Only used to encrypt files that are already protected by permission.
+      secret_key = "SW2YcwTIb9zpOOhoPsMm";
+    };
     provision.datasources.settings.datasources = [
       {
         name = "prometheus-local";
