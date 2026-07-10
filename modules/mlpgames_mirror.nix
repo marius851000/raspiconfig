@@ -33,7 +33,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    marinfra.ssl.extraDomain = [ "mlpgames.mariusdavid.fr" ];
+    marinfra.ssl.extraDomain = [ cfg.domain ];
 
     users.users.mlpgames = {
       group = "mlpgames";

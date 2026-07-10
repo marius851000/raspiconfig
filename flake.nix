@@ -259,7 +259,7 @@
     nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import ./configuraàtion.nix {
+        (import ./configuration.nix {
           inherit machines mlpgames_downloader_src;
           this_name = "zana";
         })
