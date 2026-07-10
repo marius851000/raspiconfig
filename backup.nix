@@ -34,6 +34,7 @@
                     "--exclude=/portbuild/cache"
                     "--exclude=/portbuild/morrowind"
                     "--exclude=/nexusback"
+                    "--exclude=/mlpgamesdownload"
                     "-vvvv"
                 ];
                 paths = [

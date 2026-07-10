@@ -79,6 +79,11 @@
     flake = false;
   };
 
+  inputs.mlpgames_downloader_src = {
+    url = "github:marius851000/mlpgames-downloader";
+    flake = false;
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -96,7 +101,8 @@
     glitch-soc-package,
     deploy-rs,
     napalm,
-    depiction_map_src
+    depiction_map_src,
+    mlpgames_downloader_src
   }:
     let
       machines = {
@@ -125,6 +131,7 @@
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
         ./prometheus.nix
+        (import ./mlpgames.nix { inherit mlpgames_downloader_src; })
         #TODO: re-enable, require some new secret_key stuff?
         #./grafana.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })

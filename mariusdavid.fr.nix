@@ -3,15 +3,12 @@
 let
   ip4scrogne = [ "5.196.70.120" ];
   ip6scrogne = [ "2001:41d0:e:378::1" ];
-
-  ip4home = [ "82.66.95.86" ];
-  ip6marella = [ "fe80::f279:59ff:fe20:f831" ];
 in
 {
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10049;
+    serial = 10050;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -129,7 +126,7 @@ in
     #kodi.AAAA = ip6scrogne;
 
     translate.A = ip4scrogne; # actually Marella
-    translate.AAAA = ip6marella;
+    translate.AAAA = ip6scrogne;
 
     roundcube.A = ip4scrogne;
     roundcube.AAAA = ip6scrogne;
@@ -164,6 +161,9 @@ in
 
     lamp.A = ip4scrogne;
     lamp.AAAA = ip6scrogne;
+
+    mlpgames.A = ip4scrogne;
+    mlpgames.AAAA = ip6scrogne;
 
     net = {
       subdomains = {

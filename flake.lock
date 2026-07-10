@@ -50,11 +50,11 @@
     "depiction_map_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748766338,
-        "narHash": "sha256-c5JpD7fXxe0CPtTykcCZMrdJ+WgrUa2PQFZO42j0Nv8=",
+        "lastModified": 1779902653,
+        "narHash": "sha256-0/geooFLAjZ97Ul7QolAG2aFcKesI/efb1EfEqb0HWA=",
         "owner": "marius851000",
         "repo": "depiction-map",
-        "rev": "b2242680a356512d7adb0bbe6defc47617e114d1",
+        "rev": "d166fd132a2cb3c6f4a9afc034eb5da40f91a7fc",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1770019181,
-        "narHash": "sha256-hwsYgDnby50JNVpTRYlF3UR/Rrpt01OrxVuryF40CFY=",
+        "lastModified": 1781627888,
+        "narHash": "sha256-5yHuAh9k7rT7rtf3uRaXkiUyYvQE9oaCgzhprLm2mr8=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "77c906c0ba56aabdbc72041bf9111b565cdd6171",
+        "rev": "6d3087eedff75a715b40c0e124ba15d2dd7bec28",
         "type": "github"
       },
       "original": {
@@ -369,16 +369,32 @@
     "mariussite": {
       "flake": false,
       "locked": {
-        "lastModified": 1781203517,
-        "narHash": "sha256-+E9DoXbUX+tHhZcfI+aJaVmbQ+kBldbgyTkwnqNysVM=",
+        "lastModified": 1781987734,
+        "narHash": "sha256-UA9dotbhrbpKGqDm6/ImtrguTBqu6Jasyh334tuh/q8=",
         "owner": "marius851000",
         "repo": "mysite",
-        "rev": "5976586c79d8b9a154521fbae29a39df9fb780c5",
+        "rev": "716a3a559dc5ba68052a695922dda8378ea042d2",
         "type": "github"
       },
       "original": {
         "owner": "marius851000",
         "repo": "mysite",
+        "type": "github"
+      }
+    },
+    "mlpgames_downloader_src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783709180,
+        "narHash": "sha256-UNwouXxgAQV6JL+mTjfZOTP/epCZID7pJ9vR6gjASH0=",
+        "owner": "marius851000",
+        "repo": "mlpgames-downloader",
+        "rev": "861adf9721d3a05b0e2634e7f1d91f354aff3b40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marius851000",
+        "repo": "mlpgames-downloader",
         "type": "github"
       }
     },
@@ -411,11 +427,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1779592058,
-        "narHash": "sha256-HmSXe9IdT8hPc9pSRRuc0462if3mIEnrvrIP5VqiN3g=",
+        "lastModified": 1783272034,
+        "narHash": "sha256-PFVI20RpmBCAjstjfzidH0UciHxZOWc1X6KW6NYAzwM=",
         "ref": "refs/heads/main",
-        "rev": "e5ae7b5b962bfbbea5966701fe4384ecb51e07de",
-        "revCount": 1013,
+        "rev": "c8babc10612312e344ddf16472a16a1906f0125c",
+        "revCount": 1053,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -457,11 +473,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1779350018,
-        "narHash": "sha256-fHMrI2uuDNdQy0X6vgDdLoAHEMV4phk8OLtNMra7Vyk=",
+        "lastModified": 1780795668,
+        "narHash": "sha256-RAPmF/rximnsPEVkHxGuLAMekHsQWsFou+Dmqw5PjnQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "657e2fa0760e27167cdacb1ec5d84782be312013",
+        "rev": "afdf13dce322e2aec0a57490a45df202367ec2e2",
         "type": "github"
       },
       "original": {
@@ -473,11 +489,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1779621458,
-        "narHash": "sha256-eaI76YxHvOGVDghGZ2JzFawyPrR5i+YJ2jQWEbwNPZY=",
+        "lastModified": 1783615160,
+        "narHash": "sha256-qDTfjnYgJgTyRgy7Tf2J6U24QWItxfcRGaJd0bepoMg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3cdf3aad7237df3bbe7dadf4d82cb28ba42e6b5b",
+        "rev": "b37f1e895850ddaa603c2adc06e86f8872d7f232",
         "type": "github"
       },
       "original": {
@@ -540,11 +556,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1779392170,
-        "narHash": "sha256-SZt3M0xTh3AYesJVfzgGmHOmgx7l8WN8MWeLEkYRrQM=",
+        "lastModified": 1783442333,
+        "narHash": "sha256-UPHwohx2qN/vT5a1Km0UqW2SB7br6yAZJ1xKYKX4H70=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "47f9cccd1cd02c327953d5a8c359cb402918ec27",
+        "rev": "ba2e17ce9fc80e16344430304e7e1f10556cc152",
         "type": "github"
       },
       "original": {
@@ -578,6 +594,7 @@
         "hacky-account-manager": "hacky-account-manager",
         "kodionline": "kodionline",
         "mariussite": "mariussite",
+        "mlpgames_downloader_src": "mlpgames_downloader_src",
         "napalm": "napalm",
         "nixos-simple-mailserver": "nixos-simple-mailserver",
         "nixpkgs": "nixpkgs_4",
@@ -625,11 +642,11 @@
     "spritecollab_srv-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1772266736,
-        "narHash": "sha256-mx1I23/mJkPiyCx0qTrbmH3Lv9mvxHHeOGoJt27hhdA=",
+        "lastModified": 1782705609,
+        "narHash": "sha256-KLoDBe61ZTQHDjW19do6WxmS+bt+rkhovJVkCzemzos=",
         "owner": "PMDCollab",
         "repo": "spritecollab-srv",
-        "rev": "fed07ddc747929d7e72f97b25b38a13e288c804e",
+        "rev": "a4785ca84c8078b7d35e7a136e8df42da74a88fb",
         "type": "github"
       },
       "original": {

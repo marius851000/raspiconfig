@@ -72,6 +72,7 @@ def run_rebuild(host: str, name: str, boot: bool = False) -> None:
             f"root@{host}",
             "--flake",
             f".#{name}",
+            "--keep-going"
         ],
         check=True,
     )
