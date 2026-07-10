@@ -39,6 +39,8 @@
       $wgCiteBookReferencing = true;
       $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
 
+      $wgSitemapApiConfig['enabled'] = true;
+
       // this cache option is only safe for single-server install (which is the case here)
       $wgMainCacheType = CACHE_ACCEL;
       // user may be logged out after a server restart if the user account cache is not persistent. Does not appear to still work..?
@@ -81,6 +83,12 @@
         alias = "/var/lib/mediawiki_nesmy_dump/";
         extraConfig = ''
           autoindex on;
+        '';
+      };
+      "/sitemap.xml" = {
+        # redirect to /w/rest.php/site/v1/sitemap/0
+        extraConfig = ''
+          rewrite ^/sitemap\.xml$ /w/rest.php/site/v1/sitemap/0 last;
         '';
       };
     };
