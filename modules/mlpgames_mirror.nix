@@ -30,6 +30,11 @@ in
     backup_dir = lib.mkOption {
       type = lib.types.str;
     };
+
+    download_base_url = lib.mkOption {
+      type = lib.types.str;
+      default = "https://games.mare.by/";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -64,7 +69,7 @@ in
       };
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.lib.getBin pkgs.python3.withPackages (ps: [ ps.requests ])}/bin/python3 ${mlpgames_downloader_src}/downloader.py ${cfg.backup_dir}";
+        ExecStart = "${pkgs.lib.getBin pkgs.python3.withPackages (ps: [ ps.requests ])}/bin/python3 ${mlpgames_downloader_src}/downloader.py ${cfg.backup_dir} --base-url ${pkgs.lib.escapeShellArg cfg.download_base_url}";
         User = "mlpgames";
         Group = "mlpgames";
       };

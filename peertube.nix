@@ -32,7 +32,7 @@
         from_address = "peertube@mariusdavid.fr";
       };
       /*redundancy = {
-        
+
         videos = {
           check_interval = "6 hours";
           strategies = [

@@ -19,6 +19,12 @@
       options = [ "subvol=@" ];
     };
 
+  fileSystems."/gamedisk" = {
+    device = "/dev/disk/by-label/GAME";
+    fsType = "btrfs";
+    options = [ "nofail" ];
+  };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/491E-51F5";
       fsType = "vfat";
@@ -45,6 +51,15 @@
         pskRaw = "ext:local_wireless_pass";
       };
     };
+  };
+
+  networking.interfaces."enp1s0" = {
+    ipv6.addresses = [
+      {
+        address = "2a01:e0a:109e:6920::1298";
+        prefixLength = 64;
+      }
+    ];
   };
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;

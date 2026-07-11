@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10050;
+    serial = 10051;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -45,6 +45,8 @@ in
   subdomains = {
     ns1.A = ip4scrogne;
     ns1.AAAA = ip6scrogne;
+
+    mlpgames-zana.AAAA = [ "2a01:e0a:109e:6920::1298" ];
 
 
     ns2.A = ip4scrogne;

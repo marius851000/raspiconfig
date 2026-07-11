@@ -385,11 +385,11 @@
     "mlpgames_downloader_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1783709180,
-        "narHash": "sha256-UNwouXxgAQV6JL+mTjfZOTP/epCZID7pJ9vR6gjASH0=",
+        "lastModified": 1783760657,
+        "narHash": "sha256-FhY6y/pqJ4jCM5oWVoqktxPdMbiIfpxZqnOH42sq6hs=",
         "owner": "marius851000",
         "repo": "mlpgames-downloader",
-        "rev": "861adf9721d3a05b0e2634e7f1d91f354aff3b40",
+        "rev": "81db9060f7a9e6086c97d00b48a3263b4dc95c7b",
         "type": "github"
       },
       "original": {
