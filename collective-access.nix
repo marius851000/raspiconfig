@@ -9,6 +9,8 @@ let
 
 in
 {
+  # Damnit! I had it all configured, but a badly performed rm deleted my non-commited config!
+
   users.groups.collectiveaccess = { };
   users.users.collectiveaccess = {
     isSystemUser = true;

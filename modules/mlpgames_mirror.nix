@@ -79,7 +79,7 @@ in
       wantedBy = [ "timers.target" ];
       partOf = [ "mlpgames_mirrorer.service" ];
       timerConfig = {
-        OnCalendar = "*:0/2";
+        OnCalendar = "*:0/5";
         Unit = "mlpgames_mirrorer.service";
       };
     };

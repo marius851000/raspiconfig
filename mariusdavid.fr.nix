@@ -167,6 +167,9 @@ in
     mlpgames.A = ip4scrogne;
     mlpgames.AAAA = ip6scrogne;
 
+    collection.A = ip4scrogne;
+    collection.AAAA = ip6scrogne;
+
     net = {
       subdomains = {
         scrogne = {

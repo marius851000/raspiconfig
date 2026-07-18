@@ -272,7 +272,8 @@
         ./lemmy.nix
         ./nesmy.nix
         ./expose_kubernetes.nix
-        {
+        ./collective-access.nix
+        /*{
           marinfra.mlpgames_mirror = {
             enable = true;
             domain = "mlpgames-zana.mariusdavid.fr";
@@ -280,7 +281,7 @@
             download_base_url = "https://mlpgames.mariusdavid.fr/";
 
           };
-        }
+        }*/
         #TODO: verify the new nix version contain the fix
         (import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         {

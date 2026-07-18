@@ -28,6 +28,7 @@ let
     "nesmy.mariusdavid.fr"
     "hydra.mariusdavid.fr"
     "lamp.mariusdavid.fr"
+    "collection.mariusdavid.fr"
   ];
 in
 {
