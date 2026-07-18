@@ -53,7 +53,7 @@
     };
   };
 
-  services.nginx =
+  /*services.nginx =
     let
       backend = "http://127.0.0.1:34095";
     in
@@ -190,7 +190,7 @@
           };
         };
       };
-    };
+      };*/
 
   nixpkgs.config.permittedInsecurePackages = [
     "nodejs-12.22.12"
@@ -199,7 +199,7 @@
     "openssl-1.1.1u" # used by PHP, scary
     "nodejs-16.20.2"
   ];
-  
+
   networking.firewall.allowedTCPPorts = [ 1935 ];
 
   environment.systemPackages = [ pkgs.peertube pkgs.lsof ];

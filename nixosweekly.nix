@@ -2,14 +2,13 @@
 { pkgs, lib, config, ... }:
 
 {
-  security.acme.certs."mariusdavid.fr".extraDomainNames = [ "hacknews.pmdcollab.org" ];
+  marinfra.ssl.extraDomain = [ "hacknews.pmdcollab.org" ];
 
   services.nginx = {
     enable = true;
 
     virtualHosts."hacknews.pmdcollab.org" = {
       root = "/site";
-      useACMEHost = "mariusdavid.fr";
       forceSSL = true;
       http3 = true;
       locations = {
@@ -117,7 +116,7 @@
 
         log_format  anon_ip   '$remote_addr_anon - $remote_user [$time_local] "$request" '
                             '$status $body_bytes_sent "$http_referer" '
-                            '"$http_user_agent"';
+                            '"$http_user_agent"' '"$host"';
 
         access_log /var/log/nginx/access.log anon_ip;
     '';

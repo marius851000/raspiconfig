@@ -27,6 +27,7 @@
       WEB_DOMAIN = "mastodon.mariusdavid.fr";
       SINGLE_USER_MODE = "true";
       DEFAULT_LOCALE = "fr";
+      RAILS_LOG_LEVEL = "debug";
     };
   };
 
@@ -40,6 +41,9 @@
 
     virtualHosts."mariusdavid.fr" = {
       locations."/.well-known/webfinger" = {
+        return = "301 https://mastodon.mariusdavid.fr$request_uri";
+      };
+      locations."/.well-known/nodeinfo" = {
         return = "301 https://mastodon.mariusdavid.fr$request_uri";
       };
     };

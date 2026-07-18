@@ -31,7 +31,7 @@
   # https://diogotc.com/blog/collabora-nextcloud-nixos/
   #
   #TODO: This doesn’t work. Fix.
-  services.collabora-online = {
+  /*services.collabora-online = {
     enable = true;
     port = 9980; # default
     settings = {
@@ -56,5 +56,5 @@
       # Set FQDN of server
       server_name = "collabora.mariusdavid.fr";
     };
-  };
+    };*/
 }
