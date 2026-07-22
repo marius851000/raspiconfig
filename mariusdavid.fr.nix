@@ -170,6 +170,9 @@ in
     collection.A = ip4scrogne;
     collection.AAAA = ip6scrogne;
 
+    mlpgit.A = ip4scrogne;
+    mlpgit.AAAA = ip6scrogne;
+
     net = {
       subdomains = {
         scrogne = {

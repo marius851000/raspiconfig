@@ -141,6 +141,7 @@
         }
         #TODO: re-enable, require some new secret_key stuff?
         ./grafana.nix
+        ./forgejo.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         #(import ./retoot-bot.nix { inherit retoot-bot-src; })
         #./peertube.nix
