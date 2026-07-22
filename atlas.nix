@@ -94,7 +94,7 @@ in {
     wantedBy = [ "timers.target" ];
   };*/
 
-  systemd.timers.canvas_atlas_bot = {
+  /*systemd.timers.canvas_atlas_bot = {
     enable = true;
     timerConfig = {
       OnUnitInactiveSec = "6m";
@@ -128,5 +128,5 @@ in {
       User = "atlas_builder";
       Group = "atlas_builder";
     };
-  };
+  };*/
 }
