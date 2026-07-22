@@ -28,12 +28,14 @@ in {
       #root = "/atlas/atlas2024/web";
       globalRedirect = "2024.canvas-atlas.fediverse.events";
       forceSSL = false;
+      addSSL = true;
     };
 
     virtualHosts."atlas2025.mariusdavid.fr" = {
       #root = "/atlas/atlas2025/web";
       globalRedirect = "2025.canvas-atlas.fediverse.events";
       forceSSL = false;
+      addSSL = true;
     };
   };
 

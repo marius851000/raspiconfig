@@ -23,6 +23,7 @@ in {
     services.nginx.virtualHosts = (lib.genAttrs cfg.extraDomain (x: {
       enableACME = false;
       forceSSL = lib.mkDefault true;
+      addSSL = lib.mkDefault false;
       useACMEHost = cfg.baseDomain;
     })) // {
       "${cfg.baseDomain}" = {
