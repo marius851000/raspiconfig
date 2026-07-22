@@ -47,6 +47,13 @@ in
               return 200 '${builtins.toJSON client}';
             '';
         };
+        "/share/" = {
+          root = "/share/";
+          extraConfig = ''
+            add_header Access-Control-Allow-Origin *;
+            autoindex on;
+          '';
+        };
         "/element/" = {
           alias = let
             element = pkgs.element-web.override {
