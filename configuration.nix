@@ -1,13 +1,7 @@
 { machines, this_name, mlpgames_downloader_src }:
 { pkgs, lib, ... }:
 
-let
-  removeAttrsOrThrow = set: key:
-    if builtins.hasAttr key set then
-      builtins.removeAttrs set [ key ]
-    else
-      builtins.throw "removeAttrsOrThrow: key '${key}' does not exist in the set.";
-in {
+{
 
   imports = [
     ./modules/machine-site.nix
@@ -25,7 +19,7 @@ in {
   ];
 
   marinfra.info = {
-    other_machines = removeAttrsOrThrow machines this_name;
+    all_machines = machines;
     this_machine_key = this_name;
   };
   marinfra.extraHosts.enable = true;
