@@ -26,7 +26,24 @@ in {
     };
   };
 
+  # https://github.com/NixOS/nixpkgs/issues/542206
   config = lib.mkIf cfg.enable ({
+    nixpkgs.overlays = [
+      (final: prev:
+      {
+        ceph = (prev.ceph.overrideScope (_: prev:
+        {
+          # not sure if needed or effective
+          arrow-cpp = null;
+          ceph = prev.ceph.overrideAttrs ({ cmakeFlags ? [], ... }: { cmakeFlags = cmakeFlags ++
+          [
+            (final.lib.cmakeBool "WITH_RADOSGW_SELECT_PARQUET" false)
+            (final.lib.cmakeBool "WITH_RADOSGW_ARROW_FLIGHT" false)
+          ]; });
+        })).ceph;
+      })
+    ];
+
     environment.systemPackages = [ pkgs.ceph ];
 
     services.nebula.networks.mariusnet.settings.firewall.inbound = [
@@ -39,6 +56,11 @@ in {
         port = "6800-7300";
         proto = "tcp";
         host = "any";
+      }
+      {
+        port = "9080";
+        proto = "tcp";
+        host = "scrogne";
       }
     ];
 
@@ -66,10 +88,9 @@ in {
       daemons = [ cfg.daemon_name ];
       extraConfig = {
         public_addr = config.marinfra.info.nebula_address;
+        osd_erasure_code_plugins = ""; # jerasure fail to load on Scrogne due to "illegal instruction" for some reason. Jerasure should auto‑detect extension.
       };
     };
-
-
 
     services.ceph.mgr = lib.mkIf cfg.mon-mgr.enable {
       enable = true;

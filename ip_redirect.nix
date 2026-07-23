@@ -14,7 +14,6 @@ let
     "otp.mariusdavid.fr"
     "archive.mariusdavid.fr"
     "marella.net.mariusdavid.fr"
-    "ceph.mariusdavid.fr"
     "torrent.mariusdavid.fr"
   ];
   domains_to_proxy_to_coryn = [

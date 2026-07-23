@@ -122,6 +122,7 @@
           inherit machines mlpgames_downloader_src;
           this_name = "scrogne";
         })
+        ./ceph-proxy.nix
         nixos-simple-mailserver.nixosModules.mailserver
         ./mailserver.nix
         ./backup.nix
@@ -160,8 +161,8 @@
           #marinfra.kubernetes.enable = true;
           #marinfra.kubernetes.master.enable = true;
 
-          #marinfra.ceph.enable = true;
-          #marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.enable = true;
+          marinfra.ceph.mon-mgr.enable = true;
 
           services.k3s.disableAgent = true; # do not have as much room space as other servers, plus is under x86_64-v2, which cause some problem with some containeres.
         }
@@ -291,9 +292,9 @@
           marinfra.kubernetes.master.clusterInit = true;*/
 
           #TODO: re-enable
-          /*marinfra.ceph.enable = true;
+          marinfra.ceph.enable = true;
           marinfra.ceph.mon-mgr.enable = true;
-          marinfra.ceph.mds.enable = false;*/
+          marinfra.ceph.mds.enable = false;
         }
       ];
     };
