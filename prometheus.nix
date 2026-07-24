@@ -1,17 +1,22 @@
 {pkgs, config, lib, ...}:
 
+let
+  port = 9090;
+in
 {
+
+  services.nebula.networks.mariusnet.settings.firewall.inbound = [
+    {
+      port = builtins.toString port;
+      proto = "any";
+      host = "any";
+    }
+  ];
+
   services.prometheus = {
     enable = true;
-    listenAddress = "localhost";
+    listenAddress = config.marinfra.info.nebula_address;
     retentionTime = "30d";
-    exporters.nginx = {
-      enable = true;
-      listenAddress = "localhost";
-    };
-    exporters.node = {
-      enable = true;
-    };
     exporters.blackbox = {
       enable = true;
       configFile = builtins.toFile "blackbox.yml" (lib.generators.toYAML { } {
@@ -22,19 +27,13 @@
         };
       });
     };
-    exporters.systemd = {
-      enable = true;
-      extraFlags = [
-        "--systemd.collector.enable-ip-accounting"
-      ];
-    };
     scrapeConfigs = [
       {
         job_name = "systemd";
         scrape_interval = "30s";
         static_configs = [
           {
-            targets = [ "localhost:9558" "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]:9558" ];
+            targets = (builtins.map (x: "${x.value.options.marinfra.info.nebula_address.value}:9558") (lib.attrsToList config.marinfra.info.all_machines));
           }
         ];
       }
@@ -43,7 +42,7 @@
         scrape_interval = "10s";
         static_configs = [
           {
-            targets = [ "localhost:9113" ];
+            targets = [ "${config.marinfra.info.all_machines.scrogne.options.marinfra.info.nebula_address.value}:9113" ];
           }
         ];
       }
@@ -52,7 +51,7 @@
         scrape_interval = "30s";
         static_configs = [
           {
-            targets = [ "localhost:9100" "[201:4227:d97:c7f2:54bc:b9f4:a4:508c]:9100" ];
+            targets = (builtins.map (x: "${x.value.options.marinfra.info.nebula_address.value}:9100") (lib.attrsToList config.marinfra.info.all_machines));
           }
         ];
       }

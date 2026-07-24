@@ -128,11 +128,12 @@
         ./backup.nix
         ./syncthing.nix
         ./atlas.nix
+        ./prometheus-exporter.nix
+        ./prometheus-nginx.nix
         (import ./dns.nix { inherit dns; })
         (import ./mariussite.nix { inherit mariussite; })
         ./wakapi.nix
-        ./prometheus.nix
-        #(import ./mlpgames.nix { inherit mlpgames_downloader_src; })
+        # ./prometheus.nix
         {
           marinfra.mlpgames_mirror = {
             enable = true;
@@ -191,6 +192,7 @@
         ./backup.nix
         ./syncthing.nix
         ./nexusback.nix
+        ./prometheus-exporter.nix
         #./transmission.nix
         #(import ./hydra.nix { hostname = "hydra.mariusdavid.fr"; })
         #TODO: fix compilation
@@ -275,6 +277,8 @@
         ./nesmy.nix
         ./expose_kubernetes.nix
         ./collective-access.nix
+        ./prometheus.nix
+        ./prometheus-exporter.nix
         /*{
           marinfra.mlpgames_mirror = {
             enable = true;

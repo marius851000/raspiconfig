@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   services.nginx = {
@@ -37,7 +37,7 @@
         name = "prometheus-local";
         type = "prometheus";
         access = "proxy";
-        url = "http://localhost:9090";
+        url = "http://${config.marinfra.info.all_machines.zana.options.marinfra.info.nebula_address.value}:9090";
       }
     ];
   };
