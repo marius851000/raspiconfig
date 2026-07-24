@@ -163,7 +163,8 @@
           #marinfra.kubernetes.master.enable = true;
 
           marinfra.ceph.enable = true;
-          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.mon.enable = true;
+          marinfra.ceph.mgr.enable = false;
 
           services.k3s.disableAgent = true; # do not have as much room space as other servers, plus is under x86_64-v2, which cause some problem with some containeres.
         }
@@ -211,7 +212,8 @@
           };
 
           marinfra.ceph.enable = true;
-          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.mon.enable = true;
+          marinfra.ceph.mgr.enable = true;
           marinfra.ceph.mds.enable = false;
 
           /*marinfra.ssl.extraDomain = [ "otp.mariusdavid.fr" "ceph.mariusdavid.fr" ];
@@ -297,7 +299,8 @@
 
           #TODO: re-enable
           marinfra.ceph.enable = true;
-          marinfra.ceph.mon-mgr.enable = true;
+          marinfra.ceph.mon.enable = true;
+          marinfra.ceph.mgr.enable = true;
           marinfra.ceph.mds.enable = false;
         }
       ];

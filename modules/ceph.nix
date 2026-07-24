@@ -10,8 +10,12 @@ in {
       type = lib.types.str;
     };
 
-    mon-mgr = {
-      enable = lib.mkEnableOption "CEPH mon and mgr";
+    mon = {
+      enable = lib.mkEnableOption "CEPH mon";
+    };
+
+    mgr = {
+      enable = lib.mkEnableOption "CEPH mgr";
     };
 
     osd = {
@@ -83,7 +87,7 @@ in {
       osd_memory_target = "200MiB";
     };
 
-    services.ceph.mon = lib.mkIf cfg.mon-mgr.enable {
+    services.ceph.mon = lib.mkIf cfg.mon.enable {
       enable = true;
       daemons = [ cfg.daemon_name ];
       extraConfig = {
@@ -92,7 +96,7 @@ in {
       };
     };
 
-    services.ceph.mgr = lib.mkIf cfg.mon-mgr.enable {
+    services.ceph.mgr = lib.mkIf cfg.mgr.enable {
       enable = true;
       daemons = [ cfg.daemon_name ];
     };
