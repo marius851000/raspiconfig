@@ -127,6 +127,7 @@
         ./mailserver.nix
         ./backup.nix
         ./syncthing.nix
+        ./grafana-proxy.nix
         ./atlas.nix
         ./prometheus-exporter.nix
         ./prometheus-nginx.nix
@@ -141,8 +142,7 @@
             backup_dir = "/mlpgamesdownload/dest/";
           };
         }
-        #TODO: re-enable, require some new secret_key stuff?
-        ./grafana.nix
+        #./grafana.nix
         ./forgejo.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         #(import ./retoot-bot.nix { inherit retoot-bot-src; })
@@ -281,6 +281,7 @@
         ./collective-access.nix
         ./prometheus.nix
         ./prometheus-exporter.nix
+        ./grafana.nix
         /*{
           marinfra.mlpgames_mirror = {
             enable = true;
