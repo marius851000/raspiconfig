@@ -18,6 +18,7 @@ use hickory_server::{
     server::{Request, RequestHandler, ResponseHandler, ResponseInfo},
     zone_handler::MessageResponseBuilder,
 };
+use reqwest::{Client, StatusCode};
 use tokio::{net::UdpSocket, sync::RwLock, time::interval};
 
 mod ceph;
@@ -93,32 +94,54 @@ async fn ceph_ip_updater(
     mapping: HashMap<String, Ipv4Addr>,
 ) {
     let mut interval = interval(Duration::from_secs(30));
+    let client = Client::new();
     loop {
         interval.tick().await;
-        match ceph::get_active_mgr_host().await {
-            Ok(host) => {
-                if let Some(ip) = mapping.get(&host) {
-                    let new_state = CephIpState {
-                        ip: *ip,
-                        updated: std::time::Instant::now(),
-                    };
-                    let mut guard = ceph_ip.write().await;
-                    let log = guard
-                        .as_ref()
-                        .map_or(true, |prev| !prev.same_ip(&new_state));
-                    *guard = Some(new_state);
-                    if log {
-                        println!("ceph-mgr IP changed to: {ip}");
-                    }
-                } else {
-                    eprintln!(
-                        "ceph-mgr IP seems to come from \"{host}\", not present in the mapping"
-                    );
+        let previous_ip = ceph_ip.read().await.map(|x| x.ip.clone());
+        let need_to_rescan = if let Some(previous_ip) = previous_ip {
+            match client
+                .get(format!("http://{}:9080", previous_ip))
+                .send()
+                .await
+            {
+                Ok(v) => v.status() != StatusCode::OK,
+                Err(e) => {
+                    eprintln!("checking current state: {e}");
+                    true
                 }
             }
-            Err(e) => {
-                eprintln!("ceph-mgr IP fetch failed: {e}");
+        } else {
+            true
+        };
+
+        if need_to_rescan {
+            match ceph::get_active_mgr_host().await {
+                Ok(host) => {
+                    if let Some(ip) = mapping.get(&host) {
+                        let new_state = CephIpState {
+                            ip: *ip,
+                            updated: std::time::Instant::now(),
+                        };
+                        let mut guard = ceph_ip.write().await;
+                        let log = guard
+                            .as_ref()
+                            .map_or(true, |prev| !prev.same_ip(&new_state));
+                        *guard = Some(new_state);
+                        if log {
+                            println!("ceph-mgr IP changed to: {ip}");
+                        }
+                    } else {
+                        eprintln!(
+                            "ceph-mgr IP seems to come from \"{host}\", not present in the mapping"
+                        );
+                    }
+                }
+                Err(e) => {
+                    eprintln!("ceph-mgr IP fetch failed: {e}");
+                }
             }
+        } else {
+            println!("API respond with 200, no need to refresh.");
         }
     }
 }
