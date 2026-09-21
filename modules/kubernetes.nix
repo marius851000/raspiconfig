@@ -23,7 +23,7 @@ in {
       helmfile
     ];
 
-    services.nebula.networks.mariusnet.settings.firewall.inbound = [
+    services.nebula.networks.mariusne.settings.firewall.inbound = [
       # servers -> servers, Required only for HA with embedded etcd
       {
         port = "2379-2380";

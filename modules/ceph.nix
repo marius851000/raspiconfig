@@ -50,7 +50,7 @@ in {
 
     environment.systemPackages = [ pkgs.ceph ];
 
-    services.nebula.networks.mariusnet.settings.firewall.inbound = [
+    services.nebula.networks.mariusne.settings.firewall.inbound = [
       {
         port = "3300";
         proto = "any";

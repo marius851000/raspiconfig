@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  services.nebula.networks.mariusnet.settings.firewall.inbound = [
+  services.nebula.networks.mariusne.settings.firewall.inbound = [
     {
       port = "9113";
       proto = "any";

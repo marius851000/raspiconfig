@@ -41,17 +41,17 @@ def deploy_nebula(host: str, name: str):
         )
 
     subprocess.run(
-        ["ssh", f"root@{host}", "chown nebula-mariusnet /secret/nebula-ca.crt /secret/nebula-" + name + ".crt /secret/nebula-" + name + ".key"],
+        ["ssh", f"root@{host}", "chown nebula-mariusne /secret/nebula-ca.crt /secret/nebula-" + name + ".crt /secret/nebula-" + name + ".key"],
         check=True,
     )
 
     subprocess.run(
-        ["ssh", f"root@{host}", "systemctl start nebula@mariusnet.service"],
+        ["ssh", f"root@{host}", "systemctl start nebula@mariusne.service"],
         check=True,
     )
 
     subprocess.run(
-        ["ssh", f"root@{host}", "systemctl kill -s SIGHUP --kill-who=main nebula@mariusnet.service"],
+        ["ssh", f"root@{host}", "systemctl kill -s SIGHUP --kill-who=main nebula@mariusne.service"],
         check=True,
     )
 

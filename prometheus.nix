@@ -5,7 +5,7 @@ let
 in
 {
 
-  services.nebula.networks.mariusnet.settings.firewall.inbound = [
+  services.nebula.networks.mariusne.settings.firewall.inbound = [
     {
       port = builtins.toString port;
       proto = "any";

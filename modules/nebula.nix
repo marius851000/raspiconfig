@@ -21,7 +21,7 @@ in {
       "nebula.mariusne"
     ];
 
-    services.nebula.networks.mariusnet = {
+    services.nebula.networks.mariusne = {
       enable = true;
       isLighthouse = cfg.lighthouse.enable;
       cert = "/secret/nebula-" + machine_key + ".crt";
