@@ -55,15 +55,18 @@ def deploy_nebula(host: str, name: str):
         check=True,
     )
 
-def run_rebuild(host: str, name: str, boot: bool = False) -> None:
+def run_rebuild(host: str, name: str, boot: bool = False, dry_run = False) -> None:
     nebula_error = None
     try:
-        deploy_nebula(host, name)
+        if not dry_run:
+            deploy_nebula(host, name)
+        else:
+            print("would have deployed nebula")
     except Exception as e:
         nebula_error = e
 
     # deploy itself
-    rebuild_command = "boot" if boot else "switch"
+    rebuild_command = "build" if dry_run else "boot" if boot else "switch"
     subprocess.run(
         [
             "nixos-rebuild",
@@ -81,12 +84,12 @@ def run_rebuild(host: str, name: str, boot: bool = False) -> None:
         raise nebula_error
 
 
-def deploy_parallel(machines: Iterable[str], workers: int = 4, boot: bool = False) -> None:
+def deploy_parallel(machines: Iterable[str], workers: int = 4, boot: bool = False, dry_run = False) -> None:
     """Deploy multiple machines concurrently."""
     jobs = [(MACHINES[m]["host"], MACHINES[m]["name"]) for m in machines]
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
         futures = {
-            pool.submit(run_rebuild, host, name, boot): m for (host, name), m in zip(jobs, machines)
+            pool.submit(run_rebuild, host, name, boot, dry_run): m for (host, name), m in zip(jobs, machines)
         }
         for future in concurrent.futures.as_completed(futures):
             machine = futures[future]
@@ -120,6 +123,11 @@ def main() -> None:
         action="store_true",
         help="Use 'nixos-rebuild boot' instead of 'nixos-rebuild switch'",
     )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Do not directly interact with the server, simulate command. Still build the image.",
+    )
     args = parser.parse_args()
 
     if args.machines == "all":
@@ -132,13 +140,14 @@ def main() -> None:
         print(f"Error: Unknown machine(s): {', '.join(unknown)}", file=sys.stderr)
         sys.exit(1)
 
+
     if args.parallel:
-        deploy_parallel(target_machines, workers=args.workers, boot=args.boot)
+        deploy_parallel(target_machines, workers=args.workers, boot=args.boot, dry_run=args.dry_run)
     else:
         for machine in target_machines:
             info = MACHINES[machine]
             try:
-                run_rebuild(info["host"], info["name"], boot=args.boot)
+                run_rebuild(info["host"], info["name"], boot=args.boot, dry_run=args.dry_run)
                 print(f"\033[32m[✓] Deployed {machine}\033[0m")
             except Exception as exc:
                 print(f"\033[31m[✗] {machine} failed: {exc}\033[0m", file=sys.stderr)
