@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+  inputs.nixpkgs.url = "nixpkgs";
   #inputs.nixpkgs.url = "github:SuperSandro2000/nixpkgs/mediawiki-apcu";
   #inputs.nixpkgs.url = "github:marius851000/nixpkgs/fix_lemmy_ui";
   /*inputs.nixpkgs = {
@@ -39,7 +39,7 @@
     flake = false;
   };
   inputs.spritecollab_srv-src = {
-    url = "github:PMDCollab/spritecollab-srv";
+    url = "github:marius851000/spritecollab-srv/fix-branch-name";
     flake = false;
   };
 
@@ -84,6 +84,11 @@
     flake = false;
   };
 
+  inputs.flake-compat = {
+    url = "github:NixOS/flake-compat";
+    flake = false;
+  };
+
   outputs = {
     self,
     nixpkgs,
@@ -102,7 +107,8 @@
     deploy-rs,
     napalm,
     depiction_map_src,
-    mlpgames_downloader_src
+    mlpgames_downloader_src,
+    flake-compat
   }:
     let
       machines = {
@@ -110,9 +116,27 @@
         marella = self.nixosConfigurations.marella;
         zana = self.nixosConfigurations.zana;
       };
+
+      nixpkgs_patched_src = nixpkgs.legacyPackages.x86_64-linux.applyPatches {
+        name = "nixpkgs-raspiconfig-patched";
+        src = nixpkgs;
+        patches = [
+          (nixpkgs.legacyPackages.x86_64-linux.fetchpatch {
+            url = "https://github.com/NixOS/nixpkgs/pull/565943.patch";
+            sha256 = "sha256-ZJyfk7dpIGP461He2eP1v0oUxEGXNgeyFVy+Js3vrsY=";
+          })
+        ];
+      };
+
+      nixpkgs_patched = (import flake-compat {
+        src = builtins.toPath nixpkgs_patched_src;
+      }).defaultNix;
+      #nixpkgs_patched = nixpkgs;
+
+
     in {
     # A cheap baremetal server at OVH with lots of storage
-    nixosConfigurations.scrogne = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.scrogne = nixpkgs_patched.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         ./secret.nix
@@ -181,7 +205,7 @@
     };
 
     # A laptop with broken screen, a GT980, multi core, 8GiB of (LDDR3) RAM and 1TiB of HDD
-    nixosConfigurations.marella = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.marella = nixpkgs_patched.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         (import ./configuration.nix {
@@ -262,7 +286,7 @@
 
     # micro-pc with 32GB of RAM, and i5-5600 cpu and ssd
     # Meant to replace marella and noctus
-    nixosConfigurations.zana = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.zana = nixpkgs_patched.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         (import ./configuration.nix {
