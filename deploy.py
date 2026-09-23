@@ -66,19 +66,32 @@ def run_rebuild(host: str, name: str, boot: bool = False, dry_run = False) -> No
         nebula_error = e
 
     # deploy itself
-    rebuild_command = "build" if dry_run else "boot" if boot else "switch"
-    subprocess.run(
-        [
-            "nixos-rebuild",
-            rebuild_command,
-            "--target-host",
-            f"root@{host}",
-            "--flake",
-            f".#{name}",
-            "--keep-going"
-        ],
-        check=True,
-    )
+    if not dry_run:
+        rebuild_command = "boot" if boot else "switch"
+        subprocess.run(
+            [
+                "nixos-rebuild",
+                rebuild_command,
+                "--target-host",
+                f"root@{host}",
+                "--flake",
+                f".#{name}",
+                "--keep-going"
+            ],
+            check=True,
+        )
+    else:
+        subprocess.run(
+            [
+                "nixos-rebuild",
+                "build",
+                "--flake",
+                f".#{name}",
+                "--keep-going"
+            ],
+            check=True
+        )
+        print("that was dry run")
 
     if nebula_error is not None:
         raise nebula_error
