@@ -16,6 +16,10 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    # disable the internal screen, that is broken and unusable
+    "video=eDP-1:d"
+  ];
 
   services.postgresql.enable = true;
   services.postgresql.package = pkgs.postgresql_15;
