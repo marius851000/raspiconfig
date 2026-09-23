@@ -8,7 +8,7 @@ in
   SOA = {
     nameServer = "mariusdavid.fr.";
     adminEmail = "mariusdavid@laposte.net";
-    serial = 10051;
+    serial = 10052;
   };
 
   NS = [ "ns1.mariusdavid.fr." "ns2.mariusdavid.fr." ];
@@ -35,7 +35,7 @@ in
 
   DMARC = [
     {
-      p = "none";
+      p = "quarantine";
     }
   ];
 
@@ -43,6 +43,8 @@ in
   AAAA = ip6scrogne;
 
   subdomains = {
+    _discord.TXT = [ "dh=4d5280c72cb4bf9c90e6facd3a38d591c2f86033" ];
+    
     ns1.A = ip4scrogne;
     ns1.AAAA = ip6scrogne;
 
