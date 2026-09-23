@@ -30,12 +30,18 @@ stdenv.mkDerivation rec {
         })*/
 
         ./single_allow.diff
-        ./non-privileged-add-spritebot.patch
 
 
         #./apply_shift_credit_once.diff
         #./fix-crash-size-credits.diff
     ];
+
+    postPatch = ''
+      substituteInPlace SpriteBot.py \
+        --replace-fail "os.path.dirname(os.path.abspath(__file__))" "\"${storagePath}.private\""
+      substituteInPlace commands/AddNode.py \
+        --replace-fail "return PermissionLevel.STAFF" "return PermissionLevel.EVERYONE"
+    '';
 
     buildInputs = with pythonPackages; [
         discordpy
@@ -52,11 +58,6 @@ stdenv.mkDerivation rec {
     nativeBuildInputs = [
         pythonPackages.wrapPython
     ];
-
-    postPatch = ''
-        substituteInPlace SpriteBot.py \
-            --replace "os.path.dirname(os.path.abspath(__file__))" "\"${storagePath}.private\""
-    '';
 
     prestartScript = let
         innerFolder = "${storagePath}.private";
