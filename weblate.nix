@@ -8,7 +8,6 @@
     localDomain = "translate.mariusdavid.fr";
     djangoSecretKeyFile = "/secret/secret_weblate";
     smtp = {
-      #TODO: grant it its own user
       user = "grafana@mariusdavid.fr";
       host = "mariusdavid.fr";
       passwordFile = "/secret/mail-grafana-password.txt";
@@ -16,7 +15,6 @@
     #extraConfig = "DEBUG = True";
     extraConfig = ''
       del VCS_BACKENDS
-      DEBUG = True
     '';
   };
 
