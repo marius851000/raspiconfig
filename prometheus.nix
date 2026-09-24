@@ -64,7 +64,7 @@ in
         };
         static_configs = [
           {
-            targets = [ "https://mariusdavid.fr" "https://mlp-game-wiki.no" "https://nesmy.mariusdavid.fr/wiki/Accueil"];
+            targets = [ "https://mariusdavid.fr" "https://mlp-game-wiki.no" "https://nesmy.mariusdavid.fr/wiki/Accueil" "https://mlpgames.mariusdavid.fr" ];
           }
         ];
         relabel_configs = [
