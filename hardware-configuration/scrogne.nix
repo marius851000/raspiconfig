@@ -51,9 +51,7 @@
   hardware.enableRedistributableFirmware = false; # disable, as it appear unneeded and it take a long time to transfer
 
 
-  # TODO: move to it’s own module
-
-  marinfra.ssl.extraDomain = [ "rss.mariusdavid.fr" ];
+  /*marinfra.ssl.extraDomain = [ "rss.mariusdavid.fr" ];
 
   services.freshrss = {
     baseUrl = "https://rss.mariusdavid.fr";
@@ -74,7 +72,7 @@
     extensions = ({ enabled, all }: enabled ++ (with all; [
         ctype
     ]));
-  };
+  };*/
 
   marinfra.ssl.enable = true;
   marinfra.info.ygg_address = "200:e7e5:8090:9030:15d0:d8d4:8f8f:3ced";
