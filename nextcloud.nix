@@ -28,6 +28,11 @@
     useACMEHost = "mariusdavid.fr";
   };
 
+  systemd.services."redis-nextcloud".serviceConfig = {
+    IOSchedulingClass = "best-effort";
+    IOSchedulingPriority = 6;
+  };
+
   # https://diogotc.com/blog/collabora-nextcloud-nixos/
   #
   #TODO: This doesn’t work. Fix.

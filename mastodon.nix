@@ -31,6 +31,11 @@
     };
   };
 
+  systemd.services."redis-mastodon".serviceConfig = {
+    IOSchedulingClass = "best-effort";
+    IOSchedulingPriority = 6;
+  };
+
   users.groups.mastodon.members = [ "nginx" ];
 
   #TODO: upstream WEB_DOMAIN stuff to nixpkgs
