@@ -59,7 +59,6 @@
 
   environment.systemPackages = [ pkgs.fish pkgs.git pkgs.iotop pkgs.htop pkgs.lsof pkgs.bat pkgs.rclone pkgs.nethogs pkgs.brasero pkgs.vlc pkgs.cdrkit pkgs.dvdbackup pkgs.powertop ];
 
-  services.journald.extraConfig = "SystemMaxUse=300M";
   services = {
     timesyncd.enable = lib.mkForce true;
     openssh = {
@@ -125,6 +124,7 @@
 
   networking.firewall.allowedTCPPorts = [ 21 80 443 ];
 
+  # particularly important for marella, where I plan to just put some auto-press to power it back on when powered off.
   services.logind.settings.Login.HandleLidSwitch = "ignore";
 
   systemd.oomd.enableUserSlices = true;

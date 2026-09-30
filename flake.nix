@@ -13,7 +13,7 @@
     #inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  #TODO: maybe upstream
+  #TODO: update with my upstreamed patch
   inputs.spritebot_src = {
     url = "github:PMDCollab/SpriteBot";
     flake = false;
@@ -166,8 +166,7 @@
             backup_dir = "/mlpgamesdownload/dest/";
           };
         }
-        #./grafana.nix
-        ./forgejo.nix
+        #./forgejo.nix
         (import ./notspritecollab.nix { inherit spritebot_src; })
         #(import ./retoot-bot.nix { inherit retoot-bot-src; })
         #./peertube.nix

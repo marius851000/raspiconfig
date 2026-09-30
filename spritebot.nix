@@ -41,6 +41,11 @@ stdenv.mkDerivation rec {
         --replace-fail "os.path.dirname(os.path.abspath(__file__))" "\"${storagePath}.private\""
       substituteInPlace commands/AddNode.py \
         --replace-fail "return PermissionLevel.STAFF" "return PermissionLevel.EVERYONE"
+
+      substituteInPlace TrackerUtils.py \
+        --replace-fail 'CURRENT_LICENSE = "CC_BY-NC_4"' 'CURRENT_LICENSE = "Unspecified"' \
+        --replace-fail 'txt.write("All custom graphics not originating from official PMD games are licensed under Attribution-NonCommercial 4.0 International http://creativecommons.org/licenses/by-nc/4.0/.\n")' 'txt.write("No formal licenses unify those sprites and portraits. License for some of them are detailed at https://hacknews.pmdcollab.org/page:notspritecollab_credit\n")' \
+        --replace-fail 'can be found in http://sprites.pmdcollab.org/' 'can be found in https://nsc.pmdcollab.org/'
     '';
 
     buildInputs = with pythonPackages; [

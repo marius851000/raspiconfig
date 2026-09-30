@@ -70,6 +70,9 @@ in
       substituteInPlace src/ErrorPage.tsx src/components/bar.tsx \
         --replace-fail "https://discord.gg/skytemple" "https://discord.gg/VYNXFfHpuf"
 
+      substituteInPlace src/components/bar.tsx \
+        --replace-fail "https://github.com/PMDCollab/SpriteCollab" "https://github.com/marius851000/NotSpriteCollab"
+
       #TODO: an artist name
       substituteInPlace src/components/search.tsx \
         --replace-fail "Mewtwo... Emmuffin... 151..." "Duskako... Chocobo... 10..."
