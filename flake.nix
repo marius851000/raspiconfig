@@ -117,21 +117,21 @@
         zana = self.nixosConfigurations.zana;
       };
 
-      nixpkgs_patched_src = nixpkgs.legacyPackages.x86_64-linux.applyPatches {
+      /*nixpkgs_patched_src = nixpkgs.legacyPackages.x86_64-linux.applyPatches {
         name = "nixpkgs-raspiconfig-patched";
         src = nixpkgs;
         patches = [
           (nixpkgs.legacyPackages.x86_64-linux.fetchpatch {
             url = "https://github.com/NixOS/nixpkgs/pull/565943.patch";
-            sha256 = "sha256-ZJyfk7dpIGP461He2eP1v0oUxEGXNgeyFVy+Js3vrsY=";
+            sha256 = "sha256-MwzWotHOWqCIkH8edOWEswJwtyy3QanlmE/iInnxuyc=";
           })
         ];
       };
 
       nixpkgs_patched = (import flake-compat {
         src = builtins.toPath nixpkgs_patched_src;
-      }).defaultNix;
-      #nixpkgs_patched = nixpkgs;
+      }).defaultNix;*/
+      nixpkgs_patched = nixpkgs;
 
 
     in {

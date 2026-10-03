@@ -70,11 +70,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1789404474,
-        "narHash": "sha256-UXFQ7tFiwn8sPz0EV4CBB2PCf/ZiGIHWn/6MXk81Lxs=",
+        "lastModified": 1790635598,
+        "narHash": "sha256-MHycJ+rm2wMrhiO6emgqJUaUbhJU/AvdH8DyUVrU1dw=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "e760371d631165e7d8de5b0dcf148e21ec4c16f0",
+        "rev": "cf64c8cbadd9b13ea79ba7720aa2930500f2ece7",
         "type": "github"
       },
       "original": {
@@ -420,11 +420,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1787963050,
-        "narHash": "sha256-yt4H/X9CU2iaLl2NJ/MBycQs7Jl0tbJP5uuDdGWiPGg=",
+        "lastModified": 1790256478,
+        "narHash": "sha256-jnU8wDRoMIUxuT0AgGYxqPucIf3cOAwWrmB23xarCXI=",
         "ref": "refs/heads/main",
-        "rev": "27b3c74d96351b770ec8216430d5d947290917e9",
-        "revCount": 1076,
+        "rev": "2c3a8c4e36ab8190010f9f104e48d042cc65b05f",
+        "revCount": 1078,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -482,11 +482,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1789844176,
-        "narHash": "sha256-eaRzSAxpJwnr2Imug6prPsN7xhtnk4cj3ZTopGJOgiY=",
-        "rev": "79b35bf0bda5cd110f856aa5b5b2c5ba4460dbf5",
+        "lastModified": 1790652569,
+        "narHash": "sha256-k8Fu4c9Z+4Nh7mUr0cfw++ITQiyEhlWxoJBOkI3tOcQ=",
+        "rev": "b6c8664de9b6cc07fe5666a29f91884ba81197c4",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1076565.79b35bf0bda5/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1082290.b6c8664de9b6/nixexprs.tar.zst"
       },
       "original": {
         "id": "nixpkgs",
@@ -547,11 +547,11 @@
     "python-github-archive_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1786555328,
-        "narHash": "sha256-9oZoZLQ03A40CBO2m+kQWfsX3J1p2KXJXd/6pchQ+LM=",
+        "lastModified": 1790601900,
+        "narHash": "sha256-jYTB+kXbLwxAD5iGr3vFaZ9iaclh0vC4h0laIPAgrvE=",
         "owner": "josegonzalez",
         "repo": "python-github-backup",
-        "rev": "0548c7cb4b32cc376561aa75221740820b1910f5",
+        "rev": "61644da90680510ba26463d3f42f0f75bd660a28",
         "type": "github"
       },
       "original": {
